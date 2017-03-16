@@ -11,39 +11,39 @@
 declare(strict_types = 1);
 namespace Vainyl\Core\Extension\Exception;
 
-use Vainyl\Core\Extension\AbstractCompilerPass;
+use Symfony\Component\DependencyInjection\Container;
 
 /**
  * Class MissingTagFieldException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class MissingRequiredFieldException extends AbstractCompilerPassException
+class MissingRequiredFieldException extends AbstractContainerException
 {
     private $service;
 
-    private $tag;
+    private $section;
 
     private $field;
 
     /**
      * MissingTagFieldException constructor.
      *
-     * @param AbstractCompilerPass $compilerPass
-     * @param string               $node
-     * @param array                $tag
-     * @param string               $field
+     * @param Container $container
+     * @param string    $node
+     * @param array     $section
+     * @param string    $field
      */
-    public function __construct(AbstractCompilerPass $compilerPass, $node, array $tag, string $field)
+    public function __construct(Container $container, $node, array $section, string $field)
     {
         $this->service = $node;
-        $this->tag = $tag;
+        $this->section = $section;
         $this->field = $field;
         parent::__construct(
-            $compilerPass,
+            $container,
             sprintf(
                 'Section %s for node %s does not contain required field %s',
-                json_encode($tag),
+                json_encode($section),
                 $node,
                 $field
             )
@@ -56,7 +56,7 @@ class MissingRequiredFieldException extends AbstractCompilerPassException
     public function toArray(): array
     {
         return array_merge(
-            ['service' => $this->service, 'tag' => $this->tag, 'field' => $this->field],
+            ['service' => $this->service, 'section' => $this->section, 'field' => $this->field],
             parent::toArray()
         );
     }

@@ -16,6 +16,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
 use Vainyl\Core\Extension\Exception\MissingRequiredFieldException;
+use Vainyl\Core\Extension\Exception\MissingRequiredServiceException;
 
 /**
  * Class RendererCompilerPass
@@ -30,14 +31,14 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
     public function process(ContainerBuilder $container)
     {
         if (false === ($container->hasDefinition('renderer.storage'))) {
-            return $this;
+            throw new MissingRequiredServiceException($container, 'renderer.storage');
         }
 
         $services = $container->findTaggedServiceIds('renderer');
         foreach ($services as $id => $tags) {
             foreach ($tags as $tag) {
                 if (false === array_key_exists('alias', $tag)) {
-                    throw new MissingRequiredFieldException($this, $id, $tag, 'alias');
+                    throw new MissingRequiredFieldException($container, $id, $tag, 'alias');
                 }
                 $alias = $tag['alias'];
                 $definition = $container->getDefinition($id);
