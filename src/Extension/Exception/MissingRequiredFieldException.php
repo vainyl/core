@@ -18,7 +18,7 @@ use Vainyl\Core\Extension\AbstractCompilerPass;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class MissingTagFieldException extends AbstractCompilerPassException
+class MissingRequiredFieldException extends AbstractCompilerPassException
 {
     private $service;
 
@@ -30,21 +30,21 @@ class MissingTagFieldException extends AbstractCompilerPassException
      * MissingTagFieldException constructor.
      *
      * @param AbstractCompilerPass $compilerPass
-     * @param string               $service
+     * @param string               $node
      * @param array                $tag
      * @param string               $field
      */
-    public function __construct(AbstractCompilerPass $compilerPass, $service, array $tag, string $field)
+    public function __construct(AbstractCompilerPass $compilerPass, $node, array $tag, string $field)
     {
-        $this->service = $service;
+        $this->service = $node;
         $this->tag = $tag;
         $this->field = $field;
         parent::__construct(
             $compilerPass,
             sprintf(
-                'Tag %s for service %s does not contain required field %s',
+                'Section %s for node %s does not contain required field %s',
                 json_encode($tag),
-                $service,
+                $node,
                 $field
             )
         );
