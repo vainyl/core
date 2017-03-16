@@ -1,0 +1,19 @@
+services:
+  comparator.factory:
+    class: Vainyl\Core\Comparator\Factory\ComparatorFactory
+  comparator.factory.logger:
+    decorates: comparator.factory
+    class: Vainyl\Core\Comparator\Factory\Decorator\LoggerComparatorFactoryDecorator
+    arguments: ['@comparator.factory.inner', '@logger']
+  comparator.storage:
+    class: Vainyl\Core\Comparator\Storage\ComparatorStorage
+    arguments: ['comparator.factory']
+  renderer.factory:
+    class: Vainyl\Core\ArrayX\Factory\RendererFactory
+  renderer.factory.logger:
+    decorates: renderer.factory
+    class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
+    arguments: ['@renderer.factory.inner', '@logger']
+  renderer.storage:
+    class: Vainyl\Core\ArrayX\Storage\RendererStorage
+    arguments: ['@renderer.factory']
