@@ -33,6 +33,7 @@ class LoggerComparatorFactoryDecorator extends AbstractComparatorFactoryDecorato
      */
     public function __construct(ComparatorFactoryInterface $comparatorFactory, LoggerInterface $logger)
     {
+        $this->logger = $logger;
         parent::__construct($comparatorFactory);
     }
 

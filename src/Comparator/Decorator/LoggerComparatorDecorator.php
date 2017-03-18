@@ -340,7 +340,6 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
                     )
                 );
                 break;
-
         }
 
         return $result;

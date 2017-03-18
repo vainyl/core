@@ -1,0 +1,45 @@
+<?php
+/**
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   core
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://vainyl.com
+ */
+declare(strict_types = 1);
+
+namespace Vainyl\Core\Storage\Exception;
+
+use Vainyl\Core\Storage\StorageInterface;
+
+/**
+ * Class UnknownOffsetException
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
+class UnknownOffsetException extends AbstractStorageException
+{
+    private $offset;
+
+    /**
+     * UnknownOffsetException constructor.
+     *
+     * @param StorageInterface $storage
+     * @param string           $offset
+     */
+    public function __construct(StorageInterface $storage, string $offset)
+    {
+        $this->offset = $offset;
+        parent::__construct($storage, sprintf('Storage %s has no data by offset %s', $storage->getId(), $offset));
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        return array_merge(['offset' => $this->offset], parent::toArray());
+    }
+}

@@ -10,20 +10,20 @@
  */
 declare(strict_types = 1);
 
-namespace Vainyl\Core\Comparator\Exception;
+namespace Vainyl\Core\Storage\Exception;
 
 use Vainyl\Core\ArrayX\ArrayInterface;
-use Vainyl\Core\Comparator\ComparatorInterface;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Interface ComparatorExceptionInterface
+ * Interface StorageExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ComparatorExceptionInterface extends ArrayInterface, \Throwable
+interface StorageExceptionInterface extends ArrayInterface, \Throwable
 {
     /**
-     * @return ComparatorInterface
+     * @return StorageInterface
      */
-    public function getComparator() : ComparatorInterface;
+    public function getStorage() : StorageInterface;
 }

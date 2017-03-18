@@ -12,6 +12,7 @@ declare(strict_types = 1);
 namespace Vainyl\Core\Storage;
 
 use Vainyl\Core\Id\AbstractIdentifiable;
+use Vainyl\Core\Storage\Exception\UnknownOffsetException;
 
 /**
  * Class AbstractStorage
@@ -45,7 +46,7 @@ abstract class AbstractStorage extends AbstractIdentifiable implements StorageIn
     public function offsetGet($offset)
     {
         if (false === array_key_exists($offset, $this->storage)) {
-
+            throw new UnknownOffsetException($this, $offset);
         }
 
         return $this->storage[$offset];
