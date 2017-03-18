@@ -12,6 +12,7 @@ declare(strict_types = 1);
 
 namespace Vainyl\Core\Extension\Exception;
 
+use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Container;
 use Vainyl\Core\Exception\AbstractCoreException;
 
@@ -20,7 +21,7 @@ use Vainyl\Core\Exception\AbstractCoreException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class AbstractContainerException extends AbstractCoreException
+abstract class AbstractContainerException extends AbstractCoreException implements ContainerExceptionInterface
 {
     private $container;
 
@@ -44,5 +45,13 @@ class AbstractContainerException extends AbstractCoreException
     public function toArray(): array
     {
         return array_merge(['container' => spl_object_hash($this->container), parent::toArray()]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getContainer(): ContainerInterface
+    {
+        return $this->container;
     }
 }

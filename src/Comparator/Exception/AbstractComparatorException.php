@@ -20,7 +20,7 @@ use Vainyl\Core\Exception\AbstractCoreException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractComparatorException extends AbstractCoreException
+abstract class AbstractComparatorException extends AbstractCoreException implements ComparatorExceptionInterface
 {
     private $comparator;
 
@@ -65,5 +65,13 @@ abstract class AbstractComparatorException extends AbstractCoreException
             ],
             parent::toArray()
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getComparator(): ComparatorInterface
+    {
+        return $this->comparator;
     }
 }
