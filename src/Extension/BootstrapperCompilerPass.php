@@ -33,8 +33,7 @@ class BootstrapperCompilerPass extends AbstractCompilerPass
         }
 
         $definition = $container->findDefinition('bootstrapper.composite');
-        $services = $container->findTaggedServiceIds('bootstrapper');
-        foreach ($services as $id => $tags) {
+        foreach ($container->findTaggedServiceIds('bootstrapper') as $id => $tags) {
             $definition->addMethodCall('addBootstrapper', [new Reference($id)]);
         }
 

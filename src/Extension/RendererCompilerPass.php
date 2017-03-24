@@ -34,8 +34,7 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
             throw new MissingRequiredServiceException($container, 'renderer.storage');
         }
 
-        $services = $container->findTaggedServiceIds('renderer');
-        foreach ($services as $id => $tags) {
+        foreach ($container->findTaggedServiceIds('renderer') as $id => $tags) {
             foreach ($tags as $tag) {
                 if (false === array_key_exists('alias', $tag)) {
                     throw new MissingRequiredFieldException($container, $id, $tag, 'alias');

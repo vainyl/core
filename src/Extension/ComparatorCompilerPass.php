@@ -34,8 +34,7 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
             throw new MissingRequiredServiceException($container, 'comparator.storage');
         }
 
-        $services = $container->findTaggedServiceIds('comparator');
-        foreach ($services as $id => $tags) {
+        foreach ($container->findTaggedServiceIds('comparator') as $id => $tags) {
             foreach ($tags as $tag) {
                 if (false === array_key_exists('alias', $tag)) {
                     throw new MissingRequiredFieldException($container, $id, $tag, 'alias');
