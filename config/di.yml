@@ -1,4 +1,6 @@
 services:
+  bootstrapper.composite:
+    class: Vainyl\Core\Application\Composite\CompositeBootstrapper
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
   comparator.factory.logger:

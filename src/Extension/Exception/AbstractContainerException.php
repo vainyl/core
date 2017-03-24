@@ -44,7 +44,7 @@ abstract class AbstractContainerException extends AbstractCoreException implemen
      */
     public function toArray(): array
     {
-        return array_merge(['container' => spl_object_hash($this->container), parent::toArray()]);
+        return array_merge(['container' => spl_object_hash($this->container)], parent::toArray());
     }
 
     /**
