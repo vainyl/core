@@ -20,7 +20,7 @@ use Vainyl\Core\Exception\AbstractCoreException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class AbstractBootstrapperException extends AbstractCoreException implements BootstrapperExceptionInterface
+abstract class AbstractBootstrapperException extends AbstractCoreException implements BootstrapperExceptionInterface
 {
     private $bootstrapper;
 
