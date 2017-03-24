@@ -11,29 +11,13 @@
 declare(strict_types = 1);
 namespace Vainyl\Core\Storage;
 
-use Vainyl\Core\Id\AbstractIdentifiable;
-use Vainyl\Core\Storage\Exception\UnknownOffsetException;
-
 /**
  * Class AbstractStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorage extends AbstractIdentifiable implements StorageInterface
+abstract class AbstractStorage extends \ArrayObject implements StorageInterface
 {
-
-    private $storage;
-
-    /**
-     * AbstractStorage constructor.
-     *
-     * @param array $storage
-     */
-    public function __construct(array $storage = [])
-    {
-        $this->storage = $storage;
-    }
-
     /**
      * @inheritDoc
      */
@@ -45,45 +29,9 @@ abstract class AbstractStorage extends AbstractIdentifiable implements StorageIn
     /**
      * @inheritDoc
      */
-    public function offsetExists($offset)
+    public function getId(): string
     {
-        return array_key_exists($offset, $this->storage);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function offsetGet($offset)
-    {
-        if (false === array_key_exists($offset, $this->storage)) {
-            throw new UnknownOffsetException($this, $offset);
-        }
-
-        return $this->storage[$offset];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function offsetSet($offset, $value)
-    {
-        $this->storage[$offset] = $value;
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function offsetUnset($offset)
-    {
-        if (false === array_key_exists($offset, $this->storage)) {
-            return $this;
-        }
-
-        unset($this->storage[$offset]);
-
-        return $this;
+        return spl_object_hash($this);
     }
 
     /**

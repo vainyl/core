@@ -19,6 +19,6 @@ use Vainyl\Core\Name\NameableInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface StorageInterface extends IdentifiableInterface, NameableInterface, \ArrayAccess, \Iterator
+interface StorageInterface extends IdentifiableInterface, NameableInterface, \ArrayAccess, \Iterator, \Countable
 {
 }
