@@ -75,4 +75,44 @@ abstract class AbstractStorage extends AbstractIdentifiable implements StorageIn
 
         return $this;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function current()
+    {
+        return current($this->storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function next()
+    {
+        return next($this->storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function key()
+    {
+        return key($this->storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function valid() : bool
+    {
+        return (null !== $this->key());
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rewind() : void
+    {
+        reset($this->storage);
+    }
 }
