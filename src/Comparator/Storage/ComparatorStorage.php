@@ -13,28 +13,36 @@ namespace Vainyl\Core\Comparator\Storage;
 
 use Vainyl\Core\Comparator\ComparatorInterface;
 use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
-use Vainyl\Core\Id\Storage\AbstractIdentifiableStorage;
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class ComparatorStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ComparatorStorage extends AbstractIdentifiableStorage
+class ComparatorStorage extends AbstractStorageProxy
 {
-    private $comparators = [];
-
     private $comparatorFactory;
 
     /**
      * ComparatorStorage constructor.
      *
+     * @param StorageInterface           $storage
      * @param ComparatorFactoryInterface $comparatorFactory
      */
-    public function __construct(ComparatorFactoryInterface $comparatorFactory)
+    public function __construct(StorageInterface $storage, ComparatorFactoryInterface $comparatorFactory)
     {
         $this->comparatorFactory = $comparatorFactory;
-        parent::__construct();
+        parent::__construct($storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetGet($offset)
+    {
+        return $this->comparatorFactory->decorate(parent::offsetGet($offset));
     }
 
     /**
@@ -42,12 +50,8 @@ class ComparatorStorage extends AbstractIdentifiableStorage
      *
      * @return ComparatorInterface
      */
-    public function getComparator(string $alias) : ComparatorInterface
+    public function getComparator(string $alias): ComparatorInterface
     {
-        if (false === array_key_exists($alias, $this->comparators)) {
-            $this->comparators[$alias] = $this->comparatorFactory->decorate($this->offsetGet($alias));
-        }
-
-        return $this->comparators[$alias];
+        return $this->offsetGet($alias);
     }
 }

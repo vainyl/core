@@ -12,11 +12,11 @@ declare(strict_types = 1);
 namespace Vainyl\Core\Storage;
 
 /**
- * Class AbstractStorage
+ * Class Storage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorage extends \ArrayObject implements StorageInterface
+class Storage extends \ArrayObject implements StorageInterface
 {
     /**
      * @inheritDoc
@@ -45,9 +45,9 @@ abstract class AbstractStorage extends \ArrayObject implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function next()
+    public function next() : void
     {
-        return next($this->storage);
+        next($this->storage);
     }
 
     /**

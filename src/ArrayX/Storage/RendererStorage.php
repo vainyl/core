@@ -13,28 +13,36 @@ namespace Vainyl\Core\ArrayX\Storage;
 
 use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
-use Vainyl\Core\Id\Storage\AbstractIdentifiableStorage;
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class RendererStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class RendererStorage extends AbstractIdentifiableStorage
+class RendererStorage extends AbstractStorageProxy
 {
-    private $renderers = [];
-
     private $renderFactory;
 
     /**
      * RendererStorage constructor.
      *
+     * @param StorageInterface         $storage
      * @param RendererFactoryInterface $rendererFactory
      */
-    public function __construct(RendererFactoryInterface $rendererFactory)
+    public function __construct(StorageInterface $storage, RendererFactoryInterface $rendererFactory)
     {
         $this->renderFactory = $rendererFactory;
-        parent::__construct();
+        parent::__construct($storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetGet($offset)
+    {
+        return $this->renderFactory->decorate(parent::offsetGet($offset));
     }
 
     /**
@@ -44,10 +52,6 @@ class RendererStorage extends AbstractIdentifiableStorage
      */
     public function getRenderer(string $alias) : RendererInterface
     {
-        if (false === array_key_exists($alias, $this->renderers)) {
-            $this->renderers[$alias] = $this->renderFactory->decorate($this->offsetGet($alias));
-        }
-
-        return $this->renderers[$alias];
+        return $this->offsetGet($alias);
     }
 }

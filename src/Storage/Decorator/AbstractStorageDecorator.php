@@ -9,16 +9,16 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Comparator\Decorator;
 
-use Vainyl\Core\Comparator\Proxy\AbstractComparatorProxy;
+namespace Vainyl\Core\Storage\Decorator;
+
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
 
 /**
- * Class AbstractComparatorDecorator
+ * Class AbstractStorageDecorator
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractComparatorDecorator extends AbstractComparatorProxy
+abstract class AbstractStorageDecorator extends AbstractStorageProxy
 {
-
 }

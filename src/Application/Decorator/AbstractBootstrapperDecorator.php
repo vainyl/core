@@ -12,51 +12,14 @@ declare(strict_types = 1);
 
 namespace Vainyl\Core\Application\Decorator;
 
-use Vainyl\Core\Application\ApplicationInterface;
-use Vainyl\Core\Application\BootstrapperInterface;
+use Vainyl\Core\Application\Proxy\AbstractBootstrapperProxy;
 
 /**
  * Class AbstractBootstrapperDecorator
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class AbstractBootstrapperDecorator implements BootstrapperInterface
+class AbstractBootstrapperDecorator extends AbstractBootstrapperProxy
 {
-    private $bootstrapper;
 
-    /**
-     * AbstractBootstrapperDecorator constructor.
-     *
-     * @param BootstrapperInterface $bootstrapper
-     */
-    public function __construct(BootstrapperInterface $bootstrapper)
-    {
-        $this->bootstrapper = $bootstrapper;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function process(ApplicationInterface $application): BootstrapperInterface
-    {
-        $this->bootstrapper->process($application);
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->bootstrapper->getId();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return $this->bootstrapper->getName();
-    }
 }

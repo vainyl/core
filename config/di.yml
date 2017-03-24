@@ -1,4 +1,19 @@
 services:
+  storage:
+    shared: false
+    class: Vainyl\Core\Storage\Storage
+  storage.proxy:
+    abstract: true
+    class: Vainyl\Core\Storage\Proxy\AbstractStorageProxy
+    arguments: ['@storage']
+  storage.assert:
+    decorates: storage
+    class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
+    arguments: ['@storage.assert.inner']
+  storage.duplicate:
+    decorates: storage
+    class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
+    arguments: ['@storage.duplicate.inner']
   bootstrapper.composite:
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
   comparator.factory:
@@ -8,6 +23,7 @@ services:
     class: Vainyl\Core\Comparator\Factory\Decorator\LoggerComparatorFactoryDecorator
     arguments: ['@comparator.factory.inner', '@logger']
   comparator.storage:
+    parent: storage.proxy
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
     arguments: ['comparator.factory']
   renderer.factory:
@@ -17,5 +33,6 @@ services:
     class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
     arguments: ['@renderer.factory.inner', '@logger']
   renderer.storage:
+    parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
     arguments: ['@renderer.factory']
