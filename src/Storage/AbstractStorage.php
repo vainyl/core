@@ -22,7 +22,17 @@ use Vainyl\Core\Storage\Exception\UnknownOffsetException;
 abstract class AbstractStorage extends AbstractIdentifiable implements StorageInterface
 {
 
-    private $storage = [];
+    private $storage;
+
+    /**
+     * AbstractStorage constructor.
+     *
+     * @param array $storage
+     */
+    public function __construct(array $storage = [])
+    {
+        $this->storage = $storage;
+    }
 
     /**
      * @inheritDoc

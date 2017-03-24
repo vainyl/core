@@ -34,6 +34,7 @@ class ComparatorStorage extends AbstractIdentifiableStorage
     public function __construct(ComparatorFactoryInterface $comparatorFactory)
     {
         $this->comparatorFactory = $comparatorFactory;
+        parent::__construct();
     }
 
     /**

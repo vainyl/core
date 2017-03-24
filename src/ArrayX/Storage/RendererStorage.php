@@ -34,6 +34,7 @@ class RendererStorage extends AbstractIdentifiableStorage
     public function __construct(RendererFactoryInterface $rendererFactory)
     {
         $this->renderFactory = $rendererFactory;
+        parent::__construct();
     }
 
     /**
