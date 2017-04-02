@@ -39,15 +39,15 @@ class Storage extends \ArrayObject implements StorageInterface
      */
     public function current()
     {
-        return current($this->storage);
+        return $this->getIterator()->current();
     }
 
     /**
      * @inheritDoc
      */
-    public function next() : void
+    public function next()
     {
-        next($this->storage);
+        $this->getIterator()->next();
     }
 
     /**
@@ -55,22 +55,22 @@ class Storage extends \ArrayObject implements StorageInterface
      */
     public function key()
     {
-        return key($this->storage);
+        return $this->getIterator()->key();
     }
 
     /**
      * @inheritDoc
      */
-    public function valid() : bool
+    public function valid()
     {
-        return (null !== $this->key());
+        return $this->getIterator()->valid();
     }
 
     /**
      * @inheritDoc
      */
-    public function rewind() : void
+    public function rewind()
     {
-        reset($this->storage);
+        $this->getIterator()->rewind();
     }
 }
