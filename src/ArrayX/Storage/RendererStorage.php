@@ -47,6 +47,19 @@ class RendererStorage extends AbstractStorageProxy
     }
 
     /**
+     * @param string            $alias
+     * @param RendererInterface $renderer
+     *
+     * @return RendererStorage
+     */
+    public function addRenderer(string $alias, RendererInterface $renderer) : RendererStorage
+    {
+        $this->offsetSet($alias, $renderer);
+
+        return $this;
+    }
+
+    /**
      * @param string $alias
      *
      * @return RendererInterface

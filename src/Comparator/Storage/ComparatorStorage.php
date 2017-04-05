@@ -55,4 +55,17 @@ class ComparatorStorage extends AbstractStorageProxy
     {
         return $this->offsetGet($alias);
     }
+
+    /**
+     * @param string              $name
+     * @param ComparatorInterface $comparator
+     *
+     * @return ComparatorStorage
+     */
+    public function addComparator(string $name, ComparatorInterface $comparator) : ComparatorStorage
+    {
+        $this->offsetSet($name, $comparator);
+
+        return $this;
+    }
 }

@@ -46,7 +46,7 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
 
                 $containerDefinition = $container->getDefinition('comparator.storage');
                 $containerDefinition
-                    ->addMethodCall('addInstance', [$alias, new Reference($inner)]);
+                    ->addMethodCall('addComparator', [$alias, new Reference($inner)]);
 
                 $decoratedDefinition = (new Definition())
                     ->setFactory(['comparator.storage', 'getComparator'])

@@ -46,7 +46,7 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
 
                 $containerDefinition = $container->getDefinition('renderer.storage');
                 $containerDefinition
-                    ->addMethodCall('addInstance', [$alias, new Reference($inner)]);
+                    ->addMethodCall('addRenderer', [$alias, new Reference($inner)]);
 
                 $decoratedDefinition = (new Definition())
                     ->setFactory(['renderer.storage', 'getRenderer'])
