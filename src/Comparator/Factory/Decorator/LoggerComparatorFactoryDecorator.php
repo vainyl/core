@@ -1,10 +1,10 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
@@ -33,6 +33,7 @@ class LoggerComparatorFactoryDecorator extends AbstractComparatorFactoryDecorato
      */
     public function __construct(ComparatorFactoryInterface $comparatorFactory, LoggerInterface $logger)
     {
+        $this->logger = $logger;
         parent::__construct($comparatorFactory);
     }
 

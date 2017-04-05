@@ -1,39 +1,49 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator\Storage;
 
+use Ds\Map;
 use Vainyl\Core\Comparator\ComparatorInterface;
 use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
-use Vainyl\Core\Id\Storage\AbstractIdentifiableStorage;
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
 
 /**
  * Class ComparatorStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ComparatorStorage extends AbstractIdentifiableStorage
+class ComparatorStorage extends AbstractStorageProxy
 {
-    private $comparators = [];
-
     private $comparatorFactory;
 
     /**
      * ComparatorStorage constructor.
      *
+     * @param Map                        $storage
      * @param ComparatorFactoryInterface $comparatorFactory
      */
-    public function __construct(ComparatorFactoryInterface $comparatorFactory)
+    public function __construct(Map $storage, ComparatorFactoryInterface $comparatorFactory)
     {
         $this->comparatorFactory = $comparatorFactory;
+        parent::__construct($storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetGet($offset)
+    {
+        return $this->comparatorFactory->decorate(parent::offsetGet($offset));
     }
 
     /**
@@ -41,12 +51,21 @@ class ComparatorStorage extends AbstractIdentifiableStorage
      *
      * @return ComparatorInterface
      */
-    public function getComparator(string $alias) : ComparatorInterface
+    public function getComparator(string $alias): ComparatorInterface
     {
-        if (false === array_key_exists($alias, $this->comparators)) {
-            $this->comparators[$alias] = $this->comparatorFactory->decorate($this->offsetGet($alias));
-        }
+        return $this->offsetGet($alias);
+    }
 
-        return $this->comparators[$alias];
+    /**
+     * @param string              $name
+     * @param ComparatorInterface $comparator
+     *
+     * @return ComparatorStorage
+     */
+    public function addComparator(string $name, ComparatorInterface $comparator) : ComparatorStorage
+    {
+        $this->offsetSet($name, $comparator);
+
+        return $this;
     }
 }

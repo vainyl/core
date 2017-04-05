@@ -1,10 +1,10 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
@@ -340,7 +340,6 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
                     )
                 );
                 break;
-
         }
 
         return $result;

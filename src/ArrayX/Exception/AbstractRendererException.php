@@ -1,10 +1,10 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
@@ -20,7 +20,7 @@ use Vainyl\Core\Exception\AbstractCoreException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractRendererException extends AbstractCoreException
+abstract class AbstractRendererException extends AbstractCoreException implements RendererExceptionInterface
 {
     private $renderer;
 
@@ -57,5 +57,13 @@ abstract class AbstractRendererException extends AbstractCoreException
             ['renderer' => $this->renderer->getName(), 'array' => get_class($this->array)],
             parent::toArray()
         );
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRenderer(): RendererInterface
+    {
+        return $this->renderer;
     }
 }

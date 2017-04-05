@@ -1,39 +1,62 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX\Storage;
 
+use Ds\Map;
 use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
-use Vainyl\Core\Id\Storage\AbstractIdentifiableStorage;
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
 
 /**
  * Class RendererStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class RendererStorage extends AbstractIdentifiableStorage
+class RendererStorage extends AbstractStorageProxy
 {
-    private $renderers = [];
-
     private $renderFactory;
 
     /**
      * RendererStorage constructor.
      *
+     * @param Map                      $storage
      * @param RendererFactoryInterface $rendererFactory
      */
-    public function __construct(RendererFactoryInterface $rendererFactory)
+    public function __construct(Map $storage, RendererFactoryInterface $rendererFactory)
     {
         $this->renderFactory = $rendererFactory;
+        parent::__construct($storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function offsetGet($offset)
+    {
+        return $this->renderFactory->decorate(parent::offsetGet($offset));
+    }
+
+    /**
+     * @param string            $alias
+     * @param RendererInterface $renderer
+     *
+     * @return RendererStorage
+     */
+    public function addRenderer(string $alias, RendererInterface $renderer) : RendererStorage
+    {
+        $this->offsetSet($alias, $renderer);
+
+        return $this;
     }
 
     /**
@@ -41,12 +64,8 @@ class RendererStorage extends AbstractIdentifiableStorage
      *
      * @return RendererInterface
      */
-    public function getRenderer(string $alias) : RendererInterface
+    public function getRenderer(string $alias): RendererInterface
     {
-        if (false === array_key_exists($alias, $this->renderers)) {
-            $this->renderers[$alias] = $this->renderFactory->decorate($this->offsetGet($alias));
-        }
-
-        return $this->renderers[$alias];
+        return $this->offsetGet($alias);
     }
 }

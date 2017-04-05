@@ -1,10 +1,10 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
@@ -15,7 +15,8 @@ use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
-use Vainyl\Core\Extension\Exception\MissingTagFieldException;
+use Vainyl\Core\Extension\Exception\MissingRequiredFieldException;
+use Vainyl\Core\Extension\Exception\MissingRequiredServiceException;
 
 /**
  * Class ComparatorCompilerPass
@@ -30,14 +31,16 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
     public function process(ContainerBuilder $container)
     {
         if (false === ($container->hasDefinition('comparator.storage'))) {
-            return $this;
+            throw new MissingRequiredServiceException($container, 'comparator.storage');
         }
 
-        $services = $container->findTaggedServiceIds('comparator');
-        foreach ($services as $id => $tags) {
+        foreach ($container->findTaggedServiceIds('comparator') as $id => $tags) {
             foreach ($tags as $tag) {
+                if ('comparator' !== $tag['name']) {
+                    continue;
+                }
                 if (false === array_key_exists('alias', $tag)) {
-                    throw new MissingTagFieldException($this, $id, $tag, 'alias');
+                    throw new MissingRequiredFieldException($container, $id, $tag, 'alias');
                 }
                 $alias = $tag['alias'];
                 $definition = $container->getDefinition($id);
@@ -46,7 +49,7 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
 
                 $containerDefinition = $container->getDefinition('comparator.storage');
                 $containerDefinition
-                    ->addMethodCall('addInstance', [$alias, new Reference($inner)]);
+                    ->addMethodCall('addComparator', [$alias, new Reference($inner)]);
 
                 $decoratedDefinition = (new Definition())
                     ->setFactory(['comparator.storage', 'getComparator'])
