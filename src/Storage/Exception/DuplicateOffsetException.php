@@ -8,11 +8,9 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Exception;
-
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class DuplicateOffsetException
@@ -30,12 +28,12 @@ class DuplicateOffsetException extends AbstractStorageException
     /**
      * DuplicateOffsetException constructor.
      *
-     * @param StorageInterface $storage
-     * @param string           $offset
-     * @param int              $newValue
-     * @param \Exception|null  $oldValue
+     * @param \ArrayAccess    $storage
+     * @param string          $offset
+     * @param int             $newValue
+     * @param \Exception|null $oldValue
      */
-    public function __construct(StorageInterface $storage, $offset, $newValue, $oldValue)
+    public function __construct(\ArrayAccess $storage, $offset, $newValue, $oldValue)
     {
         $this->offset = $offset;
         $this->newValue = $newValue;
@@ -44,7 +42,7 @@ class DuplicateOffsetException extends AbstractStorageException
             $storage,
             sprintf(
                 'Storage %s already contains value %s by offset %s',
-                $storage->getName(),
+                spl_object_hash($storage),
                 $oldValue,
                 $offset
             )

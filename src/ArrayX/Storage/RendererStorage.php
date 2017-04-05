@@ -8,13 +8,14 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX\Storage;
 
+use Ds\Map;
 use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
 use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class RendererStorage
@@ -28,10 +29,10 @@ class RendererStorage extends AbstractStorageProxy
     /**
      * RendererStorage constructor.
      *
-     * @param StorageInterface         $storage
+     * @param Map                      $storage
      * @param RendererFactoryInterface $rendererFactory
      */
-    public function __construct(StorageInterface $storage, RendererFactoryInterface $rendererFactory)
+    public function __construct(Map $storage, RendererFactoryInterface $rendererFactory)
     {
         $this->renderFactory = $rendererFactory;
         parent::__construct($storage);
@@ -50,7 +51,7 @@ class RendererStorage extends AbstractStorageProxy
      *
      * @return RendererInterface
      */
-    public function getRenderer(string $alias) : RendererInterface
+    public function getRenderer(string $alias): RendererInterface
     {
         return $this->offsetGet($alias);
     }

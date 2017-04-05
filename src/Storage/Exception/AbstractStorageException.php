@@ -8,12 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Exception;
 
 use Vainyl\Core\Exception\AbstractCoreException;
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class AbstractStorageException
@@ -27,13 +26,13 @@ abstract class AbstractStorageException extends AbstractCoreException implements
     /**
      * AbstractStorageException constructor.
      *
-     * @param StorageInterface $storage
-     * @param string           $message
-     * @param int              $code
-     * @param \Exception|null  $previous
+     * @param \ArrayAccess    $storage
+     * @param string          $message
+     * @param int             $code
+     * @param \Exception|null $previous
      */
     public function __construct(
-        StorageInterface $storage,
+        \ArrayAccess $storage,
         string $message,
         int $code = 500,
         \Exception $previous = null
@@ -47,13 +46,13 @@ abstract class AbstractStorageException extends AbstractCoreException implements
      */
     public function toArray(): array
     {
-        return array_merge(['storage' => $this->storage->getName()], parent::toArray());
+        return array_merge(['storage' => spl_object_hash($this->storage)], parent::toArray());
     }
 
     /**
      * @inheritDoc
      */
-    public function getStorage(): StorageInterface
+    public function getStorage(): \ArrayAccess
     {
         return $this->storage;
     }

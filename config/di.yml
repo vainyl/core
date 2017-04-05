@@ -1,7 +1,7 @@
 services:
   storage:
     shared: false
-    class: Vainyl\Core\Storage\Storage
+    class: Ds\Map
   storage.proxy:
     abstract: true
     class: Vainyl\Core\Storage\Proxy\AbstractStorageProxy

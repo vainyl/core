@@ -8,13 +8,14 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator\Storage;
 
+use Ds\Map;
 use Vainyl\Core\Comparator\ComparatorInterface;
 use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
 use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class ComparatorStorage
@@ -28,10 +29,10 @@ class ComparatorStorage extends AbstractStorageProxy
     /**
      * ComparatorStorage constructor.
      *
-     * @param StorageInterface           $storage
+     * @param Map                        $storage
      * @param ComparatorFactoryInterface $comparatorFactory
      */
-    public function __construct(StorageInterface $storage, ComparatorFactoryInterface $comparatorFactory)
+    public function __construct(Map $storage, ComparatorFactoryInterface $comparatorFactory)
     {
         $this->comparatorFactory = $comparatorFactory;
         parent::__construct($storage);

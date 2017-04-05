@@ -8,69 +8,29 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Proxy;
 
-use Vainyl\Core\Storage\StorageInterface;
+use Ds\Map;
 
 /**
  * Class AbstractStorageProxy
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageProxy implements StorageInterface
+abstract class AbstractStorageProxy implements \ArrayAccess, \Traversable, \Countable, \IteratorAggregate
 {
     private $storage;
 
     /**
      * AbstractStorageDecorator constructor.
      *
-     * @param StorageInterface $storage
+     * @param Map $storage
      */
-    public function __construct(StorageInterface $storage)
+    public function __construct(Map $storage)
     {
         $this->storage = $storage;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function current()
-    {
-        return $this->storage->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function next()
-    {
-        $this->storage->next();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function key()
-    {
-        return $this->storage->key();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function valid()
-    {
-        return $this->storage->valid();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function rewind()
-    {
-        $this->storage->rewind();
     }
 
     /**
@@ -108,24 +68,16 @@ abstract class AbstractStorageProxy implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function getId(): string
-    {
-        return $this->storage->getId();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getName(): string
-    {
-        return $this->storage->getName();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function count()
+    public function count(): int
     {
         return $this->storage->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return $this->storage->getIterator();
     }
 }

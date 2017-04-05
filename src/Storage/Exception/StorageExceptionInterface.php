@@ -8,12 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Exception;
 
 use Vainyl\Core\ArrayX\ArrayInterface;
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Interface StorageExceptionInterface
@@ -23,7 +22,7 @@ use Vainyl\Core\Storage\StorageInterface;
 interface StorageExceptionInterface extends ArrayInterface, \Throwable
 {
     /**
-     * @return StorageInterface
+     * @return \ArrayAccess
      */
-    public function getStorage() : StorageInterface;
+    public function getStorage(): \ArrayAccess;
 }
