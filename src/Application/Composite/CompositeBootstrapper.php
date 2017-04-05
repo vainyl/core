@@ -8,29 +8,50 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Application\Composite;
 
+use Ds\Set;
 use Vainyl\Core\Application\ApplicationInterface;
 use Vainyl\Core\Application\BootstrapperInterface;
-use Vainyl\Core\Storage\AbstractStorage;
+use Vainyl\Core\Id\AbstractIdentifiable;
 
 /**
  * Class CompositeBootstrapper
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CompositeBootstrapper extends AbstractStorage implements BootstrapperInterface
+class CompositeBootstrapper extends AbstractIdentifiable implements BootstrapperInterface
 {
+    private $storage;
+
+    /**
+     * CompositeBootstrapper constructor.
+     *
+     * @param Set $storage
+     */
+    public function __construct(Set $storage)
+    {
+        $this->storage = $storage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName(): string
+    {
+        return basename(get_class($this));
+    }
+
     /**
      * @param BootstrapperInterface $bootstrapper
      *
      * @return BootstrapperInterface
      */
-    public function addBootstrapper(BootstrapperInterface $bootstrapper) : BootstrapperInterface
+    public function addBootstrapper(BootstrapperInterface $bootstrapper): BootstrapperInterface
     {
-        $this[] = $bootstrapper;
+        $this->storage->add($bootstrapper);
 
         return $this;
     }
@@ -40,7 +61,7 @@ class CompositeBootstrapper extends AbstractStorage implements BootstrapperInter
      */
     public function process(ApplicationInterface $application): BootstrapperInterface
     {
-        foreach ($this as $bootstrapper) {
+        foreach ($this->storage as $bootstrapper) {
             $application->bootstrap($bootstrapper);
         }
 
