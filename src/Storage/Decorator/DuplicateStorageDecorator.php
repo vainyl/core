@@ -27,6 +27,7 @@ class DuplicateStorageDecorator extends AbstractStorageDecorator
         if ($this->offsetExists($offset)) {
 
         }
+
         parent::offsetSet($offset, $value);
     }
 }

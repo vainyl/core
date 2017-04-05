@@ -21,4 +21,5 @@ use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
  */
 abstract class AbstractStorageDecorator extends AbstractStorageProxy
 {
+
 }
