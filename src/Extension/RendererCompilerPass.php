@@ -8,7 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Extension;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -35,14 +36,11 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
         }
 
         foreach ($container->findTaggedServiceIds('renderer') as $id => $tags) {
-            foreach ($tags as $tag) {
-                if ('comparator' !== $tag['name']) {
-                    continue;
+            foreach ($tags as $attributes) {
+                if (false === array_key_exists('alias', $attributes)) {
+                    throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
-                if (false === array_key_exists('alias', $tag)) {
-                    throw new MissingRequiredFieldException($container, $id, $tag, 'alias');
-                }
-                $alias = $tag['alias'];
+                $alias = $attributes['alias'];
                 $definition = $container->getDefinition($id);
                 $inner = $id . '.inner';
                 $container->setDefinition($inner, $definition);
