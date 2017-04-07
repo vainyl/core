@@ -9,9 +9,7 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Counter;
-
-use Vainyl\Core\String\StringInterface;
+namespace Vainyl\Core;
 
 /**
  * Interface CounterInterface

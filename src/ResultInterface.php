@@ -9,10 +9,7 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Result;
-
-use Vainyl\Core\ArrayX\ArrayInterface;
-use Vainyl\Core\String\StringInterface;
+namespace Vainyl\Core;
 
 /**
  * Interface ResultInterface

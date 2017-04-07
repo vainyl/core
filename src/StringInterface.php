@@ -9,15 +9,17 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Exception;
-
-use Vainyl\Core\ArrayInterface;
+namespace Vainyl\Core;
 
 /**
- * Class CoreException
+ * Interface StringInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface CoreExceptionInterface extends ArrayInterface, \Throwable
+interface StringInterface extends ComparableInterface
 {
+    /**
+     * @return string
+     */
+    public function __toString() : string;
 }

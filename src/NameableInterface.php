@@ -9,15 +9,17 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Comparator;
-
-use Vainyl\Core\Id\IdentifiableInterface;
+namespace Vainyl\Core;
 
 /**
- * Interface ComparableInterface
+ * Interface NameableInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ComparableInterface extends IdentifiableInterface
+interface NameableInterface extends IdentifiableInterface
 {
+    /**
+     * @return string
+     */
+    public function getName() : string;
 }

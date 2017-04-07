@@ -1,6 +1,6 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vainyl\Core\Comparator\Exception;
 
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**

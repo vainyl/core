@@ -12,7 +12,7 @@ declare(strict_types = 1);
 namespace Vainyl\Core\Comparator\Factory;
 
 use Vainyl\Core\Comparator\ComparatorInterface;
-use Vainyl\Core\Id\IdentifiableInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Interface ComparatorFactoryInterface

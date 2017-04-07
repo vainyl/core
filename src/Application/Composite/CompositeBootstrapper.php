@@ -15,7 +15,7 @@ namespace Vainyl\Core\Application\Composite;
 use Ds\Set;
 use Vainyl\Core\Application\ApplicationInterface;
 use Vainyl\Core\Application\BootstrapperInterface;
-use Vainyl\Core\Id\AbstractIdentifiable;
+use Vainyl\Core\AbstractIdentifiable;
 
 /**
  * Class CompositeBootstrapper

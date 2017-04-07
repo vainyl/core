@@ -9,19 +9,20 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Name;
-
-use Vainyl\Core\Id\IdentifiableInterface;
+namespace Vainyl\Core;
 
 /**
- * Interface NameableInterface
+ * Class AbstractFailedResult
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface NameableInterface extends IdentifiableInterface
+abstract class AbstractFailedResult extends AbstractIdentifiable implements ResultInterface
 {
     /**
-     * @return string
+     * @inheritDoc
      */
-    public function getName() : string;
+    public function isSuccessful()
+    {
+        return false;
+    }
 }

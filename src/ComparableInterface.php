@@ -9,19 +9,13 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\ArrayX;
-
-use Vainyl\Core\Comparator\ComparableInterface;
+namespace Vainyl\Core;
 
 /**
- * Interface ArrayInterface
+ * Interface ComparableInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ArrayInterface extends ComparableInterface
+interface ComparableInterface extends IdentifiableInterface
 {
-    /**
-     * @return array
-     */
-    public function toArray(): array;
 }

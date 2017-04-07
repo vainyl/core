@@ -11,8 +11,9 @@
 declare(strict_types = 1);
 namespace Vainyl\Core\ArrayX;
 
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\Exception\UnsupportedObjectException;
-use Vainyl\Core\Id\AbstractIdentifiable;
+use Vainyl\Core\AbstractIdentifiable;
 
 /**
  * Class AbstractRenderer

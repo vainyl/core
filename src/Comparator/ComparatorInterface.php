@@ -11,7 +11,8 @@
 declare(strict_types = 1);
 namespace Vainyl\Core\Comparator;
 
-use Vainyl\Core\Name\NameableInterface;
+use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\NameableInterface;
 
 /**
  * Interface ComparatorInterface

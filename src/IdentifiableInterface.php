@@ -9,19 +9,17 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\String;
-
-use Vainyl\Core\Comparator\ComparableInterface;
+namespace Vainyl\Core;
 
 /**
- * Interface StringInterface
+ * Interface Identifiable
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface StringInterface extends ComparableInterface
+interface IdentifiableInterface
 {
     /**
      * @return string
      */
-    public function __toString() : string;
+    public function getId() : string;
 }

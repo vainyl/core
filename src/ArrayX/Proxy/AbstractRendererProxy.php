@@ -12,7 +12,7 @@ declare(strict_types = 1);
 
 namespace Vainyl\Core\ArrayX\Proxy;
 
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
 
 /**

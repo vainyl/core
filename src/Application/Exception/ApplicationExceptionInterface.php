@@ -13,7 +13,7 @@ declare(strict_types = 1);
 namespace Vainyl\Core\Application\Exception;
 
 use Vainyl\Core\Application\ApplicationInterface;
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 
 /**
  * Interface ApplicationExceptionInterface

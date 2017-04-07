@@ -12,6 +12,8 @@ declare(strict_types = 1);
 
 namespace Vainyl\Core\Comparator;
 
+use Vainyl\Core\ComparableInterface;
+
 /**
  * Class IdComparator
  *

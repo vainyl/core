@@ -9,22 +9,20 @@
  * @link      https://vainyl.com
  */
 declare(strict_types = 1);
-namespace Vainyl\Core\Result;
-
-use Vainyl\Core\Id\AbstractIdentifiable;
+namespace Vainyl\Core;
 
 /**
- * Class AbstractSuccessfulResult
+ * Class AbstractIdentifiable
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements ResultInterface
+abstract class AbstractIdentifiable implements IdentifiableInterface
 {
     /**
      * @inheritDoc
      */
-    public function isSuccessful()
+    public function getId(): string
     {
-        return true;
+        return spl_object_hash($this);
     }
 }

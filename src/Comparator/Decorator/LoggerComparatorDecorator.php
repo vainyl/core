@@ -12,7 +12,7 @@ declare(strict_types = 1);
 namespace Vainyl\Core\Comparator\Decorator;
 
 use Psr\Log\LoggerInterface;
-use Vainyl\Core\Comparator\ComparableInterface;
+use Vainyl\Core\ComparableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
