@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Application;
 
+use Vainyl\Core\AbstractIdentifiable;
+
 /**
  * Class AbstractApplication
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractApplication implements ApplicationInterface
+abstract class AbstractApplication extends AbstractIdentifiable implements ApplicationInterface
 {
     /**
      * @inheritDoc
