@@ -8,7 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core;
 
 /**
@@ -23,10 +24,10 @@ interface CounterInterface extends StringInterface
      *
      * @return CounterInterface
      */
-    public function reset(int $seed) : CounterInterface;
+    public function reset(int $seed): CounterInterface;
 
     /**
      * @return int
      */
-    public function next() : int;
+    public function next(): int;
 }

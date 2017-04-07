@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Extension\Exception;
 
@@ -25,5 +25,5 @@ interface ContainerExceptionInterface extends ArrayInterface, \Throwable
     /**
      * @return ContainerInterface
      */
-    public function getContainer() : ContainerInterface;
+    public function getContainer(): ContainerInterface;
 }

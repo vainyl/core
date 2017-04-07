@@ -8,7 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core;
 
 /**
@@ -21,5 +22,5 @@ interface StringInterface extends ComparableInterface
     /**
      * @return string
      */
-    public function __toString() : string;
+    public function __toString(): string;
 }

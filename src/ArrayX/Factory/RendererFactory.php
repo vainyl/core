@@ -8,11 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX\Factory;
 
-use Vainyl\Core\ArrayX\RendererInterface;
 use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\ArrayX\RendererInterface;
 
 /**
  * Class RendererFactory

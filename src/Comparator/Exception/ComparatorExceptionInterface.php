@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator\Exception;
 
@@ -25,5 +25,5 @@ interface ComparatorExceptionInterface extends ArrayInterface, \Throwable
     /**
      * @return ComparatorInterface
      */
-    public function getComparator() : ComparatorInterface;
+    public function getComparator(): ComparatorInterface;
 }

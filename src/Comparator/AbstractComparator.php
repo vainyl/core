@@ -8,12 +8,13 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator;
 
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ComparableInterface;
 use Vainyl\Core\Comparator\Exception\UnsupportedOperationException;
-use Vainyl\Core\AbstractIdentifiable;
 
 /**
  * Class AbstractComparator
