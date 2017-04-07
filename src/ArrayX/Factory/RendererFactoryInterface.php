@@ -8,11 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX\Factory;
 
 use Vainyl\Core\ArrayX\RendererInterface;
-use Vainyl\Core\Id\IdentifiableInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Interface RendererFactoryInterface
@@ -26,5 +27,5 @@ interface RendererFactoryInterface extends IdentifiableInterface
      *
      * @return RendererInterface
      */
-    public function decorate(RendererInterface $renderer) : RendererInterface;
+    public function decorate(RendererInterface $renderer): RendererInterface;
 }

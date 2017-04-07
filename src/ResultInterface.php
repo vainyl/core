@@ -8,11 +8,9 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
-namespace Vainyl\Core\Result;
+declare(strict_types=1);
 
-use Vainyl\Core\ArrayX\ArrayInterface;
-use Vainyl\Core\String\StringInterface;
+namespace Vainyl\Core;
 
 /**
  * Interface ResultInterface

@@ -8,10 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator;
 
-use Vainyl\Core\Name\NameableInterface;
+use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\NameableInterface;
 
 /**
  * Interface ComparatorInterface
@@ -23,7 +25,6 @@ interface ComparatorInterface extends NameableInterface
     const RESULT_EQUAL = 0;
     const RESULT_LESS = -1;
     const RESULT_GREATER = 1;
-
     const OPERATION_EQUAL = 'eq';
     const OPERATION_NOT_EQUAL = 'neq';
     const OPERATION_LESS = 'lt';

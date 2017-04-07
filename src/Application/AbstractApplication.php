@@ -10,23 +10,24 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Factory;
+namespace Vainyl\Core\Application;
 
 use Vainyl\Core\AbstractIdentifiable;
-use Vainyl\Core\ArrayX\RendererInterface;
 
 /**
- * Class RendererFactory
+ * Class AbstractApplication
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class RendererFactory extends AbstractIdentifiable implements RendererFactoryInterface
+abstract class AbstractApplication extends AbstractIdentifiable implements ApplicationInterface
 {
     /**
      * @inheritDoc
      */
-    public function decorate(RendererInterface $renderer): RendererInterface
+    public function bootstrap(BootstrapperInterface $bootstrapper): ApplicationInterface
     {
-        return $renderer;
+        $bootstrapper->process($this);
+
+        return $this;
     }
 }

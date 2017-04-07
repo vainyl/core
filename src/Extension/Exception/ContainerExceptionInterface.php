@@ -1,19 +1,19 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
- * @package   core
+ * @package   Core
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Extension\Exception;
 
 use Psr\Container\ContainerInterface;
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 
 /**
  * Interface ContainerExceptionInterface
@@ -25,5 +25,5 @@ interface ContainerExceptionInterface extends ArrayInterface, \Throwable
     /**
      * @return ContainerInterface
      */
-    public function getContainer() : ContainerInterface;
+    public function getContainer(): ContainerInterface;
 }

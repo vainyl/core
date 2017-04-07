@@ -8,11 +8,13 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX;
 
+use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\Exception\UnsupportedObjectException;
-use Vainyl\Core\Id\AbstractIdentifiable;
 
 /**
  * Class AbstractRenderer

@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Decorator;
 
@@ -25,7 +25,6 @@ class DuplicateStorageDecorator extends AbstractStorageDecorator
     public function offsetSet($offset, $value)
     {
         if ($this->offsetExists($offset)) {
-
         }
 
         parent::offsetSet($offset, $value);

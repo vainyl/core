@@ -8,10 +8,9 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
-namespace Vainyl\Core\Counter;
+declare(strict_types=1);
 
-use Vainyl\Core\Id\AbstractIdentifiable;
+namespace Vainyl\Core;
 
 /**
  * Class Counter

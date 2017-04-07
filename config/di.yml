@@ -1,4 +1,7 @@
 services:
+  counter:
+    shared: false
+    class: Vainyl\Core\Counter
   storage:
     shared: false
     class: Ds\Map

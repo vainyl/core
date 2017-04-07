@@ -8,11 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\ArrayX\Decorator;
 
 use Psr\Log\LoggerInterface;
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
 
 /**

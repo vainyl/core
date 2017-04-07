@@ -8,7 +8,7 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Application\Exception;
 
@@ -24,5 +24,5 @@ interface BootstrapperExceptionInterface
     /**
      * @return BootstrapperInterface
      */
-    public function getBootstrapper() : BootstrapperInterface;
+    public function getBootstrapper(): BootstrapperInterface;
 }

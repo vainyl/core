@@ -8,23 +8,22 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
-namespace Vainyl\Core\Result;
+declare(strict_types=1);
 
-use Vainyl\Core\Id\AbstractIdentifiable;
+namespace Vainyl\Core;
 
 /**
- * Class AbstractSuccessfulResult
+ * Class AbstractFailedResult
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements ResultInterface
+abstract class AbstractFailedResult extends AbstractIdentifiable implements ResultInterface
 {
     /**
      * @inheritDoc
      */
     public function isSuccessful()
     {
-        return true;
+        return false;
     }
 }

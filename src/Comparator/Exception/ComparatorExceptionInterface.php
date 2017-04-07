@@ -1,6 +1,6 @@
 <?php
 /**
- * Vain Framework
+ * Vainyl
  *
  * PHP Version 7
  *
@@ -8,11 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator\Exception;
 
-use Vainyl\Core\ArrayX\ArrayInterface;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
@@ -25,5 +25,5 @@ interface ComparatorExceptionInterface extends ArrayInterface, \Throwable
     /**
      * @return ComparatorInterface
      */
-    public function getComparator() : ComparatorInterface;
+    public function getComparator(): ComparatorInterface;
 }

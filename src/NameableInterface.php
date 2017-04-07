@@ -8,20 +8,19 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
-namespace Vainyl\Core\ArrayX;
+declare(strict_types=1);
 
-use Vainyl\Core\Comparator\ComparableInterface;
+namespace Vainyl\Core;
 
 /**
- * Interface ArrayInterface
+ * Interface NameableInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ArrayInterface extends ComparableInterface
+interface NameableInterface extends IdentifiableInterface
 {
     /**
-     * @return array
+     * @return string
      */
-    public function toArray(): array;
+    public function getName(): string;
 }

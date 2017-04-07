@@ -8,18 +8,19 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
-namespace Vainyl\Core\Id;
+declare(strict_types=1);
+
+namespace Vainyl\Core;
 
 /**
- * Interface Identifiable
+ * Interface ArrayInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface IdentifiableInterface
+interface ArrayInterface extends ComparableInterface
 {
     /**
-     * @return string
+     * @return array
      */
-    public function getId() : string;
+    public function toArray(): array;
 }

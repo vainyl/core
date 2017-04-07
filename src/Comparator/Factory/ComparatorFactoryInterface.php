@@ -8,11 +8,12 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator\Factory;
 
 use Vainyl\Core\Comparator\ComparatorInterface;
-use Vainyl\Core\Id\IdentifiableInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Interface ComparatorFactoryInterface
@@ -26,5 +27,5 @@ interface ComparatorFactoryInterface extends IdentifiableInterface
      *
      * @return ComparatorInterface
      */
-    public function decorate(ComparatorInterface $comparator) : ComparatorInterface;
+    public function decorate(ComparatorInterface $comparator): ComparatorInterface;
 }

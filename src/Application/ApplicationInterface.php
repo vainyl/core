@@ -8,11 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
 
 namespace Vainyl\Core\Application;
 
-use Vainyl\Core\Name\NameableInterface;
+use Vainyl\Core\NameableInterface;
 
 /**
  * Interface ApplicationInterface
@@ -26,5 +26,5 @@ interface ApplicationInterface extends NameableInterface
      *
      * @return ApplicationInterface
      */
-    public function bootstrap(BootstrapperInterface $bootstrapper) : ApplicationInterface;
+    public function bootstrap(BootstrapperInterface $bootstrapper): ApplicationInterface;
 }

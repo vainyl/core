@@ -8,7 +8,8 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://vainyl.com
  */
-declare(strict_types = 1);
+declare(strict_types=1);
+
 namespace Vainyl\Core\Comparator\Decorator;
 
 use Vainyl\Core\Comparator\Proxy\AbstractComparatorProxy;
@@ -20,5 +21,4 @@ use Vainyl\Core\Comparator\Proxy\AbstractComparatorProxy;
  */
 abstract class AbstractComparatorDecorator extends AbstractComparatorProxy
 {
-
 }
