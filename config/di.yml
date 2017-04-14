@@ -40,3 +40,8 @@ services:
     parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
     arguments: ['@renderer.factory']
+  bootstrapper.shutdown:
+    class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
+    arguments: ['@logger']
+    tags:
+      - {name: bootstrapper}
