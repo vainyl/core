@@ -12,36 +12,33 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Application\Composite;
 
-use Ds\Set;
-use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Application\ApplicationInterface;
 use Vainyl\Core\Application\BootstrapperInterface;
+use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
 
 /**
  * Class CompositeBootstrapper
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CompositeBootstrapper extends AbstractIdentifiable implements BootstrapperInterface
+class CompositeBootstrapper extends AbstractStorageProxy implements BootstrapperInterface
 {
-    private $storage;
-
-    /**
-     * CompositeBootstrapper constructor.
-     *
-     * @param Set $storage
-     */
-    public function __construct(Set $storage)
-    {
-        $this->storage = $storage;
-    }
-
     /**
      * @inheritDoc
      */
     public function getName(): string
     {
-        return basename(get_class($this));
+        return 'composite';
+    }
+
+    /**
+     * @param string $alias
+     *
+     * @return BootstrapperInterface
+     */
+    public function getBootstrapper(string $alias): BootstrapperInterface
+    {
+        return $this->offsetGet($alias);
     }
 
     /**
@@ -51,7 +48,7 @@ class CompositeBootstrapper extends AbstractIdentifiable implements Bootstrapper
      */
     public function addBootstrapper(BootstrapperInterface $bootstrapper): BootstrapperInterface
     {
-        $this->storage->add($bootstrapper);
+        $this->offsetSet($bootstrapper->getName(), $bootstrapper);
 
         return $this;
     }
@@ -61,8 +58,11 @@ class CompositeBootstrapper extends AbstractIdentifiable implements Bootstrapper
      */
     public function process(ApplicationInterface $application): BootstrapperInterface
     {
-        foreach ($this->storage as $bootstrapper) {
-            $application->bootstrap($bootstrapper);
+        /**
+         * @var BootstrapperInterface $bootstrapper
+         */
+        foreach ($this->getIterator() as $bootstrapper) {
+            $bootstrapper->process($application);
         }
 
         return $this;
