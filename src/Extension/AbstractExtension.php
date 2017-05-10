@@ -16,6 +16,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
+use Vainyl\Core\Application\EnvironmentInterface;
 use Vainyl\Core\NameableInterface;
 
 /**
@@ -44,7 +45,7 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     /**
      * @inheritDoc
      */
-    public function load(array $configs, ContainerBuilder $container): AbstractExtension
+    public function load(array $configs, ContainerBuilder $container, EnvironmentInterface $environment = null): AbstractExtension
     {
         $diFile = 'di.yml';
         $loader = new YamlFileLoader(
@@ -56,12 +57,12 @@ abstract class AbstractExtension extends Extension implements NameableInterface
                     DIRECTORY_SEPARATOR,
                     DIRECTORY_SEPARATOR,
                     DIRECTORY_SEPARATOR,
-                    $container->getParameter('config.dir')
+                    $environment->getConfigDirectory()
                 )
             )
         );
-        if ($container->hasParameter('app.debug') && $container->getParameter('app.debug')) {
-            $path = 'debug' . DIRECTORY_SEPARATOR . $diFile;
+        if ($environment->isDebugEnabled()) {
+            $path = $environment->getDebugDirectory() . DIRECTORY_SEPARATOR . $diFile;
         } else {
             $path = $diFile;
         }

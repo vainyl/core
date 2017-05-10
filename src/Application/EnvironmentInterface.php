@@ -45,5 +45,10 @@ interface EnvironmentInterface extends ArrayInterface, StringInterface
     /**
      * @return string
      */
+    public function getDebugDirectory() : string;
+
+    /**
+     * @return string
+     */
     public function getCacheDirectory() : string;
 }
