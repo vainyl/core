@@ -22,9 +22,6 @@
         "symfony/yaml": "^3",
         "php-ds/php-ds": "^1"
     },
-    "config": {
-        "secure-http": false
-    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
