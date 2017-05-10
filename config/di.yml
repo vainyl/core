@@ -2,24 +2,24 @@ services:
   counter:
     shared: false
     class: Vainyl\Core\Counter
-  storage.prototype:
+  ds.map:
     shared: false
     class: Ds\Map
-  storage.proxy:
+  storage.prototype:
     shared: false
     class: Vainyl\Core\Storage\Proxy\AbstractStorageProxy
-    arguments: ['@storage.prototype']
-  storage.proxy.assert:
-    decorates: storage.proxy
+    arguments: ['@ds.map']
+  storage.prototype.assert:
+    decorates: storage.prototype
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
-    arguments: ['@storage.proxy.assert.inner']
-  storage.proxy.duplicate:
+    arguments: ['@storage.prototype.assert.inner']
+  storage.prototype.duplicate:
     decorates: storage.proxy
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
-    arguments: ['@storage.proxy.duplicate.inner']
+    arguments: ['@storage.prototype.duplicate.inner']
   bootstrapper.composite:
-    parent: storage.proxy
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
+    arguments: ['@storage.prototype']
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
   comparator.factory.logger:
@@ -37,9 +37,8 @@ services:
     class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
     arguments: ['@renderer.factory.logger.inner', '@logger']
   renderer.storage:
-    parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
-    arguments: ['@renderer.factory']
+    arguments: ['@storage.prototype', '@renderer.factory']
   bootstrapper.shutdown:
     class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
     arguments: ['@logger']

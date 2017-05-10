@@ -17,11 +17,11 @@ use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class AbstractStorageProxy
+ * Class StorageProxy
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageProxy extends AbstractIdentifiable implements StorageInterface
+class StorageProxy extends AbstractIdentifiable implements StorageInterface
 {
     private $storage;
 

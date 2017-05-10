@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Decorator;
 
-use Ds\Map;
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Storage\StorageInterface;
 
@@ -28,9 +27,9 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     /**
      * AbstractStorageDecorator constructor.
      *
-     * @param Map $storage
+     * @param StorageInterface $storage
      */
-    public function __construct($storage)
+    public function __construct(StorageInterface $storage)
     {
         $this->storage = $storage;
     }
