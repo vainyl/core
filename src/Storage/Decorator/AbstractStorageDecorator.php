@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Decorator;
 
+use Ds\Map;
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -19,16 +21,16 @@ use Vainyl\Core\Storage\StorageInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageDecorator implements StorageInterface
+abstract class AbstractStorageDecorator extends AbstractIdentifiable implements StorageInterface
 {
     private $storage;
 
     /**
      * AbstractStorageDecorator constructor.
      *
-     * @param StorageInterface $storage
+     * @param Map $storage
      */
-    public function __construct(StorageInterface $storage)
+    public function __construct($storage)
     {
         $this->storage = $storage;
     }
@@ -71,14 +73,6 @@ abstract class AbstractStorageDecorator implements StorageInterface
     public function offsetUnset($offset)
     {
         $this->storage->offsetUnset($offset);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->storage->getId();
     }
 
     /**
