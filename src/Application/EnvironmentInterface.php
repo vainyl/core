@@ -25,10 +25,25 @@ interface EnvironmentInterface extends ArrayInterface, StringInterface
     /**
      * @return bool
      */
-    public function isDebug() : bool;
+    public function isDebugEnabled() : bool;
 
     /**
      * @return bool
      */
-    public function isCaching() : bool;
+    public function isCachingEnabled() : bool;
+
+    /**
+     * @return string
+     */
+    public function getApplicationDirectory() : string;
+
+    /**
+     * @return string
+     */
+    public function getConfigDirectory() : string;
+
+    /**
+     * @return string
+     */
+    public function getCacheDirectory() : string;
 }
