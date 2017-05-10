@@ -20,8 +20,7 @@ use Vainyl\Core\AbstractIdentifiable;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageProxy extends AbstractIdentifiable implements \ArrayAccess, \Traversable, \Countable,
-                                                                            \IteratorAggregate
+abstract class AbstractStorageProxy extends AbstractIdentifiable implements \ArrayAccess, \Countable, \IteratorAggregate
 {
     private $storage;
 
