@@ -25,7 +25,7 @@ services:
   comparator.factory.logger:
     decorates: comparator.factory
     class: Vainyl\Core\Comparator\Factory\Decorator\LoggerComparatorFactoryDecorator
-    arguments: ['@comparator.factory.inner', '@logger']
+    arguments: ['@comparator.factory.logger.inner', '@logger']
   comparator.storage:
     parent: storage.proxy
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
@@ -35,7 +35,7 @@ services:
   renderer.factory.logger:
     decorates: renderer.factory
     class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
-    arguments: ['@renderer.factory.inner', '@logger']
+    arguments: ['@renderer.factory.logger.inner', '@logger']
   renderer.storage:
     parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
