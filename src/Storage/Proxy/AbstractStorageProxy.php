@@ -40,7 +40,7 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements Stor
      */
     public function offsetExists($offset)
     {
-        return $this->storage->offsetExists($offset);
+        return $this->storage->hasKey($offset);
     }
 
     /**

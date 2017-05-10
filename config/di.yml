@@ -2,21 +2,21 @@ services:
   counter:
     shared: false
     class: Vainyl\Core\Counter
-  storage:
+  storage.prototype:
     shared: false
     class: Ds\Map
   storage.proxy:
-    abstract: true
+    shared: false
     class: Vainyl\Core\Storage\Proxy\AbstractStorageProxy
-    arguments: ['@storage']
-  storage.assert:
-    decorates: storage
+    arguments: ['@storage.prototype']
+  storage.proxy.assert:
+    decorates: storage.proxy
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
-    arguments: ['@storage.assert.inner']
-  storage.duplicate:
-    decorates: storage
+    arguments: ['@storage.proxy.assert.inner']
+  storage.proxy.duplicate:
+    decorates: storage.proxy
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
-    arguments: ['@storage.duplicate.inner']
+    arguments: ['@storage.proxy.duplicate.inner']
   bootstrapper.composite:
     parent: storage.proxy
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
