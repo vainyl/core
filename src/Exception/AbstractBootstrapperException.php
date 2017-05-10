@@ -10,10 +10,9 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Application\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\Application\BootstrapperInterface;
-use Vainyl\Core\Exception\AbstractCoreException;
 
 /**
  * Class AbstractBootstrapperException

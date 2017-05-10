@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Extension\Exception;
+namespace Vainyl\Core\Exception;
 
 use Psr\Container\ContainerInterface;
 use Vainyl\Core\ArrayInterface;

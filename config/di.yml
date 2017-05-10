@@ -18,6 +18,7 @@ services:
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
     arguments: ['@storage.duplicate.inner']
   bootstrapper.composite:
+    parent: storage.proxy
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
@@ -39,3 +40,8 @@ services:
     parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
     arguments: ['@renderer.factory']
+  bootstrapper.shutdown:
+    class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
+    arguments: ['@logger']
+    tags:
+      - {name: bootstrapper}

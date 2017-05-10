@@ -10,11 +10,10 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Extension\Exception;
+namespace Vainyl\Core\Exception;
 
 use Psr\Container\ContainerInterface;
 use Symfony\Component\DependencyInjection\Container;
-use Vainyl\Core\Exception\AbstractCoreException;
 
 /**
  * Class AbstractContainerException

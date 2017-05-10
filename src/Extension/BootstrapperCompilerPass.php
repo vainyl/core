@@ -14,7 +14,7 @@ namespace Vainyl\Core\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
-use Vainyl\Core\Extension\Exception\MissingRequiredServiceException;
+use Vainyl\Core\Exception\MissingRequiredServiceException;
 
 /**
  * Class BootstrapperCompilerPass
