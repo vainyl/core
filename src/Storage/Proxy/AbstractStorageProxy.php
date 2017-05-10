@@ -14,13 +14,14 @@ namespace Vainyl\Core\Storage\Proxy;
 
 use Ds\Map;
 use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class AbstractStorageProxy
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageProxy extends AbstractIdentifiable implements \ArrayAccess, \Countable, \IteratorAggregate
+abstract class AbstractStorageProxy extends AbstractIdentifiable implements StorageInterface
 {
     private $storage;
 
