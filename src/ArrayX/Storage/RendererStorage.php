@@ -39,14 +39,6 @@ class RendererStorage extends AbstractStorageDecorator implements RendererStorag
     }
 
     /**
-     * @inheritDoc
-     */
-    public function offsetGet($offset)
-    {
-        return $this->renderFactory->decorate(parent::offsetGet($offset));
-    }
-
-    /**
      * @param string            $alias
      * @param RendererInterface $renderer
      *
@@ -54,7 +46,7 @@ class RendererStorage extends AbstractStorageDecorator implements RendererStorag
      */
     public function addRenderer(string $alias, RendererInterface $renderer): RendererStorageInterface
     {
-        $this->offsetSet($alias, $renderer);
+        $this->offsetSet($alias, $this->renderFactory->decorate($renderer));
 
         return $this;
     }
