@@ -56,7 +56,7 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetSet($offset, $value)
     {
-        $this->storage->offsetSet($offset, $value);
+        $this->storage->put($offset, $value);
     }
 
     /**
@@ -64,7 +64,7 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetUnset($offset)
     {
-        $this->storage->offsetUnset($offset);
+        $this->storage->remove($offset);
     }
 
     /**
@@ -80,6 +80,6 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
      */
     public function getIterator()
     {
-        return $this->storage->getIterator();
+        return new \IteratorIterator($this->storage);
     }
 }
