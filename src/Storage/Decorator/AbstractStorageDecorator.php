@@ -81,4 +81,12 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     {
         return $this->storage->count();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        return $this->storage->toArray();
+    }
 }

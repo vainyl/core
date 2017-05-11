@@ -82,4 +82,12 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
     {
         return new \IteratorIterator($this->storage);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray() : array
+    {
+       return $this->storage->toArray();
+    }
 }
