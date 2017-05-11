@@ -10,10 +10,12 @@ services:
     class: Vainyl\Core\Storage\Proxy\StorageProxy
     arguments: ['@ds.map']
   storage.prototype.assert:
+    shared: false
     decorates: storage.prototype
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
     arguments: ['@storage.prototype.assert.inner']
   storage.prototype.duplicate:
+    shared: false
     decorates: storage.prototype
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
     arguments: ['@storage.prototype.duplicate.inner']
