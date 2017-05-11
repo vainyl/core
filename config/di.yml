@@ -22,6 +22,7 @@ services:
   bootstrapper.composite:
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
     arguments: ['@storage.prototype']
+  bootstrapper: '@bootstrapper.composite'
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
   comparator.factory.logger:
