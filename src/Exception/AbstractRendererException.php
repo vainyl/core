@@ -10,11 +10,10 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
-use Vainyl\Core\Exception\AbstractCoreException;
 
 /**
  * Class AbstractRendererException

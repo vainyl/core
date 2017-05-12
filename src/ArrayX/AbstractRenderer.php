@@ -14,7 +14,7 @@ namespace Vainyl\Core\ArrayX;
 
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\Exception\UnsupportedObjectException;
+use Vainyl\Core\Exception\UnsupportedArrayException;
 
 /**
  * Class AbstractRenderer
@@ -43,7 +43,7 @@ abstract class AbstractRenderer extends AbstractIdentifiable implements Renderer
     public function render(ArrayInterface $array): array
     {
         if (false === $this->supports($array)) {
-            throw new UnsupportedObjectException($this, $array);
+            throw new UnsupportedArrayException($this, $array);
         }
 
         return $this->doRender($array);

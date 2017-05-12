@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Decorator;
 
+use Vainyl\Core\Exception\DuplicateOffsetException;
+
 /**
  * Class DuplicateStorageDecorator
  *
@@ -25,6 +27,7 @@ class DuplicateStorageDecorator extends AbstractStorageDecorator
     public function offsetSet($offset, $value)
     {
         if ($this->offsetExists($offset)) {
+            throw new DuplicateOffsetException($this, $offset, $value, $this->offsetGet($offset));
         }
 
         parent::offsetSet($offset, $value);

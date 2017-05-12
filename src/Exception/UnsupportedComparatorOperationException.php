@@ -10,17 +10,17 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Comparator\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ComparableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
- * Class UnsupportedOperationException
+ * Class UnsupportedComparatorOperationException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnsupportedOperationException extends AbstractComparatorException
+class UnsupportedComparatorOperationException extends AbstractComparatorException
 {
     private $operation;
 

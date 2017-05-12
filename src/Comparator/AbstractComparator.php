@@ -14,7 +14,7 @@ namespace Vainyl\Core\Comparator;
 
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ComparableInterface;
-use Vainyl\Core\Comparator\Exception\UnsupportedOperationException;
+use Vainyl\Core\Exception\UnsupportedComparatorOperationException;
 
 /**
  * Class AbstractComparator
@@ -94,7 +94,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function eq(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_EQUAL, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_EQUAL, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_EQUAL, $what, $to);
         }
 
         return $this->doEq($what, $to);
@@ -106,7 +106,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function neq(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_NOT_EQUAL, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_NOT_EQUAL, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_NOT_EQUAL, $what, $to);
         }
 
         return $this->doNeq($what, $to);
@@ -118,7 +118,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function lt(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LESS, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_LESS, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_LESS, $what, $to);
         }
 
         return $this->doLt($what, $to);
@@ -130,7 +130,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function gt(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_GREATER, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_GREATER, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_GREATER, $what, $to);
         }
 
         return $this->doGt($what, $to);
@@ -142,7 +142,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function lte(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LESS_OR_EQUAL, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_LESS_OR_EQUAL, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_LESS_OR_EQUAL, $what, $to);
         }
 
         return $this->doLte($what, $to);
@@ -154,7 +154,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function gte(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_GREATER_OR_EQUAL, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_GREATER_OR_EQUAL, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_GREATER_OR_EQUAL, $what, $to);
         }
 
         return $this->doGte($what, $to);
@@ -166,7 +166,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     public function like(ComparableInterface $what, ComparableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LIKE, $what, $to)) {
-            throw new UnsupportedOperationException($this, self::OPERATION_LIKE, $what, $to);
+            throw new UnsupportedComparatorOperationException($this, self::OPERATION_LIKE, $what, $to);
         }
 
         return $this->doLike($what, $to);
