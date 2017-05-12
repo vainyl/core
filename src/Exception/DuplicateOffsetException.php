@@ -43,7 +43,7 @@ class DuplicateOffsetException extends AbstractStorageException
             sprintf(
                 'Storage %s already contains value %s by offset %s',
                 spl_object_hash($storage),
-                is_object($oldValue) ? get_class($oldValue) : $oldValue,
+                is_object($oldValue) ? get_class($oldValue) : var_export($oldValue, true),
                 $offset
             )
         );
