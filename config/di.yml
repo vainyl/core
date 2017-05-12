@@ -28,7 +28,7 @@ services:
   comparator.factory.logger:
     decorates: comparator.factory
     class: Vainyl\Core\Comparator\Factory\Decorator\LoggerComparatorFactoryDecorator
-    arguments: ['@comparator.factory.logger.inner', '@logger']
+    arguments: ['@comparator.factory.logger.inner', '@app.logger']
   comparator.storage:
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
     arguments: ['comparator.factory']
@@ -37,12 +37,12 @@ services:
   renderer.factory.logger:
     decorates: renderer.factory
     class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
-    arguments: ['@renderer.factory.logger.inner', '@logger']
+    arguments: ['@renderer.factory.logger.inner', '@app.logger']
   renderer.storage:
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
     arguments: ['@storage.prototype', '@renderer.factory']
   bootstrapper.shutdown:
     class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
-    arguments: ['@logger']
+    arguments: ['@app.logger']
     tags:
       - {name: bootstrapper}
