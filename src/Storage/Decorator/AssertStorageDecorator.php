@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Storage\Decorator;
 
-use Vainyl\Core\Storage\Exception\UnknownOffsetException;
+use Vainyl\Core\Exception\UnknownOffsetException;
 
 /**
  * Class AssertStorageDecorator

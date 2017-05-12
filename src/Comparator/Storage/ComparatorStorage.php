@@ -12,38 +12,30 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator\Storage;
 
-use Ds\Map;
 use Vainyl\Core\Comparator\ComparatorInterface;
 use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
-use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
+use Vainyl\Core\Storage\Decorator\AbstractStorageDecorator;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Class ComparatorStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ComparatorStorage extends AbstractStorageProxy
+class ComparatorStorage extends AbstractStorageDecorator
 {
     private $comparatorFactory;
 
     /**
      * ComparatorStorage constructor.
      *
-     * @param Map                        $storage
+     * @param StorageInterface           $storage
      * @param ComparatorFactoryInterface $comparatorFactory
      */
-    public function __construct(Map $storage, ComparatorFactoryInterface $comparatorFactory)
+    public function __construct(StorageInterface $storage, ComparatorFactoryInterface $comparatorFactory)
     {
         $this->comparatorFactory = $comparatorFactory;
         parent::__construct($storage);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function offsetGet($offset)
-    {
-        return $this->comparatorFactory->decorate(parent::offsetGet($offset));
     }
 
     /**
@@ -64,7 +56,7 @@ class ComparatorStorage extends AbstractStorageProxy
      */
     public function addComparator(string $name, ComparatorInterface $comparator): ComparatorStorage
     {
-        $this->offsetSet($name, $comparator);
+        $this->offsetSet($name, $this->comparatorFactory->decorate($comparator));
 
         return $this;
     }

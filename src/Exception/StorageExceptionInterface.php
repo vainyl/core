@@ -10,20 +10,19 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
 
 /**
- * Interface RendererExceptionInterface
+ * Interface StorageExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface RendererExceptionInterface extends ArrayInterface, \Throwable
+interface StorageExceptionInterface extends ArrayInterface, \Throwable
 {
     /**
-     * @return RendererInterface
+     * @return \ArrayAccess
      */
-    public function getRenderer(): RendererInterface;
+    public function getStorage(): \ArrayAccess;
 }

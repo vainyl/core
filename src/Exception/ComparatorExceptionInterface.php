@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Comparator\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;

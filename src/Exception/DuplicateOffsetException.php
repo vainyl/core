@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Storage\Exception;
+namespace Vainyl\Core\Exception;
 
 /**
  * Class DuplicateOffsetException
@@ -43,7 +43,7 @@ class DuplicateOffsetException extends AbstractStorageException
             sprintf(
                 'Storage %s already contains value %s by offset %s',
                 spl_object_hash($storage),
-                $oldValue,
+                is_object($oldValue) ? get_class($oldValue) : var_export($oldValue, true),
                 $offset
             )
         );

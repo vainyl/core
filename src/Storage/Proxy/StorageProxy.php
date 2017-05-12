@@ -14,14 +14,14 @@ namespace Vainyl\Core\Storage\Proxy;
 
 use Ds\Map;
 use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class AbstractStorageProxy
+ * Class StorageProxy
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractStorageProxy extends AbstractIdentifiable implements \ArrayAccess, \Traversable, \Countable,
-                                                                            \IteratorAggregate
+class StorageProxy extends AbstractIdentifiable implements StorageInterface
 {
     private $storage;
 
@@ -40,7 +40,7 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements \Arr
      */
     public function offsetExists($offset)
     {
-        return $this->storage->offsetExists($offset);
+        return $this->storage->hasKey($offset);
     }
 
     /**
@@ -48,7 +48,7 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements \Arr
      */
     public function offsetGet($offset)
     {
-        return $this->storage->offsetGet($offset);
+        return $this->storage->get($offset);
     }
 
     /**
@@ -56,7 +56,7 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements \Arr
      */
     public function offsetSet($offset, $value)
     {
-        $this->storage->offsetSet($offset, $value);
+        $this->storage->put($offset, $value);
     }
 
     /**
@@ -64,7 +64,7 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements \Arr
      */
     public function offsetUnset($offset)
     {
-        $this->storage->offsetUnset($offset);
+        $this->storage->remove($offset);
     }
 
     /**
@@ -80,6 +80,14 @@ abstract class AbstractStorageProxy extends AbstractIdentifiable implements \Arr
      */
     public function getIterator()
     {
-        return $this->storage->getIterator();
+        return new \IteratorIterator($this->storage);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray() : array
+    {
+       return $this->storage->toArray();
     }
 }

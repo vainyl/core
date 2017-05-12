@@ -1,33 +1,39 @@
 services:
+  logger.app:
+    synthetic: true
+    tags:
+      - {name: 'logger', channel: 'app'}
   counter:
     shared: false
     class: Vainyl\Core\Counter
-  storage:
+  ds.map:
     shared: false
     class: Ds\Map
-  storage.proxy:
-    abstract: true
-    class: Vainyl\Core\Storage\Proxy\AbstractStorageProxy
-    arguments: ['@storage']
-  storage.assert:
-    decorates: storage
+  storage.prototype:
+    shared: false
+    class: Vainyl\Core\Storage\Proxy\StorageProxy
+    arguments: ['@ds.map']
+  storage.prototype.assert:
+    shared: false
+    decorates: storage.prototype
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
-    arguments: ['@storage.assert.inner']
-  storage.duplicate:
-    decorates: storage
+    arguments: ['@storage.prototype.assert.inner']
+  storage.prototype.duplicate:
+    shared: false
+    decorates: storage.prototype
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
-    arguments: ['@storage.duplicate.inner']
+    arguments: ['@storage.prototype.duplicate.inner']
   bootstrapper.composite:
-    parent: storage.proxy
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
+    arguments: ['@storage.prototype']
+  bootstrapper: '@bootstrapper.composite'
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
   comparator.factory.logger:
     decorates: comparator.factory
     class: Vainyl\Core\Comparator\Factory\Decorator\LoggerComparatorFactoryDecorator
-    arguments: ['@comparator.factory.inner', '@logger']
+    arguments: ['@comparator.factory.logger.inner', '@logger.app']
   comparator.storage:
-    parent: storage.proxy
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
     arguments: ['comparator.factory']
   renderer.factory:
@@ -35,13 +41,38 @@ services:
   renderer.factory.logger:
     decorates: renderer.factory
     class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
-    arguments: ['@renderer.factory.inner', '@logger']
+    arguments: ['@renderer.factory.logger.inner', '@logger.app']
   renderer.storage:
-    parent: storage.proxy
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
-    arguments: ['@renderer.factory']
+    arguments: ['@storage.prototype', '@renderer.factory']
   bootstrapper.shutdown:
     class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
-    arguments: ['@logger']
+    arguments: ['@logger.app']
     tags:
       - {name: bootstrapper}
+  encoder.storage:
+    class: Vainyl\Core\Encoder\Storage\EncoderStorage
+    arguments: ['@storage.prototype']
+  decoder.storage:
+    class: Vainyl\Core\Encoder\Storage\DecoderStorage
+    arguments: ['@storage.prototype']
+  encoder.null:
+    class: Vainyl\Core\Encoder\NullEncoder
+    tags:
+      - {name: encoder, alias: 'null'}
+      - {name: encoder, alias: 'text/html'}
+  decoder.null:
+    class: Vainyl\Core\Encoder\NullEncoder
+    tags:
+      - {name: decoder, alias: 'null'}
+      - {name: decoder, alias: 'text/html'}
+  encoder.json:
+    class: Vainyl\Core\Encoder\JsonEncoder
+    tags:
+      - {name: encoder, alias: 'json'}
+      - {name: encoder, alias: 'application/json'}
+  decoder.json:
+    class: Vainyl\Core\Encoder\JsonEncoder
+    tags:
+      - {name: decoder, alias: 'json'}
+      - {name: decoder, alias: 'application/json'}

@@ -14,14 +14,14 @@ namespace Vainyl\Core\Application\Composite;
 
 use Vainyl\Core\Application\ApplicationInterface;
 use Vainyl\Core\Application\BootstrapperInterface;
-use Vainyl\Core\Storage\Proxy\AbstractStorageProxy;
+use Vainyl\Core\Storage\Decorator\AbstractStorageDecorator;
 
 /**
  * Class CompositeBootstrapper
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CompositeBootstrapper extends AbstractStorageProxy implements BootstrapperInterface
+class CompositeBootstrapper extends AbstractStorageDecorator implements BootstrapperInterface
 {
     /**
      * @inheritDoc

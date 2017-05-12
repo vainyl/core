@@ -10,17 +10,17 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Comparator\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ComparableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
- * Class UnsupportedObjectException
+ * Class UnsupportedComparableException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnsupportedObjectException extends AbstractComparatorException
+class UnsupportedComparableException extends AbstractComparatorException
 {
     /**
      * UnsupportedObjectException constructor.
@@ -31,6 +31,6 @@ class UnsupportedObjectException extends AbstractComparatorException
      */
     public function __construct(ComparatorInterface $comparator, ComparableInterface $what, ComparableInterface $to)
     {
-        parent::__construct($comparator, $what, $to, 'Unsupported objects');
+        parent::__construct($comparator, $what, $to, 'Unsupported comparables');
     }
 }

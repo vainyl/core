@@ -10,11 +10,10 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Comparator\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ComparableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
-use Vainyl\Core\Exception\AbstractCoreException;
 
 /**
  * Class AbstractComparatorException

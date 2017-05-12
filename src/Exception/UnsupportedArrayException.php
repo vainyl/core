@@ -10,20 +10,20 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Exception;
+namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
 
 /**
- * Class UnsupportedObjectException
+ * Class UnsupportedArrayException
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class UnsupportedObjectException extends AbstractRendererException
+class UnsupportedArrayException extends AbstractRendererException
 {
     /**
-     * UnsupportedObjectException constructor.
+     * UnsupportedArrayException constructor.
      *
      * @param RendererInterface $renderer
      * @param ArrayInterface    $array
