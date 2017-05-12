@@ -46,3 +46,19 @@ services:
     arguments: ['@logger.app']
     tags:
       - {name: bootstrapper}
+  encoder.storage:
+    class: Vainyl\Core\Encoder\Storage\EncoderStorage
+    arguments: ['@storage.prototype']
+  decoder.storage:
+    class: Vainyl\Core\Encoder\Storage\DecoderStorage
+    arguments: ['@storage.prototype']
+  encoder.json:
+    class: Vainyl\Core\Encoder\JsonEncoder
+    tags:
+      - {name: encoder, alias: 'json'}
+      - {name: encoder, alias: 'application/json'}
+  decoder.json:
+    class: Vainyl\Core\Encoder\JsonEncoder
+    tags:
+      - {name: decoder, alias: 'json'}
+      - {name: decoder, alias: 'application/json'}

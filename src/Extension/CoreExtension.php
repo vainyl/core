@@ -33,7 +33,9 @@ class CoreExtension extends AbstractExtension
         $container
             ->addCompilerPass(new BootstrapperCompilerPass())
             ->addCompilerPass(new ComparatorCompilerPass())
-            ->addCompilerPass(new RendererCompilerPass());
+            ->addCompilerPass(new RendererCompilerPass())
+            ->addCompilerPass(new EncoderCompilerPass())
+            ->addCompilerPass(new DecoderCompilerPass());
 
         return parent::load($configs, $container, $environment);
     }
