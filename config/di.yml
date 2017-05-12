@@ -56,10 +56,12 @@ services:
     class: Vainyl\Core\Encoder\NullEncoder
     tags:
       - {name: encoder, alias: 'null'}
+      - {name: encoder, alias: 'text/html'}
   decoder.null:
     class: Vainyl\Core\Encoder\NullEncoder
     tags:
       - {name: decoder, alias: 'null'}
+      - {name: encoder, alias: 'text/html'}
   encoder.json:
     class: Vainyl\Core\Encoder\JsonEncoder
     tags:
