@@ -42,6 +42,6 @@ class NullEncoder extends AbstractIdentifiable implements EncoderInterface, Deco
      */
     public function encode($data): string
     {
-        return $data;
+        return var_export($data, true);
     }
 }
