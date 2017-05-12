@@ -52,6 +52,14 @@ services:
   decoder.storage:
     class: Vainyl\Core\Encoder\Storage\DecoderStorage
     arguments: ['@storage.prototype']
+  encoder.null:
+    class: Vainyl\Core\Encoder\NullEncoder
+    tags:
+      - {name: encoder, alias: 'null'}
+  decoder.null:
+    class: Vainyl\Core\Encoder\NullEncoder
+    tags:
+      - {name: decoder, alias: 'null'}
   encoder.json:
     class: Vainyl\Core\Encoder\JsonEncoder
     tags:
