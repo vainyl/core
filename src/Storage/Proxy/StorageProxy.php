@@ -48,7 +48,7 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetGet($offset)
     {
-        return $this->storage->offsetGet($offset);
+        return $this->storage->get($offset);
     }
 
     /**
