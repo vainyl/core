@@ -34,7 +34,7 @@ class CompositeResult extends AbstractIdentifiable implements ResultInterface
      *
      * @param ResultInterface[] $results
      */
-    public function __construct( array $results)
+    public function __construct(array $results)
     {
         foreach ($results as $result) {
             $this->results[] = $result;
