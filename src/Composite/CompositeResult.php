@@ -24,18 +24,22 @@ class CompositeResult extends AbstractIdentifiable implements ResultInterface
 {
     private $status;
 
+    /**
+     * @var ResultInterface[];
+     */
     private $results;
 
     /**
      * CompositeResult constructor.
      *
-     * @param bool              $status
      * @param ResultInterface[] $results
      */
-    public function __construct(bool $status, array $results)
+    public function __construct( array $results)
     {
-        $this->status = $status;
-        $this->results = $results;
+        foreach ($results as $result) {
+            $this->results[] = $result;
+            $this->status = $this->status && $result->isSuccessful();
+        }
     }
 
     /**
