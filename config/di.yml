@@ -56,6 +56,9 @@ services:
   decoder.storage:
     class: Vainyl\Core\Encoder\Storage\DecoderStorage
     arguments: ['@storage.prototype']
+  extension.storage:
+    class: Vainyl\Core\Extension\ExtensionStorage
+    arguments: ['@storage.prototype']
   encoder.null:
     class: Vainyl\Core\Encoder\NullEncoder
     tags:

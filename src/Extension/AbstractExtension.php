@@ -14,6 +14,7 @@ namespace Vainyl\Core\Extension;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Vainyl\Core\Application\EnvironmentInterface;
@@ -39,25 +40,42 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function getName(): string
     {
-        return basename(get_class($this));
+        return strtolower(str_replace('Extension', '', (new \ReflectionClass($this))->getShortName()));
+    }
+
+    /**
+     * @return string
+     */
+    public function getDirectory(): string
+    {
+        return sprintf(
+            '%s%s..%s..%s',
+            dirname((new \ReflectionClass(get_class($this)))->getFileName()),
+            DIRECTORY_SEPARATOR,
+            DIRECTORY_SEPARATOR,
+            DIRECTORY_SEPARATOR
+        );
     }
 
     /**
      * @inheritDoc
      */
-    public function load(array $configs, ContainerBuilder $container, EnvironmentInterface $environment = null): AbstractExtension
-    {
+    public function load(
+        array $configs,
+        ContainerBuilder $container,
+        EnvironmentInterface $environment = null
+    ): AbstractExtension {
+        $container->addCompilerPass(new ExtensionCompilerPass());
+
         $diFile = 'di.yml';
         $loader = new YamlFileLoader(
             $container,
             new FileLocator(
                 sprintf(
-                    '%s%s..%s..%s%s',
-                    dirname((new \ReflectionClass(get_class($this)))->getFileName()),
-                    DIRECTORY_SEPARATOR,
-                    DIRECTORY_SEPARATOR,
-                    DIRECTORY_SEPARATOR,
-                    $environment->getConfigDirectory()
+                    '%s%s%s',
+                    $this->getDirectory(),
+                    $environment->getConfigDirectory(),
+                    DIRECTORY_SEPARATOR
                 )
             )
         );
@@ -67,6 +85,11 @@ abstract class AbstractExtension extends Extension implements NameableInterface
             $path = $diFile;
         }
         $loader->load($path);
+
+        $container->setDefinition(
+            sprintf('extensions.%s', $this->getName()),
+            (new Definition(get_class($this)))->addTag('extension')
+        );
 
         return $this;
     }
