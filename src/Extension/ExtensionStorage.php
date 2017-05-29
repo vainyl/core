@@ -19,12 +19,10 @@ use Vainyl\Core\Storage\Decorator\AbstractStorageDecorator;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class ExtensionStorage extends AbstractStorageDecorator
+class ExtensionStorage extends AbstractStorageDecorator implements ExtensionStorageInterface
 {
     /**
-     * @param AbstractExtension $extension
-     *
-     * @return ExtensionStorage
+     * @inheritDoc
      */
     public function addExtension(AbstractExtension $extension) : ExtensionStorage
     {
