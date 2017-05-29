@@ -22,4 +22,10 @@ use Vainyl\Core\IdentifiableInterface;
  */
 interface StorageInterface extends IdentifiableInterface, ArrayInterface, \ArrayAccess, \Countable, \IteratorAggregate
 {
+    /**
+     * @param array $configData
+     *
+     * @return StorageInterface
+     */
+    public function fromArray(array $configData) : StorageInterface;
 }
