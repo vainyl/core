@@ -49,12 +49,27 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     public function getDirectory(): string
     {
         return sprintf(
-            '%s%s..%s..%s',
+            '%s%s..%s..',
             dirname((new \ReflectionClass(get_class($this)))->getFileName()),
-            DIRECTORY_SEPARATOR,
             DIRECTORY_SEPARATOR,
             DIRECTORY_SEPARATOR
         );
+    }
+
+    /**
+     * @return string
+     */
+    public function getConfigDirectory() : string
+    {
+        return 'config';
+    }
+
+    /**
+     * @return string
+     */
+    public function getDebugDirectory() : string
+    {
+        return 'debug';
     }
 
     /**
@@ -72,15 +87,16 @@ abstract class AbstractExtension extends Extension implements NameableInterface
             $container,
             new FileLocator(
                 sprintf(
-                    '%s%s%s',
+                    '%s%s%s%s',
                     $this->getDirectory(),
-                    $environment->getConfigDirectory(),
+                    DIRECTORY_SEPARATOR,
+                    $this->getConfigDirectory(),
                     DIRECTORY_SEPARATOR
                 )
             )
         );
         if ($environment->isDebugEnabled()) {
-            $path = $environment->getDebugDirectory() . DIRECTORY_SEPARATOR . $diFile;
+            $path = $this->getDebugDirectory() . DIRECTORY_SEPARATOR . $diFile;
         } else {
             $path = $diFile;
         }
