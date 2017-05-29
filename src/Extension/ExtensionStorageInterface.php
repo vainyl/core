@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
+use Vainyl\Core\Storage\StorageInterface;
+
 /**
  * Interface ExtensionStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ExtensionStorageInterface
+interface ExtensionStorageInterface extends StorageInterface
 {
     /**
      * @param AbstractExtension $extension
