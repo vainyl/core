@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Application;
 
+use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Extension\AbstractExtension;
 use Vainyl\Core\StringInterface;
@@ -62,4 +63,9 @@ interface EnvironmentInterface extends ArrayInterface, StringInterface
      * @return AbstractExtension[]
      */
     public function getExtensions() : array;
+
+    /**
+     * @return CompilerPassInterface[]
+     */
+    public function getCompilerPasses() : array;
 }
