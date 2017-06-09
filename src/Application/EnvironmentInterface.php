@@ -14,6 +14,7 @@ namespace Vainyl\Core\Application;
 
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Extension\AbstractExtension;
+use Vainyl\Core\NameableInterface;
 use Vainyl\Core\StringInterface;
 
 /**
@@ -21,7 +22,7 @@ use Vainyl\Core\StringInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface EnvironmentInterface extends ArrayInterface, StringInterface
+interface EnvironmentInterface extends NameableInterface, ArrayInterface, StringInterface
 {
     /**
      * @return bool
