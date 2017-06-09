@@ -48,28 +48,23 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function getDirectory(): string
     {
-        return sprintf(
-            '%s%s..%s..',
-            dirname((new \ReflectionClass(get_class($this)))->getFileName()),
-            DIRECTORY_SEPARATOR,
-            DIRECTORY_SEPARATOR
-        );
+        return dirname((new \ReflectionClass(get_class($this)))->getFileName())
+               . DIRECTORY_SEPARATOR . '..'
+               . DIRECTORY_SEPARATOR . '..';
     }
 
     /**
+     * @param EnvironmentInterface $environment
+     *
      * @return string
      */
-    public function getConfigDirectory() : string
+    public function getConfigDirectory(EnvironmentInterface $environment): string
     {
-        return 'config';
-    }
+        if ($environment->isDebugEnabled()) {
+            return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config';
+        }
 
-    /**
-     * @return string
-     */
-    public function getDebugDirectory() : string
-    {
-        return 'debug';
+        return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'debug';
     }
 
     /**
@@ -80,30 +75,11 @@ abstract class AbstractExtension extends Extension implements NameableInterface
         ContainerBuilder $container,
         EnvironmentInterface $environment = null
     ): AbstractExtension {
-        $container->addCompilerPass(new ExtensionCompilerPass());
-
-        $diFile = 'di.yml';
-        $loader = new YamlFileLoader(
-            $container,
-            new FileLocator(
-                sprintf(
-                    '%s%s%s%s',
-                    $this->getDirectory(),
-                    DIRECTORY_SEPARATOR,
-                    $this->getConfigDirectory(),
-                    DIRECTORY_SEPARATOR
-                )
-            )
-        );
-        if ($environment->isDebugEnabled()) {
-            $path = $this->getDebugDirectory() . DIRECTORY_SEPARATOR . $diFile;
-        } else {
-            $path = $diFile;
-        }
-        $loader->load($path);
+        (new YamlFileLoader($container, new FileLocator($this->getConfigDirectory($environment))))
+            ->load('di.yml');
 
         $container->setDefinition(
-            sprintf('extensions.%s', $this->getName()),
+            sprintf('extension.%s', $this->getName()),
             (new Definition(get_class($this)))->addTag('extension')
         );
 
