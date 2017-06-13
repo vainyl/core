@@ -26,4 +26,12 @@ abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements 
     {
         return true;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        return ['status' => false];
+    }
 }
