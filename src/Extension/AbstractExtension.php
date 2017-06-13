@@ -80,7 +80,7 @@ abstract class AbstractExtension extends Extension implements NameableInterface
 
         $container->setDefinition(
             sprintf('extension.%s', $this->getName()),
-            (new Definition(get_class($this)))->addTag('extension')
+            (new Definition(get_class($this)))->addTag('extension', ['alias' => $this->getName()])
         );
 
         return $this;
