@@ -69,7 +69,11 @@ class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInte
      */
     public function offsetSet($offset, $value)
     {
-        $this->sequence->set($offset, $value);
+        if ($offset === null) {
+            $this->sequence->push($value);
+        } else {
+            $this->sequence->set($offset, $value);
+        }
     }
 
     /**
