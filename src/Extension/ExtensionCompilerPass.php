@@ -37,7 +37,7 @@ class ExtensionCompilerPass implements CompilerPassInterface
             foreach ($tags as $attributes) {
                 $containerDefinition = $container->getDefinition('extension.storage');
                 $containerDefinition
-                    ->addMethodCall('addExtension', [$attributes['alias'], new Reference($id)]);
+                    ->addMethodCall('addExtension', [new Reference($id)]);
             }
         }
 
