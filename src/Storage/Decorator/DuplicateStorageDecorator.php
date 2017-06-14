@@ -26,7 +26,7 @@ class DuplicateStorageDecorator extends AbstractStorageDecorator
      */
     public function offsetSet($offset, $value)
     {
-        if (null !== $offset && $this->offsetExists($offset)) {
+        if ($this->offsetExists($offset)) {
             throw new DuplicateOffsetException($this, $offset, $value, $this->offsetGet($offset));
         }
 
