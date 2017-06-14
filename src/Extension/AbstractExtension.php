@@ -27,6 +27,18 @@ use Vainyl\Core\NameableInterface;
  */
 abstract class AbstractExtension extends Extension implements NameableInterface
 {
+    private $environment;
+
+    /**
+     * AbstractExtension constructor.
+     *
+     * @param EnvironmentInterface $environment
+     */
+    public function __construct(EnvironmentInterface $environment)
+    {
+        $this->environment = $environment;
+    }
+
     /**
      * @inheritDoc
      */
@@ -54,13 +66,11 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
-     * @param EnvironmentInterface $environment
-     *
      * @return string
      */
-    public function getConfigDirectory(EnvironmentInterface $environment): string
+    public function getConfigDirectory(): string
     {
-        if ($environment->isDebugEnabled()) {
+        if ($this->environment->isDebugEnabled()) {
             return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config';
         }
 
@@ -70,12 +80,9 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     /**
      * @inheritDoc
      */
-    public function load(
-        array $configs,
-        ContainerBuilder $container,
-        EnvironmentInterface $environment = null
-    ): AbstractExtension {
-        (new YamlFileLoader($container, new FileLocator($this->getConfigDirectory($environment))))
+    public function load(array $configs, ContainerBuilder $container): AbstractExtension
+    {
+        (new YamlFileLoader($container, new FileLocator($this->getConfigDirectory())))
             ->load('di.yml');
 
         $container->setDefinition(
