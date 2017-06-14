@@ -34,11 +34,9 @@ class ExtensionCompilerPass implements CompilerPassInterface
         }
 
         foreach ($container->findTaggedServiceIds('extension') as $id => $tags) {
-            foreach ($tags as $attributes) {
-                $containerDefinition = $container->getDefinition('extension.storage');
-                $containerDefinition
-                    ->addMethodCall('addExtension', [new Reference($id)]);
-            }
+            $containerDefinition = $container->getDefinition('extension.storage');
+            $containerDefinition
+                ->addMethodCall('addExtension', [new Reference($id)]);
         }
 
         return $this;
