@@ -12,11 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Vainyl\Core\Application\EnvironmentInterface;
 use Vainyl\Core\NameableInterface;
 
@@ -82,14 +79,6 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
-        (new YamlFileLoader($container, new FileLocator($this->getConfigDirectory())))
-            ->load('di.yml');
-
-        $container->setDefinition(
-            sprintf('extension.%s', $this->getName()),
-            (new Definition(get_class($this)))->addTag('extension')
-        );
-
         return $this;
     }
 }
