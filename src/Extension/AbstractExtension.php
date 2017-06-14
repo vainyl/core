@@ -75,6 +75,11 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
+     * @return array
+     */
+    abstract public function getCompilerPasses(): array;
+
+    /**
      * @inheritDoc
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension

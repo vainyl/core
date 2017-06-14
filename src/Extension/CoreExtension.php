@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace Vainyl\Core\Extension;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Vainyl\Core\Application\EnvironmentInterface;
 
 /**
  * Class CoreExtension
@@ -25,19 +24,24 @@ class CoreExtension extends AbstractExtension
     /**
      * @inheritDoc
      */
-    public function load(
-        array $configs,
-        ContainerBuilder $container,
-        EnvironmentInterface $environment = null
-    ): AbstractExtension {
-        $container
-            ->addCompilerPass(new BootstrapperCompilerPass())
-            ->addCompilerPass(new ComparatorCompilerPass())
-            ->addCompilerPass(new RendererCompilerPass())
-            ->addCompilerPass(new EncoderCompilerPass())
-            ->addCompilerPass(new DecoderCompilerPass())
-            ->addCompilerPass(new ExtensionCompilerPass());
+    public function getCompilerPasses(): array
+    {
+        return [
+            new BootstrapperCompilerPass(),
+            new ComparatorCompilerPass(),
+            new RendererCompilerPass(),
+            new EncoderCompilerPass(),
+            new DecoderCompilerPass(),
+            new ExtensionCompilerPass(),
+        ];
+    }
 
-        return parent::load($configs, $container, $environment);
+    /**
+     * @inheritDoc
+     */
+    public function load(array $configs, ContainerBuilder $container): AbstractExtension
+    {
+
+        return parent::load($configs, $container);
     }
 }
