@@ -13,18 +13,20 @@ declare(strict_types=1);
 namespace Vainyl\Core\Extension;
 
 /**
- * Class AbstractBundleExtension
+ * Class AbstractFrameworkExtension
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractBundleExtension extends AbstractExtension
+abstract class AbstractFrameworkExtension extends AbstractExtension
 {
     /**
      * @return string
      */
     public function getDirectory(): string
     {
-        return dirname((new \ReflectionClass(get_class($this)))->getFileName()) . DIRECTORY_SEPARATOR . '..';
+        return dirname((new \ReflectionClass(get_class($this)))->getFileName())
+               . DIRECTORY_SEPARATOR . '..'
+               . DIRECTORY_SEPARATOR . '..';
     }
 
     /**

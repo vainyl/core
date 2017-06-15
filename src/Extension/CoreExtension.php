@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CoreExtension extends AbstractExtension
+class CoreExtension extends AbstractFrameworkExtension
 {
     /**
      * @inheritDoc

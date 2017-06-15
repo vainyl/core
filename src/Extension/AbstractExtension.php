@@ -61,36 +61,17 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
-     * @return string
-     */
-    public function getDirectory(): string
-    {
-        return dirname((new \ReflectionClass(get_class($this)))->getFileName())
-               . DIRECTORY_SEPARATOR . '..'
-               . DIRECTORY_SEPARATOR . '..';
-    }
-
-    /**
-     * @return string
-     */
-    public function getConfigDirectory(): string
-    {
-        if ($this->environment->isDebugEnabled()) {
-            return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config';
-        }
-
-        return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'debug';
-    }
-
-    /**
      * @return array
      */
-    abstract public function getCompilerPasses(): array;
+    public function getCompilerPasses(): array
+    {
+        return [];
+    }
 
     /**
      * @inheritDoc
      */
-    public function load(array $configs, ContainerBuilder $container): Extension
+    public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
         return $this;
     }
