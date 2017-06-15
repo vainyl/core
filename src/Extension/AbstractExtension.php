@@ -37,6 +37,14 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
+     * @return EnvironmentInterface
+     */
+    public function getEnvironment(): EnvironmentInterface
+    {
+        return $this->environment;
+    }
+
+    /**
      * @inheritDoc
      */
     public function getId(): string
