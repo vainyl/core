@@ -18,11 +18,11 @@ use Vainyl\Core\Application\EnvironmentInterface;
 use Vainyl\Core\NameableInterface;
 
 /**
- * Class AbstractExtension
+ * Class AbstractBundleExtension
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractExtension extends Extension implements NameableInterface
+abstract class AbstractBundleExtension extends Extension implements NameableInterface
 {
     private $environment;
 
@@ -57,9 +57,7 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function getDirectory(): string
     {
-        return dirname((new \ReflectionClass(get_class($this)))->getFileName())
-               . DIRECTORY_SEPARATOR . '..'
-               . DIRECTORY_SEPARATOR . '..';
+        return dirname((new \ReflectionClass(get_class($this)))->getFileName()) . DIRECTORY_SEPARATOR . '..';
     }
 
     /**
