@@ -65,8 +65,9 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function getNamespace()
     {
-        return (new \ReflectionClass($this))->getNamespaceName();
+        return str_replace('\Extension', '', (new \ReflectionClass($this))->getNamespaceName());
     }
+
 
     /**
      * @return string
