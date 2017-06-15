@@ -61,6 +61,16 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
+     * @return string
+     */
+    abstract public function getDirectory(): string;
+
+    /**
+     * @return string
+     */
+    abstract public function getConfigDirectory(): string;
+
+    /**
      * @return array
      */
     public function getCompilerPasses(): array

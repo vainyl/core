@@ -20,7 +20,7 @@ namespace Vainyl\Core\Extension;
 abstract class AbstractBundleExtension extends AbstractExtension
 {
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getDirectory(): string
     {
@@ -28,7 +28,7 @@ abstract class AbstractBundleExtension extends AbstractExtension
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getConfigDirectory(): string
     {
