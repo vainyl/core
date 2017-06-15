@@ -61,6 +61,14 @@ abstract class AbstractExtension extends Extension implements NameableInterface
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getNamespace()
+    {
+        return (new \ReflectionClass($this))->getNamespaceName();
+    }
+
+    /**
      * @return string
      */
     abstract public function getDirectory(): string;
