@@ -92,6 +92,14 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
+        (new \Symfony\Component\DependencyInjection\Loader\YamlFileLoader(
+            $container,
+            new \Symfony\Component\Config\FileLocator(
+                $this->getConfigDirectory()
+            )
+        ))
+            ->load('di.yml');
+
         return $this;
     }
 }
