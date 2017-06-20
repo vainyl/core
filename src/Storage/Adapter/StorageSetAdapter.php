@@ -65,7 +65,7 @@ class StorageSetAdapter extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetSet($offset, $value)
     {
-        $this->set->offsetSet($offset, $value);
+        $this->set->add($value);
     }
 
     /**
