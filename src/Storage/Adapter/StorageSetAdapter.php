@@ -4,6 +4,7 @@ namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Set;
 use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\Exception\UnsupportedMethodStorageException;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -49,7 +50,7 @@ class StorageSetAdapter extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetExists($offset)
     {
-        throw new \Error('Set data structure does not support checking for element');
+        throw new UnsupportedMethodStorageException($this, __METHOD__);
     }
 
     /**
@@ -73,7 +74,7 @@ class StorageSetAdapter extends AbstractIdentifiable implements StorageInterface
      */
     public function offsetUnset($offset)
     {
-        throw new \Error('Set data structure does not support unset elements');
+        throw new UnsupportedMethodStorageException($this, __METHOD__);
     }
 
     /**
