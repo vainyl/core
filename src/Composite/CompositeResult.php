@@ -22,7 +22,7 @@ use Vainyl\Core\ResultInterface;
  */
 class CompositeResult extends AbstractIdentifiable implements ResultInterface
 {
-    private $status;
+    private $status = true;
 
     /**
      * @var ResultInterface[];
