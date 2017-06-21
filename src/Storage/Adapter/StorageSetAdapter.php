@@ -100,9 +100,6 @@ class StorageSetAdapter extends AbstractIdentifiable implements StorageInterface
      */
     public function __clone()
     {
-        $copy = clone $this;
-        $copy->set = clone $this->set;
-
-        return $copy;
+        $this->set = clone $this->set;
     }
 }

@@ -107,9 +107,6 @@ class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInte
      */
     public function __clone()
     {
-        $copy = clone $this;
-        $copy->sequence = clone $this->sequence;
-
-        return $copy;
+        $this->sequence = clone $this->sequence;
     }
 }
