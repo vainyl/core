@@ -71,6 +71,9 @@ services:
   extension.storage:
     class: Vainyl\Core\Extension\ExtensionStorage
     arguments: ['@storage.prototype']
+  array.factory.storage:
+    class: Vainyl\Core\ArrayX\Storage\ArrayFactoryStorage
+    arguments: ['@storage.prototype']
   encoder.null:
     class: Vainyl\Core\Encoder\NullEncoder
     tags:

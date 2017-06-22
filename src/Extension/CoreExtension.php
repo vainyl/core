@@ -32,6 +32,7 @@ class CoreExtension extends AbstractFrameworkExtension
             new DecoderCompilerPass(),
             new ExtensionCompilerPass(),
             new HydratorCompilerPass(),
+            new ArrayFactoryCompilerPass(),
         ];
     }
 }
