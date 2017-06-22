@@ -24,6 +24,13 @@ interface ArrayFactoryInterface extends IdentifiableInterface
 {
     /**
      * @param string $name
+     *
+     * @return bool
+     */
+    public function supports(string $name) : bool;
+
+    /**
+     * @param string $name
      * @param array  $data
      *
      * @return ArrayInterface
