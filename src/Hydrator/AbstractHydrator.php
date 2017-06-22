@@ -24,22 +24,22 @@ use Vainyl\Core\Exception\UnsupportedClassHydratorException;
 abstract class AbstractHydrator extends AbstractIdentifiable implements HydratorInterface
 {
     /**
-     * @param string $class
+     * @param object $object
      * @param array  $data
      *
      * @return ArrayInterface
      */
-    abstract public function doHydrate(string $class, array $data) : ArrayInterface;
+    abstract public function doHydrate(object $object, array $data): ArrayInterface;
 
     /**
      * @inheritDoc
      */
-    public function hydrate(string $class, array $data): ArrayInterface
+    public function hydrate(object $object, array $data): ArrayInterface
     {
-        if (false === $this->supports($class)) {
-            throw new UnsupportedClassHydratorException($this, $class);
+        if (false === $this->supports($object)) {
+            throw new UnsupportedClassHydratorException($this, $object);
         }
 
-        return $this->doHydrate($class, $data);
+        return $this->doHydrate($object, $data);
     }
 }

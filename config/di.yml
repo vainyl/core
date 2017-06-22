@@ -65,6 +65,9 @@ services:
   decoder.storage:
     class: Vainyl\Core\Encoder\Storage\DecoderStorage
     arguments: ['@storage.prototype']
+  hydrator.storage:
+    class: Vainyl\Core\Hydrator\Storage\HydratorStorage
+    arguments: ['@storage.prototype']
   extension.storage:
     class: Vainyl\Core\Extension\ExtensionStorage
     arguments: ['@storage.prototype']

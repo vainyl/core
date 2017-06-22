@@ -21,18 +21,18 @@ use Vainyl\Core\Hydrator\HydratorInterface;
  */
 class UnsupportedClassHydratorException extends AbstractHydratorException
 {
-    private $class;
+    private $object;
 
     /**
      * UnsupportedClassHydratorException constructor.
      *
      * @param HydratorInterface $hydrator
-     * @param string            $class
+     * @param object            $object
      */
-    public function __construct(HydratorInterface $hydrator, string $class)
+    public function __construct(HydratorInterface $hydrator, object $object)
     {
-        $this->class = $class;
-        parent::__construct($hydrator, sprintf('Cannot hydrate unsupported class %s'));
+        $this->$object = $object;
+        parent::__construct($hydrator, sprintf('Cannot hydrate unsupported class %s', get_class($object)));
     }
 
     /**
@@ -40,6 +40,6 @@ class UnsupportedClassHydratorException extends AbstractHydratorException
      */
     public function toArray(): array
     {
-        return array_merge(['class' => $this->class], parent::toArray());
+        return array_merge(['class' => get_class($this->object)], parent::toArray());
     }
 }

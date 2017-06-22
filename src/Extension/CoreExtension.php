@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-
 /**
  * Class CoreExtension
  *
@@ -33,15 +31,7 @@ class CoreExtension extends AbstractFrameworkExtension
             new EncoderCompilerPass(),
             new DecoderCompilerPass(),
             new ExtensionCompilerPass(),
+            new HydratorCompilerPass(),
         ];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function load(array $configs, ContainerBuilder $container): AbstractExtension
-    {
-
-        return parent::load($configs, $container);
     }
 }

@@ -23,17 +23,17 @@ use Vainyl\Core\IdentifiableInterface;
 interface HydratorInterface extends IdentifiableInterface
 {
     /**
-     * @param string $class
+     * @param object $class
      *
      * @return bool
      */
-    public function supports(string $class) : bool;
+    public function supports(object $class) : bool;
 
     /**
-     * @param string $class
+     * @param object $class
      * @param array  $data
      *
      * @return ArrayInterface
      */
-    public function hydrate(string $class, array $data) : ArrayInterface;
+    public function hydrate(object $class, array $data) : ArrayInterface;
 }
