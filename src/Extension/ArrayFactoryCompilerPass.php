@@ -42,9 +42,6 @@ class ArrayFactoryCompilerPass implements CompilerPassInterface
                 $containerDefinition = $container->getDefinition('array.factory.storage');
                 $containerDefinition
                     ->addMethodCall('addFactory', [$attributes['alias'], new Reference($id)]);
-
-                $factoryDefinition = $container->findDefinition($id);
-                $factoryDefinition->addMethodCall('addFactory', [new Reference('array.factory.storage')]);
             }
         }
 

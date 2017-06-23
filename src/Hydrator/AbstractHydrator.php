@@ -23,6 +23,28 @@ use Vainyl\Core\Exception\UnsupportedClassHydratorException;
  */
 abstract class AbstractHydrator extends AbstractIdentifiable implements HydratorInterface
 {
+    private $factoryStorage;
+
+    /**
+     * @param \ArrayAccess $factoryStorage
+     *
+     * @return AbstractHydrator
+     */
+    public function setFactoryStorage(\ArrayAccess $factoryStorage): AbstractHydrator
+    {
+        $this->factoryStorage = $factoryStorage;
+
+        return $this;
+    }
+
+    /**
+     * @return AbstractHydrator
+     */
+    public function getFactoryStorage(): AbstractHydrator
+    {
+        return $this->factoryStorage;
+    }
+
     /**
      * @param object $object
      * @param array  $data
