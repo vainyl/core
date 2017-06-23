@@ -44,7 +44,7 @@ class HydratorCompilerPass implements CompilerPassInterface
                     ->addMethodCall('addHydrator', [$attributes['alias'], new Reference($id)]);
 
                 $factoryDefinition = $container->findDefinition($id);
-                $factoryDefinition->addMethodCall('addStorage', [new Reference('array.factory.storage')]);
+                $factoryDefinition->addMethodCall('setFactoryStorage', [new Reference('array.factory.storage')]);
             }
         }
 
