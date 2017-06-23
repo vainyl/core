@@ -23,6 +23,29 @@ use Vainyl\Core\Exception\UnsupportedArrayClassException;
  */
 abstract class AbstractArrayFactory extends AbstractIdentifiable implements ArrayFactoryInterface
 {
+    private $factoryStorage;
+
+    /**
+     * @param \ArrayAccess $factoryStorage
+     *
+     * @return AbstractArrayFactory
+     */
+    public function setFactoryStorage(\ArrayAccess $factoryStorage) : AbstractArrayFactory
+    {
+        $this->factoryStorage = $factoryStorage;
+
+        return $this;
+    }
+
+    /**
+     * @return AbstractArrayFactory
+     */
+    public function getFactoryStorage() : AbstractArrayFactory
+    {
+        return $this->factoryStorage;
+    }
+
+
     /**
      * @param string $name
      * @param array  $data
