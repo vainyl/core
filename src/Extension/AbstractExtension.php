@@ -12,10 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
-use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Vainyl\Core\Application\EnvironmentInterface;
 use Vainyl\Core\NameableInterface;
 
@@ -26,6 +24,26 @@ use Vainyl\Core\NameableInterface;
  */
 abstract class AbstractExtension extends Extension implements NameableInterface
 {
+    private $environment;
+
+    /**
+     * AbstractExtension constructor.
+     *
+     * @param EnvironmentInterface $environment
+     */
+    public function __construct(EnvironmentInterface $environment)
+    {
+        $this->environment = $environment;
+    }
+
+    /**
+     * @return EnvironmentInterface
+     */
+    public function getEnvironment(): EnvironmentInterface
+    {
+        return $this->environment;
+    }
+
     /**
      * @inheritDoc
      */
@@ -39,34 +57,48 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function getName(): string
     {
-        return basename(get_class($this));
+        return strtolower(str_replace('Extension', '', (new \ReflectionClass($this))->getShortName()));
     }
 
     /**
      * @inheritDoc
      */
-    public function load(array $configs, ContainerBuilder $container, EnvironmentInterface $environment = null): AbstractExtension
+    public function getNamespace()
     {
-        $diFile = 'di.yml';
-        $loader = new YamlFileLoader(
+        return str_replace('\Extension', '', (new \ReflectionClass($this))->getNamespaceName());
+    }
+
+
+    /**
+     * @return string
+     */
+    abstract public function getDirectory(): string;
+
+    /**
+     * @return string
+     */
+    abstract public function getConfigDirectory(): string;
+
+    /**
+     * @return array
+     */
+    public function getCompilerPasses(): array
+    {
+        return [];
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function load(array $configs, ContainerBuilder $container): AbstractExtension
+    {
+        (new \Symfony\Component\DependencyInjection\Loader\YamlFileLoader(
             $container,
-            new FileLocator(
-                sprintf(
-                    '%s%s..%s..%s%s',
-                    dirname((new \ReflectionClass(get_class($this)))->getFileName()),
-                    DIRECTORY_SEPARATOR,
-                    DIRECTORY_SEPARATOR,
-                    DIRECTORY_SEPARATOR,
-                    $environment->getConfigDirectory()
-                )
+            new \Symfony\Component\Config\FileLocator(
+                $this->getConfigDirectory()
             )
-        );
-        if ($environment->isDebugEnabled()) {
-            $path = $environment->getDebugDirectory() . DIRECTORY_SEPARATOR . $diFile;
-        } else {
-            $path = $diFile;
-        }
-        $loader->load($path);
+        ))
+            ->load('di.yml');
 
         return $this;
     }

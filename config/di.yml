@@ -1,4 +1,6 @@
 services:
+  app.environment:
+    synthetic: true
   logger.app:
     synthetic: true
     tags:
@@ -9,6 +11,13 @@ services:
   ds.map:
     shared: false
     class: Ds\Map
+  ds.set:
+    shared: false
+    class: Ds\Set
+  storage.set.prototype:
+    shared: false
+    class: Vainyl\Core\Storage\Adapter\StorageSetAdapter
+    arguments: ['@ds.set']
   storage.prototype:
     shared: false
     class: Vainyl\Core\Storage\Proxy\StorageProxy
@@ -35,7 +44,7 @@ services:
     arguments: ['@comparator.factory.logger.inner', '@logger.app']
   comparator.storage:
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
-    arguments: ['comparator.factory']
+    arguments: ['@storage.prototype', '@comparator.factory']
   renderer.factory:
     class: Vainyl\Core\ArrayX\Factory\RendererFactory
   renderer.factory.logger:
@@ -55,6 +64,9 @@ services:
     arguments: ['@storage.prototype']
   decoder.storage:
     class: Vainyl\Core\Encoder\Storage\DecoderStorage
+    arguments: ['@storage.prototype']
+  extension.storage:
+    class: Vainyl\Core\Extension\ExtensionStorage
     arguments: ['@storage.prototype']
   encoder.null:
     class: Vainyl\Core\Encoder\NullEncoder

@@ -26,4 +26,12 @@ abstract class AbstractFailedResult extends AbstractIdentifiable implements Resu
     {
         return false;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        return ['status' => false];
+    }
 }

@@ -10,17 +10,19 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core;
+namespace Vainyl\Core\Exception;
+
+use Vainyl\Core\Hydrator\HydratorInterface;
 
 /**
- * Interface Identifiable
+ * Interface HydratorExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface IdentifiableInterface
+interface HydratorExceptionInterface extends \Throwable
 {
     /**
-     * @return string
+     * @return HydratorInterface
      */
-    public function getId(): ?string;
+    public function getHydrator() : HydratorInterface;
 }

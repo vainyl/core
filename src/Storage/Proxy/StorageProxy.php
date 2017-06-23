@@ -90,4 +90,14 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
     {
        return $this->storage->toArray();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $configData) : StorageInterface
+    {
+        $this->storage->putAll($configData);
+
+        return $this;
+    }
 }

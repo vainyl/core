@@ -17,7 +17,7 @@ namespace Vainyl\Core;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ResultInterface extends ArrayInterface, StringInterface
+interface ResultInterface extends ArrayInterface
 {
     /**
      * @return bool
