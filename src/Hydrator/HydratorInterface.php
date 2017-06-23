@@ -27,7 +27,7 @@ interface HydratorInterface extends IdentifiableInterface
      *
      * @return bool
      */
-    public function supports(object $class) : bool;
+    public function supports($class): bool;
 
     /**
      * @param object $class
@@ -35,5 +35,5 @@ interface HydratorInterface extends IdentifiableInterface
      *
      * @return ArrayInterface
      */
-    public function hydrate(object $class, array $data) : ArrayInterface;
+    public function hydrate($class, array $data): ArrayInterface;
 }

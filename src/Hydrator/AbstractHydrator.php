@@ -29,12 +29,12 @@ abstract class AbstractHydrator extends AbstractIdentifiable implements Hydrator
      *
      * @return ArrayInterface
      */
-    abstract public function doHydrate(object $object, array $data): ArrayInterface;
+    abstract public function doHydrate($object, array $data): ArrayInterface;
 
     /**
      * @inheritDoc
      */
-    public function hydrate(object $object, array $data): ArrayInterface
+    public function hydrate($object, array $data): ArrayInterface
     {
         if (false === $this->supports($object)) {
             throw new UnsupportedClassHydratorException($this, $object);
