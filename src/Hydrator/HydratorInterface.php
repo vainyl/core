@@ -23,11 +23,19 @@ use Vainyl\Core\IdentifiableInterface;
 interface HydratorInterface extends IdentifiableInterface
 {
     /**
-     * @param object $class
+     * @param string $className
      *
      * @return bool
      */
-    public function supports($class): bool;
+    public function supports(string $className): bool;
+
+    /**
+     * @param string $className
+     * @param array  $data
+     *
+     * @return ArrayInterface
+     */
+    public function create(string $className, array $data): ArrayInterface;
 
     /**
      * @param object $object
@@ -35,5 +43,5 @@ interface HydratorInterface extends IdentifiableInterface
      *
      * @return ArrayInterface
      */
-    public function hydrate($object, array $data): ArrayInterface;
+    public function update($object, array $data): ArrayInterface;
 }

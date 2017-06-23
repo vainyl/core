@@ -23,27 +23,13 @@ use Vainyl\Core\Exception\UnsupportedClassHydratorException;
  */
 abstract class AbstractHydrator extends AbstractIdentifiable implements HydratorInterface
 {
-    private $factoryStorage;
-
     /**
-     * @param \ArrayAccess $factoryStorage
+     * @param string $className
+     * @param array  $data
      *
-     * @return AbstractHydrator
+     * @return ArrayInterface
      */
-    public function setFactoryStorage(\ArrayAccess $factoryStorage): AbstractHydrator
-    {
-        $this->factoryStorage = $factoryStorage;
-
-        return $this;
-    }
-
-    /**
-     * @return AbstractHydrator
-     */
-    public function getFactoryStorage(): AbstractHydrator
-    {
-        return $this->factoryStorage;
-    }
+    abstract public function doCreate(string $className, array $data): ArrayInterface;
 
     /**
      * @param object $object
@@ -51,17 +37,29 @@ abstract class AbstractHydrator extends AbstractIdentifiable implements Hydrator
      *
      * @return ArrayInterface
      */
-    abstract public function doHydrate($object, array $data): ArrayInterface;
+    abstract public function doUpdate($object, array $data): ArrayInterface;
 
     /**
      * @inheritDoc
      */
-    public function hydrate($object, array $data): ArrayInterface
+    public function create(string $className, array $data): ArrayInterface
     {
-        if (false === $this->supports($object)) {
-            throw new UnsupportedClassHydratorException($this, $object);
+        if (false === $this->supports($className)) {
+            throw new UnsupportedClassHydratorException($this, $className);
         }
 
-        return $this->doHydrate($object, $data);
+        return $this->doCreate($className, $data);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function update($object, array $data): ArrayInterface
+    {
+        if (false === $this->supports(get_class($object))) {
+            throw new UnsupportedClassHydratorException($this, get_class($object));
+        }
+
+        return $this->doUpdate($object, $data);
     }
 }
