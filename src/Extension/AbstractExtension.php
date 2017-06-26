@@ -15,14 +15,13 @@ namespace Vainyl\Core\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Vainyl\Core\Application\EnvironmentInterface;
-use Vainyl\Core\NameableInterface;
 
 /**
  * Class AbstractExtension
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractExtension extends Extension implements NameableInterface
+abstract class AbstractExtension extends Extension implements ExtensionInterface
 {
     private $environment;
 
