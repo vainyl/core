@@ -98,7 +98,7 @@ abstract class AbstractExtension extends Extension implements NameableInterface
                 $this->getConfigDirectory()
             )
         ))
-            ->load('di.yml');
+            ->load('services.yml');
 
         return $this;
     }
