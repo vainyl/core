@@ -33,9 +33,14 @@ abstract class AbstractBundleExtension extends AbstractExtension
     public function getConfigDirectory(): string
     {
         if ($this->getEnvironment()->isDebugEnabled()) {
-            return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config';
+            return $this->getDirectory()
+                   . DIRECTORY_SEPARATOR . 'Resources'
+                   . DIRECTORY_SEPARATOR . 'config';
         }
 
-        return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'debug';
+        return $this->getDirectory()
+               . DIRECTORY_SEPARATOR . 'Resources'
+               . DIRECTORY_SEPARATOR . 'config'
+               . DIRECTORY_SEPARATOR . 'debug';
     }
 }
