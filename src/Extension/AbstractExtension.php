@@ -12,17 +12,18 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
+use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\Extension;
+use Symfony\Component\DependencyInjection\Loader\YamlFileLoader;
 use Vainyl\Core\Application\EnvironmentInterface;
-use Vainyl\Core\NameableInterface;
 
 /**
  * Class AbstractExtension
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractExtension extends Extension implements NameableInterface
+abstract class AbstractExtension extends Extension implements ExtensionInterface
 {
     private $environment;
 
@@ -68,7 +69,6 @@ abstract class AbstractExtension extends Extension implements NameableInterface
         return str_replace('\Extension', '', (new \ReflectionClass($this))->getNamespaceName());
     }
 
-
     /**
      * @return string
      */
@@ -92,13 +92,15 @@ abstract class AbstractExtension extends Extension implements NameableInterface
      */
     public function load(array $configs, ContainerBuilder $container): AbstractExtension
     {
-        (new \Symfony\Component\DependencyInjection\Loader\YamlFileLoader(
-            $container,
-            new \Symfony\Component\Config\FileLocator(
-                $this->getConfigDirectory()
-            )
-        ))
-            ->load('di.yml');
+        if (false === is_dir($this->getConfigDirectory())) {
+            return $this;
+        }
+
+        if (false === file_exists($this->getConfigDirectory() . DIRECTORY_SEPARATOR . 'services.yml')) {
+            return $this;
+        }
+
+        (new YamlFileLoader($container, new FileLocator($this->getConfigDirectory())))->load('services.yml');
 
         return $this;
     }
