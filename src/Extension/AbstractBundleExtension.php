@@ -20,6 +20,14 @@ namespace Vainyl\Core\Extension;
 abstract class AbstractBundleExtension extends AbstractExtension
 {
     /**
+     * @return string
+     */
+    public function getResourcesDirectory(): string
+    {
+        return $this->getDirectory() . DIRECTORY_SEPARATOR . 'Resources';
+    }
+
+    /**
      * @inheritDoc
      */
     public function getDirectory(): string
@@ -33,14 +41,9 @@ abstract class AbstractBundleExtension extends AbstractExtension
     public function getConfigDirectory(): string
     {
         if ($this->getEnvironment()->isDebugEnabled()) {
-            return $this->getDirectory()
-                   . DIRECTORY_SEPARATOR . 'Resources'
-                   . DIRECTORY_SEPARATOR . 'config';
+            return $this->getResourcesDirectory() . DIRECTORY_SEPARATOR . 'config';
         }
 
-        return $this->getDirectory()
-               . DIRECTORY_SEPARATOR . 'Resources'
-               . DIRECTORY_SEPARATOR . 'config'
-               . DIRECTORY_SEPARATOR . 'debug';
+        return $this->getResourcesDirectory() . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'debug';
     }
 }
