@@ -14,6 +14,7 @@ namespace Vainyl\Core\Storage\Proxy;
 
 use Ds\Map;
 use Vainyl\Core\AbstractArray;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -88,7 +89,16 @@ class StorageProxy extends AbstractArray implements StorageInterface
      */
     public function toArray() : array
     {
-       return $this->storage->toArray();
+        $data = [];
+        foreach ($this->storage as $key => $element) {
+            if ($element instanceof ArrayInterface) {
+                $data[] = $element->toArray();
+            } else {
+                $data[] = $element;
+            }
+        }
+
+        return $data;
     }
 
     /**
