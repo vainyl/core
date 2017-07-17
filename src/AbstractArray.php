@@ -13,25 +13,17 @@ declare(strict_types=1);
 namespace Vainyl\Core;
 
 /**
- * Class AbstractFailedResult
+ * Class AbstractArray
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractFailedResult extends AbstractArray implements ResultInterface
+abstract class AbstractArray extends AbstractIdentifiable implements ArrayInterface
 {
     /**
      * @inheritDoc
      */
-    public function isSuccessful()
+    public function jsonSerialize()
     {
-        return false;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function toArray(): array
-    {
-        return ['status' => false];
+        return $this->toArray();
     }
 }

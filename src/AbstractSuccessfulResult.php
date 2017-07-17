@@ -27,6 +27,8 @@ abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements 
         return true;
     }
 
+
+
     /**
      * @inheritDoc
      */
