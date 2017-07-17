@@ -17,7 +17,7 @@ namespace Vainyl\Core;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements ResultInterface
+abstract class AbstractSuccessfulResult extends AbstractArray implements ResultInterface
 {
     /**
      * @inheritDoc
@@ -26,8 +26,6 @@ abstract class AbstractSuccessfulResult extends AbstractIdentifiable implements 
     {
         return true;
     }
-
-
 
     /**
      * @inheritDoc

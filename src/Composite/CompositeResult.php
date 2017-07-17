@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Composite;
 
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
 use Vainyl\Core\ResultInterface;
 
 /**
@@ -20,7 +20,7 @@ use Vainyl\Core\ResultInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class CompositeResult extends AbstractIdentifiable implements ResultInterface
+class CompositeResult extends AbstractArray implements ResultInterface
 {
     private $status = true;
 
@@ -52,7 +52,7 @@ class CompositeResult extends AbstractIdentifiable implements ResultInterface
             $results[] = $result->toArray();
         }
 
-        return ['results' => $results];
+        return ['status' => $this->status, 'results' => $results];
     }
 
     /**
