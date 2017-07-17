@@ -33,8 +33,8 @@ class ExtensionCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'extension.storage');
         }
 
+        $containerDefinition = $container->getDefinition('extension.storage');
         foreach ($container->findTaggedServiceIds('extension') as $id => $tags) {
-            $containerDefinition = $container->getDefinition('extension.storage');
             $containerDefinition
                 ->addMethodCall('addExtension', [new Reference($id)]);
         }

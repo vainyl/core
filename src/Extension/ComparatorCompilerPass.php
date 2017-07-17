@@ -35,6 +35,7 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
             throw new MissingRequiredServiceException($container, 'comparator.storage');
         }
 
+        $containerDefinition = $container->getDefinition('comparator.storage');
         foreach ($container->findTaggedServiceIds('comparator') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
@@ -44,8 +45,6 @@ class ComparatorCompilerPass extends AbstractCompilerPass implements CompilerPas
                 $definition = $container->getDefinition($id);
                 $inner = $id . '.inner';
                 $container->setDefinition($inner, $definition);
-
-                $containerDefinition = $container->getDefinition('comparator.storage');
                 $containerDefinition
                     ->addMethodCall('addComparator', [$alias, new Reference($inner)]);
 

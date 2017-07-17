@@ -34,12 +34,13 @@ class DecoderCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'decoder.storage');
         }
 
+        $containerDefinition = $container->getDefinition('decoder.storage');
         foreach ($container->findTaggedServiceIds('decoder') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
-                $containerDefinition = $container->getDefinition('decoder.storage');
+
                 $containerDefinition
                     ->addMethodCall('addDecoder', [$attributes['alias'], new Reference($id)]);
             }
