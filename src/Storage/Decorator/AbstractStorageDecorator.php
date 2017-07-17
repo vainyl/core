@@ -85,6 +85,14 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     /**
      * @inheritDoc
      */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function toArray(): array
     {
         return $this->storage->toArray();

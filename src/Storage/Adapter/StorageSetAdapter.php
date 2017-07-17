@@ -3,7 +3,7 @@
 namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Set;
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
 use Vainyl\Core\Exception\UnsupportedMethodStorageException;
 use Vainyl\Core\Storage\StorageInterface;
 
@@ -15,7 +15,7 @@ use Vainyl\Core\Storage\StorageInterface;
  *
  * @package Vainyl\Core\Storage\Adapter
  */
-class StorageSetAdapter extends AbstractIdentifiable implements StorageInterface
+class StorageSetAdapter extends AbstractArray implements StorageInterface
 {
     private $set;
 

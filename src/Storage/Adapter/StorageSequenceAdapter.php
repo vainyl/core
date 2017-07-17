@@ -3,7 +3,7 @@
 namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Sequence;
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -14,7 +14,7 @@ use Vainyl\Core\Storage\StorageInterface;
  *
  * @package Vainyl\Core\Storage\Adapter
  */
-class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInterface
+class StorageSequenceAdapter extends AbstractArray implements StorageInterface
 {
     private $sequence;
 

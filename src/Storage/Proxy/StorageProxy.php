@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Storage\Proxy;
 
 use Ds\Map;
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -21,7 +21,7 @@ use Vainyl\Core\Storage\StorageInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class StorageProxy extends AbstractIdentifiable implements StorageInterface
+class StorageProxy extends AbstractArray implements StorageInterface
 {
     private $storage;
 
