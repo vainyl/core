@@ -26,4 +26,21 @@ abstract class AbstractArray extends AbstractIdentifiable implements ArrayInterf
     {
         return $this->toArray();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        $array = [];
+        foreach (get_object_vars($this) as $field => $value) {
+            if ($value instanceof ArrayInterface) {
+                $array[$field] = $value->toArray();
+            } else {
+                $array[$field] = $value;
+            }
+        }
+
+        return $array;
+    }
 }
