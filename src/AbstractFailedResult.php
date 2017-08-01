@@ -17,7 +17,7 @@ namespace Vainyl\Core;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractFailedResult extends AbstractIdentifiable implements ResultInterface
+abstract class AbstractFailedResult extends AbstractArray implements ResultInterface
 {
     /**
      * @inheritDoc

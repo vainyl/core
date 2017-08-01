@@ -26,13 +26,13 @@ class UnsupportedClassHydratorException extends AbstractHydratorException
     /**
      * UnsupportedClassHydratorException constructor.
      *
-     * @param HydratorInterface $hydrator
+     * @param HydratorInterface $registry
      * @param string            $className
      */
-    public function __construct(HydratorInterface $hydrator, string $className)
+    public function __construct(HydratorInterface $registry, string $className)
     {
         $this->className = $className;
-        parent::__construct($hydrator, sprintf('Cannot hydrate unsupported class %s', $className));
+        parent::__construct($registry, sprintf('Cannot hydrate unsupported class %s', $className));
     }
 
     /**

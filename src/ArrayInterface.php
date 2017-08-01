@@ -17,7 +17,7 @@ namespace Vainyl\Core;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ArrayInterface extends ComparableInterface
+interface ArrayInterface extends ComparableInterface, \JsonSerializable
 {
     /**
      * @return array

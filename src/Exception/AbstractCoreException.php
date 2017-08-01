@@ -34,6 +34,14 @@ abstract class AbstractCoreException extends \Exception implements CoreException
     /**
      * @inheritDoc
      */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function toArray(): array
     {
         return ['id' => $this->getId(), 'code' => $this->code, 'message' => $this->message];

@@ -34,12 +34,13 @@ class EncoderCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'encoder.storage');
         }
 
+        $containerDefinition = $container->getDefinition('encoder.storage');
         foreach ($container->findTaggedServiceIds('encoder') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
-                $containerDefinition = $container->getDefinition('encoder.storage');
+
                 $containerDefinition
                     ->addMethodCall('addEncoder', [$attributes['alias'], new Reference($id)]);
             }

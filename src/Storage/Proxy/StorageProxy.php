@@ -13,7 +13,8 @@ declare(strict_types=1);
 namespace Vainyl\Core\Storage\Proxy;
 
 use Ds\Map;
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -21,7 +22,7 @@ use Vainyl\Core\Storage\StorageInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class StorageProxy extends AbstractIdentifiable implements StorageInterface
+class StorageProxy extends AbstractArray implements StorageInterface
 {
     private $storage;
 
@@ -88,7 +89,16 @@ class StorageProxy extends AbstractIdentifiable implements StorageInterface
      */
     public function toArray() : array
     {
-       return $this->storage->toArray();
+        $data = [];
+        foreach ($this->storage as $key => $element) {
+            if ($element instanceof ArrayInterface) {
+                $data[] = $element->toArray();
+            } else {
+                $data[] = $element;
+            }
+        }
+
+        return $data;
     }
 
     /**

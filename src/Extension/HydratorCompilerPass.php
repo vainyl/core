@@ -14,35 +14,34 @@ namespace Vainyl\Core\Extension;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Reference;
 use Vainyl\Core\Exception\MissingRequiredFieldException;
 use Vainyl\Core\Exception\MissingRequiredServiceException;
 
 /**
- * Class DecoderCompilerPass
+ * Class HydratorCompilerPass
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DecoderCompilerPass implements CompilerPassInterface
+class HydratorCompilerPass implements CompilerPassInterface
 {
     /**
      * @inheritDoc
      */
     public function process(ContainerBuilder $container)
     {
-        if (false === ($container->hasDefinition('decoder.storage'))) {
-            throw new MissingRequiredServiceException($container, 'decoder.storage');
+        if (false === ($container->hasDefinition('hydrator.registry'))) {
+            throw new MissingRequiredServiceException($container, 'hydrator.registry');
         }
 
-        $containerDefinition = $container->getDefinition('decoder.storage');
-        foreach ($container->findTaggedServiceIds('decoder') as $id => $tags) {
+        $containerDefinition = $container->getDefinition('hydrator.registry');
+        foreach ($container->findTaggedServiceIds('hydrator') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
 
                 $containerDefinition
-                    ->addMethodCall('addDecoder', [$attributes['alias'], new Reference($id)]);
+                    ->addMethodCall('addHydrator', [$attributes['alias'], $id]);
             }
         }
 
