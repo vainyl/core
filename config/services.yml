@@ -1,4 +1,6 @@
 services:
+  app.di:
+    synthetic: true
   app.environment:
     synthetic: true
   logger.app:
@@ -88,3 +90,6 @@ services:
     tags:
       - {name: decoder, alias: 'json'}
       - {name: decoder, alias: 'application/json'}
+  hydrator.registry:
+    class: Vainyl\Core\Hydrator\Registry\HydratorRegistry
+    arguments: ['@storage.prototype', '@app.di']

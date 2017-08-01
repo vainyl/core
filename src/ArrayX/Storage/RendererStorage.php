@@ -29,12 +29,12 @@ class RendererStorage extends AbstractStorageDecorator implements RendererStorag
     /**
      * RendererStorage constructor.
      *
-     * @param StorageInterface $storage
-     * @param RendererFactoryInterface $rendererFactory
+     * @param StorageInterface         $storage
+     * @param RendererFactoryInterface $container
      */
-    public function __construct(StorageInterface $storage, RendererFactoryInterface $rendererFactory)
+    public function __construct(StorageInterface $storage, RendererFactoryInterface $container)
     {
-        $this->renderFactory = $rendererFactory;
+        $this->renderFactory = $container;
         parent::__construct($storage);
     }
 

@@ -26,18 +26,18 @@ abstract class AbstractHydratorException extends AbstractCoreException implement
     /**
      * AbstractHydratorException constructor.
      *
-     * @param HydratorInterface $hydrator
+     * @param HydratorInterface $registry
      * @param string            $message
      * @param int               $code
      * @param \Exception|null   $previous
      */
     public function __construct(
-        HydratorInterface $hydrator,
+        HydratorInterface $registry,
         string $message,
         int $code = 500,
         \Exception $previous = null
     ) {
-        $this->hydrator = $hydrator;
+        $this->hydrator = $registry;
         parent::__construct($message, $code, $previous);
     }
 
