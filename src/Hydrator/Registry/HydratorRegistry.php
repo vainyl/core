@@ -54,7 +54,7 @@ class HydratorRegistry extends AbstractStorageDecorator implements HydratorRegis
     /**
      * @inheritDoc
      */
-    public function getRenderer(string $alias): HydratorInterface
+    public function getHydrator(string $alias): HydratorInterface
     {
         if (false === array_key_exists($alias, $this->aliasMap)) {
             throw new UnknownHydratorException($this, $alias);

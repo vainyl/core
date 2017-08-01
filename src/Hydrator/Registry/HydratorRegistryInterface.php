@@ -35,5 +35,5 @@ interface HydratorRegistryInterface extends IdentifiableInterface
      *
      * @return HydratorInterface
      */
-    public function getRenderer(string $alias): HydratorInterface;
+    public function getHydrator(string $alias): HydratorInterface;
 }
