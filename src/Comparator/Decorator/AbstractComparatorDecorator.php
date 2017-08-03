@@ -102,14 +102,6 @@ abstract class AbstractComparatorDecorator extends AbstractIdentifiable implemen
     /**
      * @inheritDoc
      */
-    public function getId(): string
-    {
-        return $this->comparator->getId();
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getName(): string
     {
         return $this->comparator->getName();

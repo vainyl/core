@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Application\Decorator;
 
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Application\ApplicationInterface;
 use Vainyl\Core\Application\BootstrapperInterface;
 
@@ -20,7 +21,7 @@ use Vainyl\Core\Application\BootstrapperInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractApplicationDecorator implements ApplicationInterface
+abstract class AbstractApplicationDecorator extends AbstractIdentifiable implements ApplicationInterface
 {
     private $application;
 
@@ -42,14 +43,6 @@ abstract class AbstractApplicationDecorator implements ApplicationInterface
         $this->application->bootstrap($bootstrapper);
 
         return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->application->getId();
     }
 
     /**

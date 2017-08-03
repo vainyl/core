@@ -42,12 +42,4 @@ abstract class AbstractComparatorFactoryDecorator extends AbstractIdentifiable i
     {
         return $this->comparatorFactory->decorate($comparator);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->comparatorFactory->getId();
-    }
 }

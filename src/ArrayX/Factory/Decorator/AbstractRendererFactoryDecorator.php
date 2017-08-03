@@ -42,12 +42,4 @@ abstract class AbstractRendererFactoryDecorator extends AbstractIdentifiable imp
     {
         return $this->rendererFactory->decorate($renderer);
     }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->rendererFactory->getId();
-    }
 }

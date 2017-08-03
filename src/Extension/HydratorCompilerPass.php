@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Vainyl\Core\Exception\MissingRequiredFieldException;
 use Vainyl\Core\Exception\MissingRequiredServiceException;
@@ -22,7 +21,7 @@ use Vainyl\Core\Exception\MissingRequiredServiceException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class HydratorCompilerPass implements CompilerPassInterface
+class HydratorCompilerPass extends AbstractCompilerPass
 {
     /**
      * @inheritDoc
