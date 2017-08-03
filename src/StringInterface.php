@@ -17,7 +17,7 @@ namespace Vainyl\Core;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface StringInterface extends ComparableInterface
+interface StringInterface extends IdentifiableInterface
 {
     /**
      * @return string

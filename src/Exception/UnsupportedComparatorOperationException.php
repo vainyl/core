@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
@@ -29,14 +29,14 @@ class UnsupportedComparatorOperationException extends AbstractComparatorExceptio
      *
      * @param ComparatorInterface $comparator
      * @param string              $operation
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      */
     public function __construct(
         ComparatorInterface $comparator,
         string $operation,
-        ComparableInterface $what,
-        ComparableInterface $to
+        IdentifiableInterface $what,
+        IdentifiableInterface $to
     ) {
         $this->operation = $operation;
         parent::__construct($comparator, $what, $to, 'Unsupported operation');

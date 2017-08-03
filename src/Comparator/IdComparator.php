@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator;
 
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class IdComparator
@@ -24,7 +24,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function supports(string $operation, ComparableInterface $what, ComparableInterface $to): bool
+    public function supports(string $operation, IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return true;
     }
@@ -32,7 +32,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doEq(ComparableInterface $what, ComparableInterface $to): bool
+    public function doEq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return $what->getId() === $to->getId();
     }
@@ -40,7 +40,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doNeq(ComparableInterface $what, ComparableInterface $to): bool
+    public function doNeq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return $what->getId() !== $to->getId();
     }
@@ -48,7 +48,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doLt(ComparableInterface $what, ComparableInterface $to): bool
+    public function doLt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return strcmp($what->getId(), $to->getId()) < 0;
     }
@@ -56,7 +56,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doGt(ComparableInterface $what, ComparableInterface $to): bool
+    public function doGt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return strcmp($what->getId(), $to->getId()) > 0;
     }
@@ -64,7 +64,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doLte(ComparableInterface $what, ComparableInterface $to): bool
+    public function doLte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return strcmp($what->getId(), $to->getId()) <= 0;
     }
@@ -72,7 +72,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doGte(ComparableInterface $what, ComparableInterface $to): bool
+    public function doGte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return strcmp($what->getId(), $to->getId()) >= 0;
     }
@@ -80,7 +80,7 @@ class IdComparator extends AbstractComparator
     /**
      * @inheritDoc
      */
-    public function doLike(ComparableInterface $what, ComparableInterface $to): bool
+    public function doLike(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         return $what->getId() === $to->getId();
     }

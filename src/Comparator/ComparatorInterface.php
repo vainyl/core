@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator;
 
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\NameableInterface;
 
 /**
@@ -34,66 +34,66 @@ interface ComparatorInterface extends NameableInterface
     const OPERATION_LIKE = 'like';
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function eq(ComparableInterface $what, ComparableInterface $to): bool;
+    public function eq(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function neq(ComparableInterface $what, ComparableInterface $to): bool;
+    public function neq(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function lt(ComparableInterface $what, ComparableInterface $to): bool;
+    public function lt(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function gt(ComparableInterface $what, ComparableInterface $to): bool;
+    public function gt(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function lte(ComparableInterface $what, ComparableInterface $to): bool;
+    public function lte(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function gte(ComparableInterface $what, ComparableInterface $to): bool;
+    public function gte(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    public function like(ComparableInterface $what, ComparableInterface $to): bool;
+    public function like(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return int
      */
-    public function compare(ComparableInterface $what, ComparableInterface $to): int;
+    public function compare(IdentifiableInterface $what, IdentifiableInterface $to): int;
 }

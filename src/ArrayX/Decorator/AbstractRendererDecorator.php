@@ -12,13 +12,50 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\ArrayX\Decorator;
 
-use Vainyl\Core\ArrayX\Proxy\AbstractRendererProxy;
+use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\ArrayX\RendererInterface;
 
 /**
  * Class AbstractRendererDecorator
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class AbstractRendererDecorator extends AbstractRendererProxy
+abstract class AbstractRendererDecorator extends AbstractIdentifiable implements RendererInterface
 {
+    private $renderer;
+
+    /**
+     * AbstractRendererDecorator constructor.
+     *
+     * @param RendererInterface $renderer
+     */
+    public function __construct(RendererInterface $renderer)
+    {
+        $this->renderer = $renderer;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getId(): string
+    {
+        return $this->renderer->getId();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getName(): string
+    {
+        return $this->renderer->getName();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function render(ArrayInterface $array): array
+    {
+        return $this->renderer->render($array);
+    }
 }

@@ -38,6 +38,34 @@ abstract class AbstractExtension extends Extension implements ExtensionInterface
     }
 
     /**
+     * @param AbstractExtension $obj
+     *
+     * @return bool
+     */
+    public function equals($obj): bool
+    {
+        return $this->getId() === $obj->getId();
+    }
+
+    /**
+     * @return array
+     */
+    public function getCompilerPasses(): array
+    {
+        return [];
+    }
+
+    /**
+     * @return string
+     */
+    abstract public function getConfigDirectory(): string;
+
+    /**
+     * @return string
+     */
+    abstract public function getDirectory(): string;
+
+    /**
      * @return EnvironmentInterface
      */
     public function getEnvironment(): EnvironmentInterface
@@ -70,21 +98,11 @@ abstract class AbstractExtension extends Extension implements ExtensionInterface
     }
 
     /**
-     * @return string
+     * @inheritDoc
      */
-    abstract public function getDirectory(): string;
-
-    /**
-     * @return string
-     */
-    abstract public function getConfigDirectory(): string;
-
-    /**
-     * @return array
-     */
-    public function getCompilerPasses(): array
+    public function hash()
     {
-        return [];
+        return $this->getId();
     }
 
     /**

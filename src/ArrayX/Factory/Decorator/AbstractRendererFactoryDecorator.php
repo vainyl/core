@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\ArrayX\Factory\Decorator;
 
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
 use Vainyl\Core\ArrayX\RendererInterface;
 
@@ -20,7 +21,7 @@ use Vainyl\Core\ArrayX\RendererInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractRendererFactoryDecorator implements RendererFactoryInterface
+abstract class AbstractRendererFactoryDecorator extends AbstractIdentifiable implements RendererFactoryInterface
 {
     private $rendererFactory;
 
