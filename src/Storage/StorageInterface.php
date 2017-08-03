@@ -27,5 +27,5 @@ interface StorageInterface extends IdentifiableInterface, ArrayInterface, \Array
      *
      * @return StorageInterface
      */
-    public function fromArray(array $configData) : StorageInterface;
+    public function fromArray(array $configData): StorageInterface;
 }

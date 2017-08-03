@@ -24,5 +24,5 @@ interface HydratorRegistryExceptionInterface extends \Throwable
     /**
      * @return HydratorRegistryInterface
      */
-    public function getRegistry() : HydratorRegistryInterface;
+    public function getRegistry(): HydratorRegistryInterface;
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Comparator;
 
 use Vainyl\Core\AbstractIdentifiable;
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Exception\UnsupportedComparatorOperationException;
 
 /**
@@ -24,74 +24,74 @@ use Vainyl\Core\Exception\UnsupportedComparatorOperationException;
 abstract class AbstractComparator extends AbstractIdentifiable implements ComparatorInterface
 {
     /**
-     * @param string              $operation
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param string                $operation
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function supports(string $operation, ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function supports(string $operation, IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doEq(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doEq(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doNeq(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doNeq(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doLt(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doLt(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doGt(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doGt(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doLte(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doLte(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doGte(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doGte(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
      *
      * @return bool
      */
-    abstract public function doLike(ComparableInterface $what, ComparableInterface $to): bool;
+    abstract public function doLike(IdentifiableInterface $what, IdentifiableInterface $to): bool;
 
     /**
      * @inheritDoc
      */
-    public function eq(ComparableInterface $what, ComparableInterface $to): bool
+    public function eq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_EQUAL, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_EQUAL, $what, $to);
@@ -103,7 +103,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function neq(ComparableInterface $what, ComparableInterface $to): bool
+    public function neq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_NOT_EQUAL, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_NOT_EQUAL, $what, $to);
@@ -115,7 +115,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function lt(ComparableInterface $what, ComparableInterface $to): bool
+    public function lt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LESS, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_LESS, $what, $to);
@@ -127,7 +127,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function gt(ComparableInterface $what, ComparableInterface $to): bool
+    public function gt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_GREATER, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_GREATER, $what, $to);
@@ -139,7 +139,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function lte(ComparableInterface $what, ComparableInterface $to): bool
+    public function lte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LESS_OR_EQUAL, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_LESS_OR_EQUAL, $what, $to);
@@ -151,7 +151,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function gte(ComparableInterface $what, ComparableInterface $to): bool
+    public function gte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_GREATER_OR_EQUAL, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_GREATER_OR_EQUAL, $what, $to);
@@ -163,7 +163,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function like(ComparableInterface $what, ComparableInterface $to): bool
+    public function like(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         if (false === $this->supports(self::OPERATION_LIKE, $what, $to)) {
             throw new UnsupportedComparatorOperationException($this, self::OPERATION_LIKE, $what, $to);
@@ -175,7 +175,7 @@ abstract class AbstractComparator extends AbstractIdentifiable implements Compar
     /**
      * @inheritDoc
      */
-    public function compare(ComparableInterface $what, ComparableInterface $to): int
+    public function compare(IdentifiableInterface $what, IdentifiableInterface $to): int
     {
         if ($this->lt($what, $to)) {
             return self::RESULT_LESS;

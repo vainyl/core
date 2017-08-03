@@ -32,6 +32,32 @@ abstract class AbstractCoreException extends \Exception implements CoreException
     }
 
     /**
+     * @param AbstractCoreException $obj
+     *
+     * @return bool
+     */
+    public function equals($obj): bool
+    {
+        return $this->getId() === $obj->getId();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getId(): string
+    {
+        return spl_object_hash($this);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function hash()
+    {
+        return $this->getId();
+    }
+
+    /**
      * @inheritDoc
      */
     public function jsonSerialize()
@@ -45,13 +71,5 @@ abstract class AbstractCoreException extends \Exception implements CoreException
     public function toArray(): array
     {
         return ['id' => $this->getId(), 'code' => $this->code, 'message' => $this->message];
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return spl_object_hash($this);
     }
 }

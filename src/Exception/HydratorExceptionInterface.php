@@ -24,5 +24,5 @@ interface HydratorExceptionInterface extends \Throwable
     /**
      * @return HydratorInterface
      */
-    public function getHydrator() : HydratorInterface;
+    public function getHydrator(): HydratorInterface;
 }

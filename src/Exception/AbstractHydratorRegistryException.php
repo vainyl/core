@@ -19,7 +19,8 @@ use Vainyl\Core\Hydrator\Registry\HydratorRegistryInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractHydratorRegistryException extends AbstractCoreException implements HydratorRegistryExceptionInterface
+abstract class AbstractHydratorRegistryException extends AbstractCoreException implements
+    HydratorRegistryExceptionInterface
 {
     private $registry;
 

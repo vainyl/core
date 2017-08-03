@@ -26,5 +26,5 @@ interface ExtensionStorageInterface extends StorageInterface
      *
      * @return ExtensionStorage
      */
-    public function addExtension(AbstractExtension $extension) : ExtensionStorage;
+    public function addExtension(AbstractExtension $extension): ExtensionStorage;
 }

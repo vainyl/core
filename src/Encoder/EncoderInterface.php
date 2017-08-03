@@ -26,5 +26,5 @@ interface EncoderInterface extends NameableInterface
      *
      * @return string
      */
-    public function encode($data) : string;
+    public function encode($data): string;
 }

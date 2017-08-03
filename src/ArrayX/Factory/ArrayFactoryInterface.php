@@ -27,7 +27,7 @@ interface ArrayFactoryInterface extends IdentifiableInterface
      *
      * @return bool
      */
-    public function supports(string $name) : bool;
+    public function supports(string $name): bool;
 
     /**
      * @param string $name
@@ -35,5 +35,5 @@ interface ArrayFactoryInterface extends IdentifiableInterface
      *
      * @return ArrayInterface
      */
-    public function create(string $name, array $data = []) : ArrayInterface;
+    public function create(string $name, array $data = []): ArrayInterface;
 }

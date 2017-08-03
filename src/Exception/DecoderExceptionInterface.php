@@ -24,5 +24,5 @@ interface DecoderExceptionInterface extends \Throwable
     /**
      * @return DecoderInterface
      */
-    public function getDecoder() :  DecoderInterface;
+    public function getDecoder(): DecoderInterface;
 }
