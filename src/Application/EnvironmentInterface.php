@@ -27,40 +27,40 @@ interface EnvironmentInterface extends NameableInterface, ArrayInterface, String
     /**
      * @return bool
      */
-    public function isDebugEnabled() : bool;
+    public function isDebugEnabled(): bool;
 
     /**
      * @return bool
      */
-    public function isCachingEnabled() : bool;
+    public function isCachingEnabled(): bool;
 
     /**
      * @return string
      */
-    public function getApplicationDirectory() : string;
+    public function getApplicationDirectory(): string;
 
     /**
      * @return string
      */
-    public function getConfigDirectory() : string;
+    public function getConfigDirectory(): string;
 
     /**
      * @return string
      */
-    public function getDebugDirectory() : string;
+    public function getDebugDirectory(): string;
 
     /**
      * @return string
      */
-    public function getCacheDirectory() : string;
+    public function getCacheDirectory(): string;
 
     /**
      * @return string
      */
-    public function getContainerConfig() : string;
+    public function getContainerConfig(): string;
 
     /**
      * @return AbstractExtension[]
      */
-    public function getExtensions() : array;
+    public function getExtensions(): array;
 }

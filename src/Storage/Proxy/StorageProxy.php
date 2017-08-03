@@ -87,7 +87,7 @@ class StorageProxy extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         $data = [];
         foreach ($this->storage as $key => $element) {
@@ -104,7 +104,7 @@ class StorageProxy extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function fromArray(array $configData) : StorageInterface
+    public function fromArray(array $configData): StorageInterface
     {
         $this->storage->putAll($configData);
 

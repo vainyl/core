@@ -27,7 +27,7 @@ interface DecoderStorageInterface extends StorageInterface
      *
      * @return DecoderInterface
      */
-    public function getDecoder(string $alias) : DecoderInterface;
+    public function getDecoder(string $alias): DecoderInterface;
 
     /**
      * @param string           $alias
@@ -35,5 +35,5 @@ interface DecoderStorageInterface extends StorageInterface
      *
      * @return DecoderStorageInterface
      */
-    public function addDecoder(string $alias, DecoderInterface $decoder) : DecoderStorageInterface;
+    public function addDecoder(string $alias, DecoderInterface $decoder): DecoderStorageInterface;
 }

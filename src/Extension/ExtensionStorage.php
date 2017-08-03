@@ -24,7 +24,7 @@ class ExtensionStorage extends AbstractStorageDecorator implements ExtensionStor
     /**
      * @inheritDoc
      */
-    public function addExtension(AbstractExtension $extension) : ExtensionStorage
+    public function addExtension(AbstractExtension $extension): ExtensionStorage
     {
         $this->offsetSet($extension->getName(), $extension);
 

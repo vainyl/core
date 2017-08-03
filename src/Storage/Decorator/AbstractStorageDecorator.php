@@ -101,7 +101,7 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     /**
      * @inheritDoc
      */
-    public function fromArray(array $configData) : StorageInterface
+    public function fromArray(array $configData): StorageInterface
     {
         $this->storage->fromArray($configData);
 

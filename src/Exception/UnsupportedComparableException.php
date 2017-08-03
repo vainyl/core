@@ -25,7 +25,7 @@ class UnsupportedComparableException extends AbstractComparatorException
     /**
      * UnsupportedObjectException constructor.
      *
-     * @param ComparatorInterface $comparator
+     * @param ComparatorInterface   $comparator
      * @param IdentifiableInterface $what
      * @param IdentifiableInterface $to
      */

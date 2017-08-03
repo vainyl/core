@@ -24,5 +24,5 @@ interface ArrayFactoryExceptionInterface extends \Throwable
     /**
      * @return ArrayFactoryInterface
      */
-    public function getFactory() : ArrayFactoryInterface;
+    public function getFactory(): ArrayFactoryInterface;
 }

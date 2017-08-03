@@ -24,7 +24,7 @@ use Vainyl\Core\Exception\UnsupportedComparatorOperationException;
 abstract class AbstractComparator extends AbstractIdentifiable implements ComparatorInterface
 {
     /**
-     * @param string              $operation
+     * @param string                $operation
      * @param IdentifiableInterface $what
      * @param IdentifiableInterface $to
      *

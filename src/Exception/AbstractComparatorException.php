@@ -31,12 +31,12 @@ abstract class AbstractComparatorException extends AbstractCoreException impleme
     /**
      * AbstractComparatorException constructor.
      *
-     * @param ComparatorInterface $comparator
+     * @param ComparatorInterface   $comparator
      * @param IdentifiableInterface $what
      * @param IdentifiableInterface $to
-     * @param string              $message
-     * @param int                 $code
-     * @param \Exception|null     $previous
+     * @param string                $message
+     * @param int                   $code
+     * @param \Exception|null       $previous
      */
     public function __construct(
         ComparatorInterface $comparator,
