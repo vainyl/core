@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Storage\Proxy;
+namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Map;
 use Vainyl\Core\AbstractArray;
@@ -18,11 +18,11 @@ use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class StorageProxy
+ * Class DsMapAdapter
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class StorageProxy extends AbstractArray implements StorageInterface
+class DsMapAdapter extends AbstractArray implements StorageInterface
 {
     private $storage;
 
@@ -104,9 +104,9 @@ class StorageProxy extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function fromArray(array $configData): StorageInterface
+    public function fromArray(array $data): StorageInterface
     {
-        $this->storage->putAll($configData);
+        $this->storage->putAll($data);
 
         return $this;
     }

@@ -2,31 +2,30 @@
 
 namespace Vainyl\Core\Storage\Adapter;
 
-use Ds\Set;
+use Ds\Sequence;
 use Vainyl\Core\AbstractArray;
-use Vainyl\Core\Exception\UnsupportedMethodStorageException;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class StorageSetAdapter
+ * Class DsSequenceAdapter
  *
  * @author  Andrey Dembitskiy <andrey.dembitskiy@cosmonova.net>
  * Cosmonova LLC
  *
  * @package Vainyl\Core\Storage\Adapter
  */
-class StorageSetAdapter extends AbstractArray implements StorageInterface
+class DsSequenceAdapter extends AbstractArray implements StorageInterface
 {
-    private $set;
+    private $sequence;
 
     /**
-     * StorageSetAdapter constructor.
+     * DsSequenceAdapter constructor.
      *
-     * @param Set $set
+     * @param Sequence $sequence
      */
-    public function __construct(Set $set)
+    public function __construct(Sequence $sequence)
     {
-        $this->set = $set;
+        $this->sequence = $sequence;
     }
 
     /**
@@ -34,7 +33,7 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function toArray(): array
     {
-        return $this->set->toArray();
+        return $this->sequence->toArray();
     }
 
     /**
@@ -42,7 +41,7 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function getIterator()
     {
-        return new \IteratorIterator($this->set);
+        return new \IteratorIterator($this->sequence);
     }
 
     /**
@@ -50,7 +49,11 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetExists($offset)
     {
-        throw new UnsupportedMethodStorageException($this, __METHOD__);
+        try {
+            return null !== $this->sequence->get($offset);
+        } catch (\OutOfRangeException $e) {
+            return false;
+        }
     }
 
     /**
@@ -58,7 +61,7 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetGet($offset)
     {
-        return $this->set->offsetGet($offset);
+        return $this->sequence->get($offset);
     }
 
     /**
@@ -66,7 +69,11 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetSet($offset, $value)
     {
-        $this->set->add($value);
+        if ($offset === null) {
+            $this->sequence->push($value);
+        } else {
+            $this->sequence->set($offset, $value);
+        }
     }
 
     /**
@@ -74,7 +81,7 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetUnset($offset)
     {
-        throw new UnsupportedMethodStorageException($this, __METHOD__);
+        $this->sequence->remove($offset);
     }
 
     /**
@@ -82,15 +89,15 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function count()
     {
-        return $this->set->count();
+        return $this->sequence->count();
     }
 
     /**
      * @inheritDoc
      */
-    public function fromArray(array $configData): StorageInterface
+    public function fromArray(array $data): StorageInterface
     {
-        $this->set->add(...$configData);
+        $this->sequence->push(...$data);
 
         return $this;
     }
@@ -100,6 +107,6 @@ class StorageSetAdapter extends AbstractArray implements StorageInterface
      */
     public function __clone()
     {
-        $this->set = clone $this->set;
+        $this->sequence = clone $this->sequence;
     }
 }

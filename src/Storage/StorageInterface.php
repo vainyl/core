@@ -23,9 +23,9 @@ use Vainyl\Core\IdentifiableInterface;
 interface StorageInterface extends IdentifiableInterface, ArrayInterface, \ArrayAccess, \Countable, \IteratorAggregate
 {
     /**
-     * @param array $configData
+     * @param array $data
      *
      * @return StorageInterface
      */
-    public function fromArray(array $configData): StorageInterface;
+    public function fromArray(array $data): StorageInterface;
 }

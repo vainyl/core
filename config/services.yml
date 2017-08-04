@@ -16,27 +16,37 @@ services:
   ds.set:
     shared: false
     class: Ds\Set
-  storage.set.prototype:
+  ds.queue:
     shared: false
-    class: Vainyl\Core\Storage\Adapter\StorageSetAdapter
+    class: Ds\Queue
+  set.prototype:
+    shared: false
+    class: Vainyl\Core\Storage\Adapter\DsSetAdapter
     arguments: ['@ds.set']
-  storage.prototype:
+  sequence.prototype:
     shared: false
-    class: Vainyl\Core\Storage\Proxy\StorageProxy
+    class: Vainyl\Core\Storage\Adapter\DsSequenceAdapter
+    arguments: ['@ds.set']
+  map.prototype:
+    shared: false
+    class: Vainyl\Core\Storage\Proxy\DsMapAdapter
     arguments: ['@ds.map']
-  storage.prototype.assert:
+  queue.prototype:
+    class: Vainyl\Core\Queue\Adapter\DsQueueAdapter
+    arguments: ['@ds.queue']
+  map.prototype.assert:
     shared: false
-    decorates: storage.prototype
+    decorates: map.prototype
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
     arguments: ['@storage.prototype.assert.inner']
-  storage.prototype.duplicate:
+  map.prototype.duplicate:
     shared: false
-    decorates: storage.prototype
+    decorates: map.prototype
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
     arguments: ['@storage.prototype.duplicate.inner']
   bootstrapper.composite:
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
-    arguments: ['@storage.prototype']
+    arguments: ['@map.prototype']
   bootstrapper: '@bootstrapper.composite'
   comparator.factory:
     class: Vainyl\Core\Comparator\Factory\ComparatorFactory
@@ -46,7 +56,7 @@ services:
     arguments: ['@comparator.factory.logger.inner', '@logger.app']
   comparator.storage:
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
-    arguments: ['@storage.prototype', '@comparator.factory']
+    arguments: ['@map.prototype', '@comparator.factory']
   renderer.factory:
     class: Vainyl\Core\ArrayX\Factory\RendererFactory
   renderer.factory.logger:
@@ -55,7 +65,7 @@ services:
     arguments: ['@renderer.factory.logger.inner', '@logger.app']
   renderer.storage:
     class: Vainyl\Core\ArrayX\Storage\RendererStorage
-    arguments: ['@storage.prototype', '@renderer.factory']
+    arguments: ['@map.prototype', '@renderer.factory']
   bootstrapper.shutdown:
     class: Vainyl\Core\Application\ShutdownFunctionBootstrapper
     arguments: ['@logger.app']
@@ -63,13 +73,13 @@ services:
       - {name: bootstrapper}
   encoder.storage:
     class: Vainyl\Core\Encoder\Storage\EncoderStorage
-    arguments: ['@storage.prototype']
+    arguments: ['@map.prototype']
   decoder.storage:
     class: Vainyl\Core\Encoder\Storage\DecoderStorage
-    arguments: ['@storage.prototype']
+    arguments: ['@map.prototype']
   extension.storage:
     class: Vainyl\Core\Extension\ExtensionStorage
-    arguments: ['@storage.prototype']
+    arguments: ['@map.prototype']
   encoder.null:
     class: Vainyl\Core\Encoder\NullEncoder
     tags:
@@ -92,4 +102,4 @@ services:
       - {name: decoder, alias: 'application/json'}
   hydrator.registry:
     class: Vainyl\Core\Hydrator\Registry\HydratorRegistry
-    arguments: ['@storage.prototype', '@app.di']
+    arguments: ['@map.prototype', '@app.di']
