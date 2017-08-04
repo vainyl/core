@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Storage\Decorator;
 
 use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -101,9 +102,9 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     /**
      * @inheritDoc
      */
-    public function fromArray(array $configData): StorageInterface
+    public function fromArray(array $data): ReconstructableInterface
     {
-        $this->storage->fromArray($configData);
+        $this->storage->fromArray($data);
 
         return $this;
     }

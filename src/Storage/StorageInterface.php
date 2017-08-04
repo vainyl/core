@@ -13,19 +13,18 @@ declare(strict_types=1);
 namespace Vainyl\Core\Storage;
 
 use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\IdentifiableInterface;
+use Vainyl\Core\ReconstructableInterface;
 
 /**
  * Interface StorageInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface StorageInterface extends IdentifiableInterface, ArrayInterface, \ArrayAccess, \Countable, \IteratorAggregate
+interface StorageInterface extends
+    ArrayInterface,
+    ReconstructableInterface,
+    \ArrayAccess,
+    \Countable,
+    \IteratorAggregate
 {
-    /**
-     * @param array $configData
-     *
-     * @return StorageInterface
-     */
-    public function fromArray(array $configData): StorageInterface;
 }

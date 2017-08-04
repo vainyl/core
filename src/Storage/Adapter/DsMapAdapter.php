@@ -10,19 +10,20 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\Storage\Proxy;
+namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Map;
 use Vainyl\Core\AbstractArray;
 use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class StorageProxy
+ * Class DsMapAdapter
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class StorageProxy extends AbstractArray implements StorageInterface
+class DsMapAdapter extends AbstractArray implements StorageInterface
 {
     private $storage;
 
@@ -34,6 +35,33 @@ class StorageProxy extends AbstractArray implements StorageInterface
     public function __construct(Map $storage)
     {
         $this->storage = $storage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count(): int
+    {
+        return $this->storage->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $data): ReconstructableInterface
+    {
+        $this->storage->clear();
+        $this->storage->putAll($data);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new \IteratorIterator($this->storage);
     }
 
     /**
@@ -71,22 +99,6 @@ class StorageProxy extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function count(): int
-    {
-        return $this->storage->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIterator()
-    {
-        return new \IteratorIterator($this->storage);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function toArray(): array
     {
         $data = [];
@@ -99,15 +111,5 @@ class StorageProxy extends AbstractArray implements StorageInterface
         }
 
         return $data;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fromArray(array $configData): StorageInterface
-    {
-        $this->storage->putAll($configData);
-
-        return $this;
     }
 }
