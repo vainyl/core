@@ -19,7 +19,7 @@ use Vainyl\Core\IdentifiableInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface QueueInterface extends IdentifiableInterface, \Countable, \Iterator
+interface QueueInterface extends IdentifiableInterface, \Countable, \Iterator, \JsonSerializable
 {
     /**
      * @param IdentifiableInterface $identifiable
