@@ -19,6 +19,9 @@ services:
   ds.queue:
     shared: false
     class: Ds\Queue
+  ds.priority.queue:
+    shared: false
+    class: Ds\PriorityQueue
   set.prototype:
     shared: false
     class: Vainyl\Core\Storage\Adapter\DsSetAdapter
@@ -32,8 +35,13 @@ services:
     class: Vainyl\Core\Storage\Adapter\DsMapAdapter
     arguments: ['@ds.map']
   queue.prototype:
+    shared: false
     class: Vainyl\Core\Queue\Adapter\DsQueueAdapter
     arguments: ['@ds.queue']
+  priority.queue.prototype:
+    shared: false
+    class: Vainyl\Core\Queue\Adapter\DsPriorityQueueAdapter
+    arguments: ['@ds.priority.queue']
   map.prototype.assert:
     shared: false
     decorates: map.prototype
