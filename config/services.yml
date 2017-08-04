@@ -38,12 +38,12 @@ services:
     shared: false
     decorates: map.prototype
     class: Vainyl\Core\Storage\Decorator\AssertStorageDecorator
-    arguments: ['@storage.prototype.assert.inner']
+    arguments: ['@map.prototype.assert.inner']
   map.prototype.duplicate:
     shared: false
     decorates: map.prototype
     class: Vainyl\Core\Storage\Decorator\DuplicateStorageDecorator
-    arguments: ['@storage.prototype.duplicate.inner']
+    arguments: ['@map.prototype.duplicate.inner']
   bootstrapper.composite:
     class: Vainyl\Core\Application\Composite\CompositeBootstrapper
     arguments: ['@map.prototype']
