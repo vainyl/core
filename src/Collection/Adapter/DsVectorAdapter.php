@@ -15,6 +15,7 @@ namespace Vainyl\Core\Collection\Adapter;
 use Ds\Vector;
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Collection\VectorInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\ReconstructableInterface;
 
 /**
@@ -34,6 +35,16 @@ class DsVectorAdapter extends AbstractIdentifiable implements VectorInterface
     public function __construct(Vector $vector)
     {
         $this->vector = $vector;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function clear(): VectorInterface
+    {
+        $this->vector->clear();
+
+        return $this;
     }
 
     /**
@@ -103,6 +114,24 @@ class DsVectorAdapter extends AbstractIdentifiable implements VectorInterface
     public function offsetUnset($offset)
     {
         $this->vector->remove($offset);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function pop(): IdentifiableInterface
+    {
+        return $this->vector->pop();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function push(IdentifiableInterface $identifiable): VectorInterface
+    {
+        $this->vector->push($identifiable);
 
         return $this;
     }

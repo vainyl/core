@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Collection;
 
 use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\ReconstructableInterface;
 
 /**
@@ -22,4 +23,20 @@ use Vainyl\Core\ReconstructableInterface;
  */
 interface VectorInterface extends ArrayInterface, ReconstructableInterface, \IteratorAggregate, \ArrayAccess, \Countable
 {
+    /**
+     * @return VectorInterface
+     */
+    public function clear(): VectorInterface;
+
+    /**
+     * @return IdentifiableInterface
+     */
+    public function pop(): IdentifiableInterface;
+
+    /**
+     * @param IdentifiableInterface $identifiable
+     *
+     * @return VectorInterface
+     */
+    public function push(IdentifiableInterface $identifiable): VectorInterface;
 }
