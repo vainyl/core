@@ -29,7 +29,7 @@ services:
     arguments: ['@ds.set']
   map.prototype:
     shared: false
-    class: Vainyl\Core\Storage\Proxy\DsMapAdapter
+    class: Vainyl\Core\Storage\Adapter\DsMapAdapter
     arguments: ['@ds.map']
   queue.prototype:
     class: Vainyl\Core\Queue\Adapter\DsQueueAdapter
