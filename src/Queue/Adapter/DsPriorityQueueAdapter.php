@@ -39,6 +39,14 @@ class DsPriorityQueueAdapter extends AbstractIdentifiable implements PriorityQue
     /**
      * @inheritDoc
      */
+    public function __clone()
+    {
+        $this->queue = clone $this->queue;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function count()
     {
         return $this->queue->count();
@@ -55,9 +63,27 @@ class DsPriorityQueueAdapter extends AbstractIdentifiable implements PriorityQue
     /**
      * @inheritDoc
      */
-    public function next()
+    public function dequeue(): IdentifiableInterface
     {
         return $this->queue->pop();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function enqueue(IdentifiableInterface $identifiable, int $priority): PriorityQueueInterface
+    {
+        $this->queue->push($identifiable, $priority);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**
@@ -75,9 +101,17 @@ class DsPriorityQueueAdapter extends AbstractIdentifiable implements PriorityQue
     /**
      * @inheritDoc
      */
-    public function valid()
+    public function next()
     {
-        return false !== $this->queue->isEmpty();
+        return $this->queue->pop();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function peek(): ?IdentifiableInterface
+    {
+        return $this->queue->peek();
     }
 
     /**
@@ -91,26 +125,16 @@ class DsPriorityQueueAdapter extends AbstractIdentifiable implements PriorityQue
     /**
      * @inheritDoc
      */
-    public function enqueue(IdentifiableInterface $identifiable, int $priority): PriorityQueueInterface
+    public function toArray(): array
     {
-        $this->queue->push($identifiable, $priority);
-
-        return $this;
+        return $this->queue->toArray();
     }
 
     /**
      * @inheritDoc
      */
-    public function dequeue(): IdentifiableInterface
+    public function valid()
     {
-        return $this->queue->pop();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function peek(): ?IdentifiableInterface
-    {
-        return $this->queue->peek();
+        return false !== $this->queue->isEmpty();
     }
 }

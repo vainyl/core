@@ -143,4 +143,12 @@ class DsVectorAdapter extends AbstractIdentifiable implements VectorInterface
     {
         return $this->vector->toArray();
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function __clone()
+    {
+        $this->vector = clone $this->vector;
+    }
 }

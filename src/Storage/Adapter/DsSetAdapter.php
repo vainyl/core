@@ -5,6 +5,7 @@ namespace Vainyl\Core\Storage\Adapter;
 use Ds\Set;
 use Vainyl\Core\AbstractArray;
 use Vainyl\Core\Exception\UnsupportedMethodStorageException;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -32,9 +33,28 @@ class DsSetAdapter extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function toArray(): array
+    public function __clone()
     {
-        return $this->set->toArray();
+        $this->set = clone $this->set;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return $this->set->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $data): ReconstructableInterface
+    {
+        $this->set->clear();
+        $this->set->add(...$data);
+
+        return $this;
     }
 
     /**
@@ -80,26 +100,8 @@ class DsSetAdapter extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function count()
+    public function toArray(): array
     {
-        return $this->set->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fromArray(array $data): StorageInterface
-    {
-        $this->set->add(...$data);
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __clone()
-    {
-        $this->set = clone $this->set;
+        return $this->set->toArray();
     }
 }

@@ -39,6 +39,14 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
     /**
      * @inheritDoc
      */
+    public function __clone()
+    {
+        $this->queue = clone $this->queue;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function count()
     {
         return $this->queue->count();
@@ -55,9 +63,27 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
     /**
      * @inheritDoc
      */
-    public function next()
+    public function dequeue(): IdentifiableInterface
     {
         return $this->queue->pop();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function enqueue(IdentifiableInterface $identifiable): QueueInterface
+    {
+        $this->queue->push($identifiable);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**
@@ -75,9 +101,17 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
     /**
      * @inheritDoc
      */
-    public function valid()
+    public function next()
     {
-        return false !== $this->queue->isEmpty();
+        return $this->queue->pop();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function peek(): ?IdentifiableInterface
+    {
+        return $this->queue->peek();
     }
 
     /**
@@ -91,26 +125,16 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
     /**
      * @inheritDoc
      */
-    public function enqueue(IdentifiableInterface $identifiable): QueueInterface
+    public function toArray(): array
     {
-        $this->queue->push($identifiable);
-
-        return $this;
+        return $this->queue->toArray();
     }
 
     /**
      * @inheritDoc
      */
-    public function dequeue(): IdentifiableInterface
+    public function valid()
     {
-        return $this->queue->pop();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function peek(): ?IdentifiableInterface
-    {
-        return $this->queue->peek();
+        return false !== $this->queue->isEmpty();
     }
 }

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Queue;
 
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\IdentifiableInterface;
 
 /**
@@ -19,22 +20,22 @@ use Vainyl\Core\IdentifiableInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface QueueInterface extends IdentifiableInterface, \Countable, \Iterator, \JsonSerializable
+interface QueueInterface extends ArrayInterface, \Countable, \Iterator
 {
+    /**
+     * @return null|IdentifiableInterface
+     */
+    public function dequeue(): ?IdentifiableInterface;
+
     /**
      * @param IdentifiableInterface $identifiable
      *
      * @return QueueInterface
      */
-    public function enqueue(IdentifiableInterface $identifiable) : QueueInterface;
+    public function enqueue(IdentifiableInterface $identifiable): QueueInterface;
 
     /**
      * @return null|IdentifiableInterface
      */
-    public function dequeue() : ?IdentifiableInterface;
-
-    /**
-     * @return null|IdentifiableInterface
-     */
-    public function peek() : ?IdentifiableInterface;
+    public function peek(): ?IdentifiableInterface;
 }

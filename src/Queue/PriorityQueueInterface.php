@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Queue;
 
+use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\IdentifiableInterface;
 
 /**
@@ -19,7 +20,7 @@ use Vainyl\Core\IdentifiableInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface PriorityQueueInterface extends IdentifiableInterface, \Countable, \Iterator, \JsonSerializable
+interface PriorityQueueInterface extends ArrayInterface, \Countable, \Iterator
 {
     /**
      * @return null|IdentifiableInterface

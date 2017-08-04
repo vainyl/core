@@ -4,6 +4,7 @@ namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Sequence;
 use Vainyl\Core\AbstractArray;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -31,9 +32,27 @@ class DsSequenceAdapter extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function toArray(): array
+    public function __clone()
     {
-        return $this->sequence->toArray();
+        $this->sequence = clone $this->sequence;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return $this->sequence->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $data): ReconstructableInterface
+    {
+        $this->sequence->push(...$data);
+
+        return $this;
     }
 
     /**
@@ -87,26 +106,8 @@ class DsSequenceAdapter extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function count()
+    public function toArray(): array
     {
-        return $this->sequence->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fromArray(array $data): StorageInterface
-    {
-        $this->sequence->push(...$data);
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __clone()
-    {
-        $this->sequence = clone $this->sequence;
+        return $this->sequence->toArray();
     }
 }

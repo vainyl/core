@@ -15,6 +15,7 @@ namespace Vainyl\Core\Storage\Adapter;
 use Ds\Map;
 use Vainyl\Core\AbstractArray;
 use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
@@ -34,6 +35,33 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
     public function __construct(Map $storage)
     {
         $this->storage = $storage;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count(): int
+    {
+        return $this->storage->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $data): ReconstructableInterface
+    {
+        $this->storage->clear();
+        $this->storage->putAll($data);
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getIterator()
+    {
+        return new \IteratorIterator($this->storage);
     }
 
     /**
@@ -71,22 +99,6 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
     /**
      * @inheritDoc
      */
-    public function count(): int
-    {
-        return $this->storage->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getIterator()
-    {
-        return new \IteratorIterator($this->storage);
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function toArray(): array
     {
         $data = [];
@@ -99,15 +111,5 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
         }
 
         return $data;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fromArray(array $data): StorageInterface
-    {
-        $this->storage->putAll($data);
-
-        return $this;
     }
 }
