@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX;
+namespace Vainyl\Core\Renderer;
 
 use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\NameableInterface;

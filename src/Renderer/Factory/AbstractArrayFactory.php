@@ -10,7 +10,7 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Factory;
+namespace Vainyl\Core\Renderer\Factory;
 
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ArrayInterface;

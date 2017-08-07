@@ -73,13 +73,13 @@ services:
     class: Vainyl\Core\Comparator\Storage\ComparatorStorage
     arguments: ['@map.prototype', '@comparator.factory']
   renderer.factory:
-    class: Vainyl\Core\ArrayX\Factory\RendererFactory
+    class: Vainyl\Core\Renderer\Factory\RendererFactory
   renderer.factory.logger:
     decorates: renderer.factory
-    class: Vainyl\Core\ArrayX\Factory\Decorator\LoggerRendererFactoryDecorator
+    class: Vainyl\Core\Renderer\Factory\Decorator\LoggerRendererFactoryDecorator
     arguments: ['@renderer.factory.logger.inner', '@logger.app']
   renderer.storage:
-    class: Vainyl\Core\ArrayX\Storage\RendererStorage
+    class: Vainyl\Core\Renderer\Storage\RendererStorage
     arguments: ['@map.prototype', '@renderer.factory']
   bootstrapper.shutdown:
     class: Vainyl\Core\Application\ShutdownFunctionBootstrapper

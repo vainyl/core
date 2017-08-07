@@ -10,11 +10,11 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Decorator;
+namespace Vainyl\Core\Renderer\Decorator;
 
 use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 
 /**
  * Class AbstractRendererDecorator

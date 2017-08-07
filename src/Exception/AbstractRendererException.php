@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 
 /**
  * Class AbstractRendererException
