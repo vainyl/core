@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Renderer;
 
-use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\NameableInterface;
 
 /**
@@ -23,9 +23,9 @@ use Vainyl\Core\NameableInterface;
 interface RendererInterface extends NameableInterface
 {
     /**
-     * @param ArrayInterface $array
+     * @param IdentifiableInterface $identifiable
      *
      * @return array
      */
-    public function render(ArrayInterface $array): array;
+    public function render(IdentifiableInterface $identifiable): array;
 }

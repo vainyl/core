@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Renderer\Decorator;
 
 use Vainyl\Core\AbstractIdentifiable;
-use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Renderer\RendererInterface;
 
 /**
@@ -46,8 +46,8 @@ abstract class AbstractRendererDecorator extends AbstractIdentifiable implements
     /**
      * @inheritDoc
      */
-    public function render(ArrayInterface $array): array
+    public function render(IdentifiableInterface $identifiable): array
     {
-        return $this->renderer->render($array);
+        return $this->renderer->render($identifiable);
     }
 }

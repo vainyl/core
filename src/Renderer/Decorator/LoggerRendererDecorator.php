@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Renderer\Decorator;
 
 use Psr\Log\LoggerInterface;
-use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Renderer\RendererInterface;
 
 /**
@@ -40,11 +40,11 @@ class LoggerRendererDecorator extends AbstractRendererDecorator
     /**
      * @inheritDoc
      */
-    public function render(ArrayInterface $array): array
+    public function render(IdentifiableInterface $identifiable): array
     {
-        $this->logger->debug(sprintf('Trying to render object %s with renderer %s', $array->getId(), $this->getName()));
-        $result = parent::render($array);
-        $this->logger->debug(sprintf('Rendered object %s as %s', $array->getId(), json_encode($result)));
+        $this->logger->debug(sprintf('Trying to render object %s with renderer %s', $identifiable->getId(), $this->getName()));
+        $result = parent::render($identifiable);
+        $this->logger->debug(sprintf('Rendered object %s as %s', $identifiable->getId(), json_encode($result)));
 
         return $result;
     }

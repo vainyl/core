@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Renderer\RendererInterface;
 
 /**
@@ -24,39 +24,28 @@ abstract class AbstractRendererException extends AbstractCoreException implement
 {
     private $renderer;
 
-    private $array;
+    private $identifiable;
 
     /**
      * AbstractRendererException constructor.
      *
-     * @param RendererInterface $renderer
-     * @param ArrayInterface    $array
-     * @param string            $message
-     * @param int               $code
-     * @param \Exception|null   $previous
+     * @param RendererInterface     $renderer
+     * @param IdentifiableInterface $identifiable
+     * @param string                $message
+     * @param int                   $code
+     * @param \Exception|null       $previous
      */
     public function __construct(
         RendererInterface $renderer,
-        ArrayInterface $array,
+        IdentifiableInterface $identifiable,
         string $message,
         int $code = 500,
         \Exception $previous = null
     ) {
         $this->renderer = $renderer;
-        $this->array = $array;
+        $this->identifiable = $identifiable;
 
         parent::__construct($message, $code, $previous);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function toArray(): array
-    {
-        return array_merge(
-            ['renderer' => $this->renderer->getName(), 'array' => get_class($this->array)],
-            parent::toArray()
-        );
     }
 
     /**
@@ -65,5 +54,16 @@ abstract class AbstractRendererException extends AbstractCoreException implement
     public function getRenderer(): RendererInterface
     {
         return $this->renderer;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray(): array
+    {
+        return array_merge(
+            ['renderer' => $this->renderer->getName(), 'identifiable' => get_class($this->identifiable)],
+            parent::toArray()
+        );
     }
 }
