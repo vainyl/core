@@ -13,14 +13,13 @@ declare(strict_types=1);
 namespace Vainyl\Core\Renderer;
 
 use Vainyl\Core\IdentifiableInterface;
-use Vainyl\Core\NameableInterface;
 
 /**
  * Interface RendererInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface RendererInterface extends NameableInterface
+interface RendererInterface extends IdentifiableInterface
 {
     /**
      * @param IdentifiableInterface $identifiable
