@@ -10,9 +10,9 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Storage;
+namespace Vainyl\Core\Renderer\Storage;
 
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**

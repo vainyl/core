@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\IdentifiableInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 
 /**
  * Class UnsupportedArrayException
@@ -25,11 +25,11 @@ class UnsupportedArrayException extends AbstractRendererException
     /**
      * UnsupportedArrayException constructor.
      *
-     * @param RendererInterface $renderer
-     * @param ArrayInterface    $array
+     * @param RendererInterface     $renderer
+     * @param IdentifiableInterface $identifiable
      */
-    public function __construct(RendererInterface $renderer, ArrayInterface $array)
+    public function __construct(RendererInterface $renderer, IdentifiableInterface $identifiable)
     {
-        parent::__construct($renderer, $array, 'Unsupported object');
+        parent::__construct($renderer, $identifiable, 'Unsupported object');
     }
 }

@@ -10,11 +10,11 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX;
+namespace Vainyl\Core\Renderer;
 
 use Vainyl\Core\AbstractIdentifiable;
-use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Exception\UnsupportedArrayException;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class AbstractRenderer
@@ -24,28 +24,28 @@ use Vainyl\Core\Exception\UnsupportedArrayException;
 abstract class AbstractRenderer extends AbstractIdentifiable implements RendererInterface
 {
     /**
-     * @param ArrayInterface $array
+     * @param IdentifiableInterface $identifiable
      *
      * @return bool
      */
-    abstract public function supports(ArrayInterface $array): bool;
+    abstract public function supports(IdentifiableInterface $identifiable): bool;
 
     /**
-     * @param ArrayInterface $array
+     * @param IdentifiableInterface $identifiable
      *
      * @return array
      */
-    abstract public function doRender(ArrayInterface $array): array;
+    abstract public function doRender(IdentifiableInterface $identifiable): array;
 
     /**
      * @inheritDoc
      */
-    public function render(ArrayInterface $array): array
+    public function render(IdentifiableInterface $identifiable): array
     {
-        if (false === $this->supports($array)) {
-            throw new UnsupportedArrayException($this, $array);
+        if (false === $this->supports($identifiable)) {
+            throw new UnsupportedArrayException($this, $identifiable);
         }
 
-        return $this->doRender($array);
+        return $this->doRender($identifiable);
     }
 }

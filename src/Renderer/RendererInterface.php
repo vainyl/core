@@ -10,22 +10,21 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX;
+namespace Vainyl\Core\Renderer;
 
-use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\NameableInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Interface RendererInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface RendererInterface extends NameableInterface
+interface RendererInterface extends IdentifiableInterface
 {
     /**
-     * @param ArrayInterface $array
+     * @param IdentifiableInterface $identifiable
      *
      * @return array
      */
-    public function render(ArrayInterface $array): array;
+    public function render(IdentifiableInterface $identifiable): array;
 }

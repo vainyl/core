@@ -10,10 +10,10 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Storage;
+namespace Vainyl\Core\Renderer\Storage;
 
-use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\Factory\RendererFactoryInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 use Vainyl\Core\Storage\Decorator\AbstractStorageDecorator;
 use Vainyl\Core\Storage\StorageInterface;
 

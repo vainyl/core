@@ -10,12 +10,12 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Factory\Decorator;
+namespace Vainyl\Core\Renderer\Factory\Decorator;
 
 use Psr\Log\LoggerInterface;
-use Vainyl\Core\ArrayX\Decorator\LoggerRendererDecorator;
-use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\Decorator\LoggerRendererDecorator;
+use Vainyl\Core\Renderer\Factory\RendererFactoryInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 
 /**
  * Class LoggerRendererFactoryDecorator
