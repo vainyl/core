@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace Vainyl\Core\Hydrator;
 
 use Vainyl\Core\AbstractIdentifiable;
-use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Exception\UnsupportedClassHydratorException;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class AbstractHydrator
@@ -27,22 +27,22 @@ abstract class AbstractHydrator extends AbstractIdentifiable implements Hydrator
      * @param string $className
      * @param array  $data
      *
-     * @return ArrayInterface
+     * @return IdentifiableInterface
      */
-    abstract public function doCreate(string $className, array $data): ArrayInterface;
+    abstract public function doCreate(string $className, array $data): IdentifiableInterface;
 
     /**
      * @param object $object
      * @param array  $data
      *
-     * @return ArrayInterface
+     * @return IdentifiableInterface
      */
-    abstract public function doUpdate($object, array $data): ArrayInterface;
+    abstract public function doUpdate($object, array $data): IdentifiableInterface;
 
     /**
      * @inheritDoc
      */
-    public function create(string $className, array $data): ArrayInterface
+    public function create(string $className, array $data): IdentifiableInterface
     {
         if (false === $this->supports($className)) {
             throw new UnsupportedClassHydratorException($this, $className);
@@ -54,7 +54,7 @@ abstract class AbstractHydrator extends AbstractIdentifiable implements Hydrator
     /**
      * @inheritDoc
      */
-    public function update($object, array $data): ArrayInterface
+    public function update($object, array $data): IdentifiableInterface
     {
         if (false === $this->supports(get_class($object))) {
             throw new UnsupportedClassHydratorException($this, get_class($object));

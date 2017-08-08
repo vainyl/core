@@ -11,8 +11,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Hydrator\Decorator;
 
-use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Hydrator\HydratorInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class AbstractHydratorDecorator
@@ -46,7 +46,7 @@ abstract class AbstractHydratorDecorator implements HydratorInterface
     /**
      * @inheritDoc
      */
-    public function create(string $className, array $data): ArrayInterface
+    public function create(string $className, array $data): IdentifiableInterface
     {
         return $this->hydrator->create($className, $data);
     }
@@ -54,7 +54,7 @@ abstract class AbstractHydratorDecorator implements HydratorInterface
     /**
      * @inheritDoc
      */
-    public function update($object, array $data): ArrayInterface
+    public function update($object, array $data): IdentifiableInterface
     {
         return $this->hydrator->update($object, $data);
     }
