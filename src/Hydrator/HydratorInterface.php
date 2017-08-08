@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Hydrator;
 
-use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\IdentifiableInterface;
 
 /**
@@ -33,15 +32,15 @@ interface HydratorInterface extends IdentifiableInterface
      * @param string $className
      * @param array  $data
      *
-     * @return ArrayInterface
+     * @return IdentifiableInterface
      */
-    public function create(string $className, array $data): ArrayInterface;
+    public function create(string $className, array $data): IdentifiableInterface;
 
     /**
      * @param object $object
      * @param array  $data
      *
-     * @return ArrayInterface
+     * @return IdentifiableInterface
      */
-    public function update($object, array $data): ArrayInterface;
+    public function update($object, array $data): IdentifiableInterface;
 }
