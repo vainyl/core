@@ -12,14 +12,14 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Vainyl\Core\Storage\StorageInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Interface ExtensionStorage
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ExtensionStorageInterface extends StorageInterface
+interface ExtensionStorageInterface extends IdentifiableInterface
 {
     /**
      * @param AbstractExtension $extension
