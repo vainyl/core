@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Vainyl\Core\Comparator\Decorator;
 
 use Psr\Log\LoggerInterface;
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
@@ -40,7 +40,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function eq(ComparableInterface $what, ComparableInterface $to): bool
+    public function eq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -77,7 +77,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function neq(ComparableInterface $what, ComparableInterface $to): bool
+    public function neq(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -114,7 +114,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function lt(ComparableInterface $what, ComparableInterface $to): bool
+    public function lt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -151,7 +151,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function gt(ComparableInterface $what, ComparableInterface $to): bool
+    public function gt(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -188,7 +188,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function lte(ComparableInterface $what, ComparableInterface $to): bool
+    public function lte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -225,7 +225,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function gte(ComparableInterface $what, ComparableInterface $to): bool
+    public function gte(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -262,7 +262,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function like(ComparableInterface $what, ComparableInterface $to): bool
+    public function like(IdentifiableInterface $what, IdentifiableInterface $to): bool
     {
         $this->logger->debug(
             sprintf(
@@ -299,7 +299,7 @@ class LoggerComparatorDecorator extends AbstractComparatorDecorator
     /**
      * @inheritDoc
      */
-    public function compare(ComparableInterface $what, ComparableInterface $to): int
+    public function compare(IdentifiableInterface $what, IdentifiableInterface $to): int
     {
         $this->logger->debug(
             sprintf(

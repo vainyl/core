@@ -10,9 +10,9 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Factory;
+namespace Vainyl\Core\Renderer\Factory;
 
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 use Vainyl\Core\IdentifiableInterface;
 
 /**

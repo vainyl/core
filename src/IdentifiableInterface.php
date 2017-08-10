@@ -12,12 +12,14 @@ declare(strict_types=1);
 
 namespace Vainyl\Core;
 
+use Ds\Hashable;
+
 /**
  * Interface Identifiable
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface IdentifiableInterface
+interface IdentifiableInterface extends Hashable
 {
     /**
      * @return string

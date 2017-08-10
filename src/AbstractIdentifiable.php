@@ -22,6 +22,24 @@ abstract class AbstractIdentifiable implements IdentifiableInterface
     /**
      * @inheritDoc
      */
+    public function hash()
+    {
+        return $this->getId();
+    }
+
+    /**
+     * @param IdentifiableInterface $obj
+     *
+     * @return bool
+     */
+    public function equals($obj): bool
+    {
+        return $this->getId() === $obj->getId();
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function getId(): ?string
     {
         return spl_object_hash($this);

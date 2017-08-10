@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Vainyl\Core\Exception\MissingRequiredFieldException;
@@ -23,7 +22,7 @@ use Vainyl\Core\Exception\MissingRequiredServiceException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class EncoderCompilerPass implements CompilerPassInterface
+class EncoderCompilerPass extends AbstractCompilerPass
 {
     /**
      * @inheritDoc
@@ -34,12 +33,13 @@ class EncoderCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'encoder.storage');
         }
 
+        $containerDefinition = $container->getDefinition('encoder.storage');
         foreach ($container->findTaggedServiceIds('encoder') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
-                $containerDefinition = $container->getDefinition('encoder.storage');
+
                 $containerDefinition
                     ->addMethodCall('addEncoder', [$attributes['alias'], new Reference($id)]);
             }

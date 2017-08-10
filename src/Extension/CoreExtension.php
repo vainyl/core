@@ -25,12 +25,13 @@ class CoreExtension extends AbstractFrameworkExtension
     public function getCompilerPasses(): array
     {
         return [
-            new BootstrapperCompilerPass(),
-            new ComparatorCompilerPass(),
-            new RendererCompilerPass(),
-            new EncoderCompilerPass(),
-            new DecoderCompilerPass(),
-            new ExtensionCompilerPass(),
+            [new BootstrapperCompilerPass()],
+            [new ComparatorCompilerPass()],
+            [new RendererCompilerPass()],
+            [new EncoderCompilerPass()],
+            [new DecoderCompilerPass()],
+            [new ExtensionCompilerPass()],
+            [new HydratorCompilerPass()],
         ];
     }
 }

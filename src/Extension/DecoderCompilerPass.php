@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;
 use Vainyl\Core\Exception\MissingRequiredFieldException;
@@ -23,7 +22,7 @@ use Vainyl\Core\Exception\MissingRequiredServiceException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class DecoderCompilerPass implements CompilerPassInterface
+class DecoderCompilerPass extends AbstractCompilerPass
 {
     /**
      * @inheritDoc
@@ -34,12 +33,13 @@ class DecoderCompilerPass implements CompilerPassInterface
             throw new MissingRequiredServiceException($container, 'decoder.storage');
         }
 
+        $containerDefinition = $container->getDefinition('decoder.storage');
         foreach ($container->findTaggedServiceIds('decoder') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
-                $containerDefinition = $container->getDefinition('decoder.storage');
+
                 $containerDefinition
                     ->addMethodCall('addDecoder', [$attributes['alias'], new Reference($id)]);
             }

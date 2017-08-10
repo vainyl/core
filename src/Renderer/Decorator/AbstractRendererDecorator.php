@@ -10,17 +10,18 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Proxy;
+namespace Vainyl\Core\Renderer\Decorator;
 
-use Vainyl\Core\ArrayInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\IdentifiableInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 
 /**
- * Class AbstractRendererProxy
+ * Class AbstractRendererDecorator
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractRendererProxy implements RendererInterface
+abstract class AbstractRendererDecorator extends AbstractIdentifiable implements RendererInterface
 {
     private $renderer;
 
@@ -37,14 +38,6 @@ abstract class AbstractRendererProxy implements RendererInterface
     /**
      * @inheritDoc
      */
-    public function getId(): string
-    {
-        return $this->renderer->getId();
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function getName(): string
     {
         return $this->renderer->getName();
@@ -53,8 +46,8 @@ abstract class AbstractRendererProxy implements RendererInterface
     /**
      * @inheritDoc
      */
-    public function render(ArrayInterface $array): array
+    public function render(IdentifiableInterface $identifiable): array
     {
-        return $this->renderer->render($array);
+        return $this->renderer->render($identifiable);
     }
 }

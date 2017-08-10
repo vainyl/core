@@ -3,23 +3,24 @@
 namespace Vainyl\Core\Storage\Adapter;
 
 use Ds\Sequence;
-use Vainyl\Core\AbstractIdentifiable;
+use Vainyl\Core\AbstractArray;
+use Vainyl\Core\ReconstructableInterface;
 use Vainyl\Core\Storage\StorageInterface;
 
 /**
- * Class StorageSequenceAdapter
+ * Class DsSequenceAdapter
  *
  * @author  Andrey Dembitskiy <andrey.dembitskiy@cosmonova.net>
  * Cosmonova LLC
  *
  * @package Vainyl\Core\Storage\Adapter
  */
-class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInterface
+class DsSequenceAdapter extends AbstractArray implements StorageInterface
 {
     private $sequence;
 
     /**
-     * StorageSequenceAdapter constructor.
+     * DsSequenceAdapter constructor.
      *
      * @param Sequence $sequence
      */
@@ -31,9 +32,27 @@ class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInte
     /**
      * @inheritDoc
      */
-    public function toArray(): array
+    public function __clone()
     {
-        return $this->sequence->toArray();
+        $this->sequence = clone $this->sequence;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function count()
+    {
+        return $this->sequence->count();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function fromArray(array $data): ReconstructableInterface
+    {
+        $this->sequence->push(...$data);
+
+        return $this;
     }
 
     /**
@@ -87,26 +106,8 @@ class StorageSequenceAdapter extends AbstractIdentifiable implements StorageInte
     /**
      * @inheritDoc
      */
-    public function count()
+    public function toArray(): array
     {
-        return $this->sequence->count();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function fromArray(array $configData): StorageInterface
-    {
-        $this->sequence->push(...$configData);
-
-        return $this;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function __clone()
-    {
-        $this->sequence = clone $this->sequence;
+        return $this->sequence->toArray();
     }
 }

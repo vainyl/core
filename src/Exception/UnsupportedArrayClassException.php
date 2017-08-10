@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ArrayX\Factory\ArrayFactoryInterface;
+use Vainyl\Core\Renderer\Factory\ArrayFactoryInterface;
 
 /**
  * Class UnsupportedArrayClassException

@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Comparator\Factory\Decorator;
 
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Comparator\ComparatorInterface;
 use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
 
@@ -20,7 +21,7 @@ use Vainyl\Core\Comparator\Factory\ComparatorFactoryInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-abstract class AbstractComparatorFactoryDecorator implements ComparatorFactoryInterface
+abstract class AbstractComparatorFactoryDecorator extends AbstractIdentifiable implements ComparatorFactoryInterface
 {
     private $comparatorFactory;
 
@@ -40,13 +41,5 @@ abstract class AbstractComparatorFactoryDecorator implements ComparatorFactoryIn
     public function decorate(ComparatorInterface $comparator): ComparatorInterface
     {
         return $this->comparatorFactory->decorate($comparator);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): string
-    {
-        return $this->comparatorFactory->getId();
     }
 }

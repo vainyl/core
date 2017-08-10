@@ -12,8 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\Exception\AbstractCoreException;
-
 /**
  * Class AbstractStorageException
  *

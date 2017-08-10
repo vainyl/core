@@ -10,10 +10,10 @@
  */
 declare(strict_types=1);
 
-namespace Vainyl\Core\ArrayX\Storage;
+namespace Vainyl\Core\Renderer\Storage;
 
-use Vainyl\Core\ArrayX\Factory\RendererFactoryInterface;
-use Vainyl\Core\ArrayX\RendererInterface;
+use Vainyl\Core\Renderer\Factory\RendererFactoryInterface;
+use Vainyl\Core\Renderer\RendererInterface;
 use Vainyl\Core\Storage\Decorator\AbstractStorageDecorator;
 use Vainyl\Core\Storage\StorageInterface;
 
@@ -29,12 +29,12 @@ class RendererStorage extends AbstractStorageDecorator implements RendererStorag
     /**
      * RendererStorage constructor.
      *
-     * @param StorageInterface $storage
-     * @param RendererFactoryInterface $rendererFactory
+     * @param StorageInterface         $storage
+     * @param RendererFactoryInterface $container
      */
-    public function __construct(StorageInterface $storage, RendererFactoryInterface $rendererFactory)
+    public function __construct(StorageInterface $storage, RendererFactoryInterface $container)
     {
-        $this->renderFactory = $rendererFactory;
+        $this->renderFactory = $container;
         parent::__construct($storage);
     }
 

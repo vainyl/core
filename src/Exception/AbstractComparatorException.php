@@ -12,7 +12,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ComparableInterface;
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
 
 /**
@@ -31,17 +31,17 @@ abstract class AbstractComparatorException extends AbstractCoreException impleme
     /**
      * AbstractComparatorException constructor.
      *
-     * @param ComparatorInterface $comparator
-     * @param ComparableInterface $what
-     * @param ComparableInterface $to
-     * @param string              $message
-     * @param int                 $code
-     * @param \Exception|null     $previous
+     * @param ComparatorInterface   $comparator
+     * @param IdentifiableInterface $what
+     * @param IdentifiableInterface $to
+     * @param string                $message
+     * @param int                   $code
+     * @param \Exception|null       $previous
      */
     public function __construct(
         ComparatorInterface $comparator,
-        ComparableInterface $what,
-        ComparableInterface $to,
+        IdentifiableInterface $what,
+        IdentifiableInterface $to,
         string $message,
         int $code = 500,
         \Exception $previous = null

@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Extension;
 
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
@@ -24,7 +23,7 @@ use Vainyl\Core\Exception\MissingRequiredServiceException;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassInterface
+class RendererCompilerPass extends AbstractCompilerPass
 {
     /**
      * @inheritDoc
@@ -35,6 +34,7 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
             throw new MissingRequiredServiceException($container, 'renderer.storage');
         }
 
+        $containerDefinition = $container->getDefinition('renderer.storage');
         foreach ($container->findTaggedServiceIds('renderer') as $id => $tags) {
             foreach ($tags as $attributes) {
                 if (false === array_key_exists('alias', $attributes)) {
@@ -44,8 +44,6 @@ class RendererCompilerPass extends AbstractCompilerPass implements CompilerPassI
                 $definition = $container->getDefinition($id);
                 $inner = $id . '.inner';
                 $container->setDefinition($inner, $definition);
-
-                $containerDefinition = $container->getDefinition('renderer.storage');
                 $containerDefinition
                     ->addMethodCall('addRenderer', [$alias, new Reference($inner)]);
 

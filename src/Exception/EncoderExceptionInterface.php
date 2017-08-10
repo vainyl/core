@@ -24,5 +24,5 @@ interface EncoderExceptionInterface extends \Throwable
     /**
      * @return EncoderInterface
      */
-    public function getEncoder() : EncoderInterface;
+    public function getEncoder(): EncoderInterface;
 }
