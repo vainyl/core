@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Hydrator\Decorator;
 
+use Vainyl\Core\AbstractIdentifiable;
 use Vainyl\Core\Hydrator\HydratorInterface;
 use Vainyl\Core\IdentifiableInterface;
 
@@ -21,7 +22,7 @@ use Vainyl\Core\IdentifiableInterface;
  *
  * @package Vainyl\Core\Hydrator\Decorator
  */
-abstract class AbstractHydratorDecorator implements HydratorInterface
+abstract class AbstractHydratorDecorator extends AbstractIdentifiable implements HydratorInterface
 {
     private $hydrator;
 
@@ -57,13 +58,5 @@ abstract class AbstractHydratorDecorator implements HydratorInterface
     public function update($object, array $data): IdentifiableInterface
     {
         return $this->hydrator->update($object, $data);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getId(): ?string
-    {
-        return $this->hydrator->getId();
     }
 }
