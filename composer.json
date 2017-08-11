@@ -22,6 +22,9 @@
         "symfony/yaml": "^3",
         "php-ds/php-ds": "^1"
     },
+    "suggest" : {
+        "vainyl/di" : "Symfony container adapter for parsing config/di.yml file"
+    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
