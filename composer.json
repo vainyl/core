@@ -26,7 +26,8 @@
         "vainyl/data" : "Data providers and descriptors",
         "vainyl/di" : "Symfony container adapter for parsing config/di.yml file",
         "vainyl/config" : "Config file readers with caching options",
-        "vainyl/event" : "[Lazy] event dispathcer implementation with async support",
+        "vainyl/event" : "[Lazy] event dispatcher implementation with async support",
+        "vainyl/http" : "PSR-11 implementation",
         "vainyl/operation" : "Operation/Collection implementation"
     },
     "prefer-stable": true,
