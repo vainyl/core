@@ -31,9 +31,9 @@
         "vainyl/event" : "[Lazy] event dispatcher implementation with async support",
         "vainyl/http" : "PSR-11 implementation",
         "vainyl/operation" : "Operation/Collection implementation",
-        "vainyl/time" : "Immutable DateTime extensions with handful methods and locale support",
         "vainyl/phalcon-bridge" : "Integration with applications based on Phalcon3 framework",
-        "vainyl/symfony-bridge" : "Integration with applications based on Symfony3 framework"
+        "vainyl/symfony-bridge" : "Integration with applications based on Symfony3 framework",
+        "vainyl/time" : "Immutable DateTime extensions with handful methods and locale support"
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
