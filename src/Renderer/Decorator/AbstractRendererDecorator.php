@@ -38,14 +38,6 @@ abstract class AbstractRendererDecorator extends AbstractIdentifiable implements
     /**
      * @inheritDoc
      */
-    public function getName(): string
-    {
-        return $this->renderer->getName();
-    }
-
-    /**
-     * @inheritDoc
-     */
     public function render(IdentifiableInterface $identifiable): array
     {
         return $this->renderer->render($identifiable);

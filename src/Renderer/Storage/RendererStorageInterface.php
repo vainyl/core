@@ -12,15 +12,15 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Renderer\Storage;
 
+use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Renderer\RendererInterface;
-use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Interface RendererStorageInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface RendererStorageInterface extends StorageInterface
+interface RendererStorageInterface extends IdentifiableInterface
 {
     /**
      * @param string            $alias

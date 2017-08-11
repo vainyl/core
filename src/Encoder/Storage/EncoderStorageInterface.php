@@ -13,14 +13,14 @@ declare(strict_types=1);
 namespace Vainyl\Core\Encoder\Storage;
 
 use Vainyl\Core\Encoder\EncoderInterface;
-use Vainyl\Core\Storage\StorageInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class EncoderStorageInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface EncoderStorageInterface extends StorageInterface
+interface EncoderStorageInterface extends IdentifiableInterface
 {
     /**
      * @param string $alias
