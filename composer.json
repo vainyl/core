@@ -23,7 +23,9 @@
         "php-ds/php-ds": "^1"
     },
     "suggest" : {
-        "vainyl/di" : "Symfony container adapter for parsing config/di.yml file"
+        "vainyl/data" : "Data providers and descriptors",
+        "vainyl/di" : "Symfony container adapter for parsing config/di.yml file",
+        "vainyl/config" : "Config file readers with caching options"
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
