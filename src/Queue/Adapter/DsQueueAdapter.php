@@ -63,8 +63,12 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
     /**
      * @inheritDoc
      */
-    public function dequeue(): IdentifiableInterface
+    public function dequeue(): ?IdentifiableInterface
     {
+        if (false === $this->valid()) {
+            return null;
+        }
+
         return $this->queue->pop();
     }
 
@@ -135,6 +139,6 @@ class DsQueueAdapter extends AbstractIdentifiable implements QueueInterface
      */
     public function valid()
     {
-        return false !== $this->queue->isEmpty();
+        return false === $this->queue->isEmpty();
     }
 }
