@@ -29,13 +29,13 @@ abstract class AbstractEncoderException extends AbstractCoreException implements
      * @param EncoderInterface $encoder
      * @param string           $message
      * @param int              $code
-     * @param \Exception|null  $previous
+     * @param \Throwable|null  $previous
      */
     public function __construct(
         EncoderInterface $encoder,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->encoder = $encoder;
         parent::__construct($message, $code, $previous);

@@ -30,13 +30,13 @@ abstract class AbstractHydratorRegistryException extends AbstractCoreException i
      * @param HydratorRegistryInterface $registry
      * @param string                    $message
      * @param int                       $code
-     * @param \Exception|null           $previous
+     * @param \Throwable|null           $previous
      */
     public function __construct(
         HydratorRegistryInterface $registry,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->registry = $registry;
         parent::__construct($message, $code, $previous);

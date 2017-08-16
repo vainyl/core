@@ -29,13 +29,13 @@ abstract class AbstractBootstrapperException extends AbstractCoreException imple
      * @param BootstrapperInterface $bootstrapper
      * @param string                $message
      * @param int                   $code
-     * @param \Exception|null       $previous
+     * @param \Throwable|null       $previous
      */
     public function __construct(
         BootstrapperInterface $bootstrapper,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->bootstrapper = $bootstrapper;
         parent::__construct($message, $code, $previous);

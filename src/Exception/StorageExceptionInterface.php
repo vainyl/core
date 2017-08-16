@@ -12,17 +12,17 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ArrayInterface;
+use Vainyl\Core\Storage\StorageInterface;
 
 /**
  * Interface StorageExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface StorageExceptionInterface extends ArrayInterface, \Throwable
+interface StorageExceptionInterface extends CoreExceptionInterface
 {
     /**
-     * @return \ArrayAccess
+     * @return StorageInterface
      */
-    public function getStorage(): \ArrayAccess;
+    public function getStorage(): StorageInterface;
 }

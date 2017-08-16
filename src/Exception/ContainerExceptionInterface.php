@@ -13,14 +13,13 @@ declare(strict_types=1);
 namespace Vainyl\Core\Exception;
 
 use Psr\Container\ContainerInterface;
-use Vainyl\Core\ArrayInterface;
 
 /**
  * Interface ContainerExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ContainerExceptionInterface extends ArrayInterface, \Throwable
+interface ContainerExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return ContainerInterface

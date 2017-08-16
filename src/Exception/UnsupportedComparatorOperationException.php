@@ -12,8 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\IdentifiableInterface;
 use Vainyl\Core\Comparator\ComparatorInterface;
+use Vainyl\Core\IdentifiableInterface;
 
 /**
  * Class UnsupportedComparatorOperationException

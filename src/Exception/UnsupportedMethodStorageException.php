@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
+use Vainyl\Core\Storage\StorageInterface;
+
 /**
  * Class UnsupportedMethodStorageException
  *
@@ -24,10 +26,10 @@ class UnsupportedMethodStorageException extends AbstractStorageException
     /**
      * UnsupportedMethodStorageException constructor.
      *
-     * @param \ArrayAccess $storage
-     * @param string       $method
+     * @param StorageInterface $storage
+     * @param string           $method
      */
-    public function __construct(\ArrayAccess $storage, string $method)
+    public function __construct(StorageInterface $storage, string $method)
     {
         $this->method = $method;
         parent::__construct($storage, sprintf('Method %s is not supported', $method));

@@ -29,13 +29,13 @@ abstract class AbstractDecoderException extends AbstractCoreException implements
      * @param DecoderInterface $decoder
      * @param string           $message
      * @param int              $code
-     * @param \Exception|null  $previous
+     * @param \Throwable|null  $previous
      */
     public function __construct(
         DecoderInterface $decoder,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->decoder = $decoder;
         parent::__construct($message, $code, $previous);

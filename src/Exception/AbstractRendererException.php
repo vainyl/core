@@ -33,18 +33,17 @@ abstract class AbstractRendererException extends AbstractCoreException implement
      * @param IdentifiableInterface $identifiable
      * @param string                $message
      * @param int                   $code
-     * @param \Exception|null       $previous
+     * @param \Throwable|null       $previous
      */
     public function __construct(
         RendererInterface $renderer,
         IdentifiableInterface $identifiable,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->renderer = $renderer;
         $this->identifiable = $identifiable;
-
         parent::__construct($message, $code, $previous);
     }
 
@@ -62,7 +61,7 @@ abstract class AbstractRendererException extends AbstractCoreException implement
     public function toArray(): array
     {
         return array_merge(
-            ['renderer' => $this->renderer->getName(), 'identifiable' => get_class($this->identifiable)],
+            ['renderer' => $this->renderer->getId(), 'identifiable' => get_class($this->identifiable)],
             parent::toArray()
         );
     }
