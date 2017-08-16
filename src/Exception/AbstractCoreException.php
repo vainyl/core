@@ -24,9 +24,9 @@ abstract class AbstractCoreException extends \Exception implements CoreException
      *
      * @param string          $message
      * @param int             $code
-     * @param \Exception|null $previous
+     * @param \Throwable|null $previous
      */
-    public function __construct(string $message, int $code = 500, \Exception $previous = null)
+    public function __construct(string $message, int $code = 500, \Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }
