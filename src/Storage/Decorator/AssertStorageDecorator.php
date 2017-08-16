@@ -27,7 +27,7 @@ class AssertStorageDecorator extends AbstractStorageDecorator
     public function offsetGet($offset)
     {
         if (false === $this->offsetExists($offset)) {
-            return new UnknownOffsetException($this, $offset);
+            throw new UnknownOffsetException($this, $offset);
         }
 
         return parent::offsetGet($offset);
