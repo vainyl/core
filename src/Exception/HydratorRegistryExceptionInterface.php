@@ -19,7 +19,7 @@ use Vainyl\Core\Hydrator\Registry\HydratorRegistryInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface HydratorRegistryExceptionInterface extends \Throwable
+interface HydratorRegistryExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return HydratorRegistryInterface

@@ -13,14 +13,13 @@ declare(strict_types=1);
 namespace Vainyl\Core\Exception;
 
 use Vainyl\Core\Application\ApplicationInterface;
-use Vainyl\Core\ArrayInterface;
 
 /**
  * Interface ApplicationExceptionInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface ApplicationExceptionInterface extends ArrayInterface, \Throwable
+interface ApplicationExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return ApplicationInterface

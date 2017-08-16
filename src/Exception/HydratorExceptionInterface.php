@@ -19,7 +19,7 @@ use Vainyl\Core\Hydrator\HydratorInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface HydratorExceptionInterface extends \Throwable
+interface HydratorExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return HydratorInterface

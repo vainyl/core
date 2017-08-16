@@ -19,7 +19,7 @@ use Vainyl\Core\Application\BootstrapperInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface BootstrapperExceptionInterface
+interface BootstrapperExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return BootstrapperInterface

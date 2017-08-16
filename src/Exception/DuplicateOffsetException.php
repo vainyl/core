@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
+use Vainyl\Core\Storage\StorageInterface;
+
 /**
  * Class DuplicateOffsetException
  *
@@ -28,12 +30,12 @@ class DuplicateOffsetException extends AbstractStorageException
     /**
      * DuplicateOffsetException constructor.
      *
-     * @param \ArrayAccess    $storage
-     * @param string          $offset
-     * @param int             $newValue
-     * @param \Exception|null $oldValue
+     * @param StorageInterface $storage
+     * @param string           $offset
+     * @param int              $newValue
+     * @param \Exception|null  $oldValue
      */
-    public function __construct(\ArrayAccess $storage, $offset, $newValue, $oldValue)
+    public function __construct(StorageInterface $storage, $offset, $newValue, $oldValue)
     {
         $this->offset = $offset;
         $this->newValue = $newValue;

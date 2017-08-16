@@ -19,7 +19,7 @@ use Vainyl\Core\Encoder\EncoderInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface EncoderExceptionInterface extends \Throwable
+interface EncoderExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return EncoderInterface

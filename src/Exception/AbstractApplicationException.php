@@ -29,13 +29,13 @@ abstract class AbstractApplicationException extends AbstractCoreException implem
      * @param ApplicationInterface $application
      * @param string               $message
      * @param int                  $code
-     * @param \Exception|null      $previous
+     * @param \Throwable|null      $previous
      */
     public function __construct(
         ApplicationInterface $application,
         string $message,
         int $code = 500,
-        \Exception $previous = null
+        \Throwable $previous = null
     ) {
         $this->application = $application;
         parent::__construct($message, $code, $previous);

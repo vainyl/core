@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
+use Vainyl\Core\Storage\StorageInterface;
+
 /**
  * Class UnknownOffsetException
  *
@@ -24,10 +26,10 @@ class UnknownOffsetException extends AbstractStorageException
     /**
      * UnknownOffsetException constructor.
      *
-     * @param \ArrayAccess $storage
-     * @param string       $offset
+     * @param StorageInterface $storage
+     * @param string           $offset
      */
-    public function __construct(\ArrayAccess $storage, string $offset)
+    public function __construct(StorageInterface $storage, string $offset)
     {
         $this->offset = $offset;
         parent::__construct(

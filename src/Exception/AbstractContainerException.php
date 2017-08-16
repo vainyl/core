@@ -30,9 +30,9 @@ abstract class AbstractContainerException extends AbstractCoreException implemen
      * @param Container       $container
      * @param string          $message
      * @param int             $code
-     * @param \Exception|null $previous
+     * @param \Throwable|null $previous
      */
-    public function __construct(Container $container, string $message, int $code = 500, \Exception $previous = null)
+    public function __construct(Container $container, string $message, int $code = 500, \Throwable $previous = null)
     {
         $this->container = $container;
         parent::__construct($message, $code, $previous);
@@ -41,16 +41,16 @@ abstract class AbstractContainerException extends AbstractCoreException implemen
     /**
      * @inheritDoc
      */
-    public function toArray(): array
+    public function getContainer(): ContainerInterface
     {
-        return array_merge(['container' => spl_object_hash($this->container)], parent::toArray());
+        return $this->container;
     }
 
     /**
      * @inheritDoc
      */
-    public function getContainer(): ContainerInterface
+    public function toArray(): array
     {
-        return $this->container;
+        return array_merge(['container' => spl_object_hash($this->container)], parent::toArray());
     }
 }

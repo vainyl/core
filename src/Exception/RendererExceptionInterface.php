@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace Vainyl\Core\Exception;
 
-use Vainyl\Core\ArrayInterface;
 use Vainyl\Core\Renderer\RendererInterface;
 
 /**
@@ -20,7 +19,7 @@ use Vainyl\Core\Renderer\RendererInterface;
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
  */
-interface RendererExceptionInterface extends ArrayInterface, \Throwable
+interface RendererExceptionInterface extends CoreExceptionInterface
 {
     /**
      * @return RendererInterface
