@@ -102,6 +102,14 @@ abstract class AbstractStorageDecorator extends AbstractIdentifiable implements 
     /**
      * @inheritDoc
      */
+    public function __clone()
+    {
+        $this->storage = clone $this->storage;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function fromArray(array $data): ReconstructableInterface
     {
         $this->storage->fromArray($data);
