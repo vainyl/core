@@ -25,16 +25,24 @@ use Vainyl\Core\Storage\StorageInterface;
  */
 class DsMapAdapter extends AbstractArray implements StorageInterface
 {
-    private $storage;
+    private $map;
 
     /**
      * AbstractStorageDecorator constructor.
      *
-     * @param Map $storage
+     * @param Map $map
      */
-    public function __construct(Map $storage)
+    public function __construct(Map $map)
     {
-        $this->storage = $storage;
+        $this->map = $map;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __clone()
+    {
+        $this->map = clone $this->map;
     }
 
     /**
@@ -42,7 +50,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function count(): int
     {
-        return $this->storage->count();
+        return $this->map->count();
     }
 
     /**
@@ -50,8 +58,8 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function fromArray(array $data): ReconstructableInterface
     {
-        $this->storage->clear();
-        $this->storage->putAll($data);
+        $this->map->clear();
+        $this->map->putAll($data);
 
         return $this;
     }
@@ -61,7 +69,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function getIterator()
     {
-        return new \IteratorIterator($this->storage);
+        return new \IteratorIterator($this->map);
     }
 
     /**
@@ -69,7 +77,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetExists($offset)
     {
-        return $this->storage->hasKey($offset);
+        return $this->map->hasKey($offset);
     }
 
     /**
@@ -77,7 +85,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetGet($offset)
     {
-        return $this->storage->get($offset);
+        return $this->map->get($offset);
     }
 
     /**
@@ -85,7 +93,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetSet($offset, $value)
     {
-        $this->storage->put($offset, $value);
+        $this->map->put($offset, $value);
     }
 
     /**
@@ -93,7 +101,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetUnset($offset)
     {
-        $this->storage->remove($offset);
+        $this->map->remove($offset);
     }
 
     /**
@@ -102,7 +110,7 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
     public function toArray(): array
     {
         $data = [];
-        foreach ($this->storage as $key => $element) {
+        foreach ($this->map as $key => $element) {
             if ($element instanceof ArrayInterface) {
                 $data[] = $element->toArray();
             } else {
