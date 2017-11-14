@@ -20,6 +20,7 @@ use Vainyl\Core\Exception\MissingRequiredServiceException;
  * Class HydratorCompilerPass
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ * @author Andrii Dembitskiy <andrew.dembitskiy@gmail.com>
  */
 class HydratorCompilerPass extends AbstractCompilerPass
 {
@@ -39,8 +40,14 @@ class HydratorCompilerPass extends AbstractCompilerPass
                     throw new MissingRequiredFieldException($container, $id, $attributes, 'alias');
                 }
 
+                $isDefault = $attributes['default'] ?? false;
+
+                $method = $isDefault
+                    ? 'addDefaultHydrator'
+                    : 'addHydrator';
+
                 $containerDefinition
-                    ->addMethodCall('addHydrator', [$attributes['alias'], $id]);
+                    ->addMethodCall($method, [$attributes['alias'], $id]);
             }
         }
 

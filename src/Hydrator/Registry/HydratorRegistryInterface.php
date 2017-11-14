@@ -16,9 +16,10 @@ use Vainyl\Core\Hydrator\HydratorInterface;
 use Vainyl\Core\IdentifiableInterface;
 
 /**
- * Class HydratorRegistry
+ * Class HydratorRegistryInterface
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ * @author Andrii Dembitskiy <andrew.dembitskiy@gmail.com>
  */
 interface HydratorRegistryInterface extends IdentifiableInterface
 {
@@ -26,9 +27,17 @@ interface HydratorRegistryInterface extends IdentifiableInterface
      * @param string $alias
      * @param string $containerAlias
      *
-     * @return HydratorRegistry
+     * @return HydratorRegistryInterface
      */
-    public function addHydrator(string $alias, string $containerAlias): HydratorRegistry;
+    public function addHydrator(string $alias, string $containerAlias): HydratorRegistryInterface;
+
+    /**
+     * @param string $alias
+     * @param string $containerAlias
+     *
+     * @return HydratorRegistryInterface
+     */
+    public function addDefaultHydrator(string $alias, string $containerAlias): HydratorRegistryInterface;
 
     /**
      * @param string $alias

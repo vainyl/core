@@ -22,15 +22,17 @@ use Vainyl\Core\Storage\StorageInterface;
  * Class HydratorRegistry
  *
  * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ * @author Andrii Dembitskiy <andrew.dembitskiy@gmail.com>
  */
 class HydratorRegistry extends AbstractStorageDecorator implements HydratorRegistryInterface
 {
-    private $aliasMap = [];
+    private $aliasMap         = [];
+    private $defaultHydrators = [];
 
     private $container;
 
     /**
-     * RendererStorage constructor.
+     * HydratorRegistry constructor.
      *
      * @param StorageInterface   $storage
      * @param ContainerInterface $container
@@ -44,9 +46,20 @@ class HydratorRegistry extends AbstractStorageDecorator implements HydratorRegis
     /**
      * @inheritDoc
      */
-    public function addHydrator(string $alias, string $containerAlias): HydratorRegistry
+    public function addHydrator(string $alias, string $containerAlias): HydratorRegistryInterface
     {
         $this->aliasMap[$alias] = $containerAlias;
+
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function addDefaultHydrator(string $alias, string $containerAlias): HydratorRegistryInterface
+    {
+        $this->defaultHydrators[] = $alias;
+        $this->addHydrator($alias, $containerAlias);
 
         return $this;
     }
@@ -57,11 +70,41 @@ class HydratorRegistry extends AbstractStorageDecorator implements HydratorRegis
     public function getHydrator(string $alias): HydratorInterface
     {
         if (false === array_key_exists($alias, $this->aliasMap)) {
-            throw new UnknownHydratorException($this, $alias);
+            return $this->getSupportedDefaultHydrator($alias);
         }
 
+        return $this->getInitializedHydratorOrInitialize($alias, $this->aliasMap[$alias]);
+    }
+
+    /**
+     * @param string $entityName
+     *
+     * @return HydratorInterface
+     * @throws \Vainyl\Core\Exception\UnknownHydratorException
+     */
+    private function getSupportedDefaultHydrator(string $entityName): HydratorInterface
+    {
+        foreach ($this->defaultHydrators as $hydratorAlias) {
+            $hydrator = $this->getInitializedHydratorOrInitialize($entityName, $this->aliasMap[$hydratorAlias]);
+
+            if ($hydrator->supports($entityName)) {
+                return $hydrator;
+            }
+        }
+
+        throw new UnknownHydratorException($this, $entityName);
+    }
+
+    /**
+     * @param string $alias
+     * @param string $containerAlias
+     *
+     * @return HydratorInterface
+     */
+    private function getInitializedHydratorOrInitialize(string $alias, string $containerAlias): HydratorInterface
+    {
         if (false === $this->offsetExists($alias)) {
-            $this->offsetSet($alias, $this->container->get($this->aliasMap[$alias]));
+            $this->offsetSet($alias, $this->container->get($containerAlias));
         }
 
         return $this->offsetGet($alias);
