@@ -101,7 +101,8 @@ class DsMapAdapter extends AbstractArray implements StorageInterface
      */
     public function offsetUnset($offset)
     {
-        $this->map->remove($offset);
+        // Second argument for avoid OutOfBound exception
+        $this->map->remove($offset, null);
     }
 
     /**
