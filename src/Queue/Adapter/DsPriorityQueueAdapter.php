@@ -135,6 +135,6 @@ class DsPriorityQueueAdapter extends AbstractIdentifiable implements PriorityQue
      */
     public function valid()
     {
-        return false !== $this->queue->isEmpty();
+        return false === $this->queue->isEmpty();
     }
 }
