@@ -24,7 +24,7 @@ abstract class AbstractFrameworkExtension extends AbstractExtension
      */
     public function getDirectory(): string
     {
-        return dirname((new \ReflectionClass(get_class($this)))->getFileName())
+        return dirname((new \ReflectionClass(static::class))->getFileName())
                . DIRECTORY_SEPARATOR . '..'
                . DIRECTORY_SEPARATOR . '..';
     }
