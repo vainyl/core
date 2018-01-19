@@ -28,6 +28,6 @@ abstract class AbstractCompilerPass extends AbstractIdentifiable implements Comp
      */
     public function getName(): string
     {
-        return basename(static::class);
+        return (new \ReflectionClass(static::class))->getShortName();
     }
 }
