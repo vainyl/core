@@ -34,7 +34,7 @@ abstract class AbstractFrameworkExtension extends AbstractExtension
      */
     public function getConfigDirectory(): string
     {
-        if ($this->getEnvironment()->isDebugEnabled()) {
+        if (false === $this->getEnvironment()->isDebugEnabled()) {
             return $this->getDirectory() . DIRECTORY_SEPARATOR . 'config';
         }
 
